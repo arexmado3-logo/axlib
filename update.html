@@ -3,144 +3,272 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AXLIB - 업데이트 및 공지사항</title>
-
+<title>업데이트 & 공지사항 — AXLIB</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
 <style>
+*{margin:0;padding:0;box-sizing:border-box;}
 body{
-    margin:0;
-    background:#0f0f14;
-    color:white;
-    font-family:Arial,sans-serif;
+  background:#080810;color:#e8e4ff;
+  font-family:'Segoe UI',Arial,sans-serif;
+  min-height:100vh;
 }
 
+/* 헤더 */
 header{
-    background:linear-gradient(90deg,#6a00ff,#a64dff);
-    padding:50px 20px;
-    text-align:center;
+  position:fixed;top:0;left:0;width:100%;
+  padding:16px 48px;
+  display:flex;align-items:center;justify-content:space-between;
+  background:rgba(8,8,16,0.92);backdrop-filter:blur(16px);
+  border-bottom:1px solid rgba(125,60,255,0.25);
+  z-index:100;
+}
+.logo-text{font-size:1.4rem;font-weight:700;letter-spacing:2px;color:#c4a8ff;text-decoration:none;}
+.logo-text span{color:#7d3cff;}
+.header-back{
+  display:flex;align-items:center;gap:6px;
+  color:rgba(196,168,255,0.6);text-decoration:none;font-size:0.85rem;
+  transition:color .2s;
+}
+.header-back:hover{color:#c4a8ff;}
+
+/* 히어로 배너 */
+.hero{
+  padding:130px 24px 60px;
+  text-align:center;
+  position:relative;overflow:hidden;
+}
+.hero::before{
+  content:'';position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(ellipse 65% 60% at 50% 60%, rgba(125,60,255,0.14) 0%, transparent 70%);
+}
+.hero-badge{
+  display:inline-block;
+  background:rgba(125,60,255,0.15);border:1px solid rgba(125,60,255,0.4);
+  color:#b388ff;font-size:0.72rem;letter-spacing:1.5px;
+  padding:5px 16px;border-radius:999px;margin-bottom:18px;
+  text-transform:uppercase;
+}
+.hero h1{
+  font-size:2.6rem;font-weight:700;color:#ddd0ff;
+  letter-spacing:-0.5px;margin-bottom:10px;
+}
+.hero p{color:rgba(196,168,255,0.5);font-size:0.95rem;}
+
+/* 컨테이너 */
+.container{max-width:760px;margin:0 auto;padding:0 24px 80px;}
+
+/* 필터 탭 */
+.filters{
+  display:flex;gap:8px;margin-bottom:28px;flex-wrap:wrap;
+}
+.filter-btn{
+  padding:7px 18px;border-radius:999px;font-size:0.82rem;font-weight:600;
+  border:1px solid rgba(125,60,255,0.25);background:transparent;
+  color:rgba(196,168,255,0.55);cursor:pointer;transition:.2s;
+}
+.filter-btn:hover{border-color:rgba(125,60,255,0.5);color:#c4a8ff;}
+.filter-btn.active{
+  background:rgba(125,60,255,0.2);border-color:rgba(125,60,255,0.6);color:#c4a8ff;
 }
 
-.container{
-    max-width:1000px;
-    margin:auto;
-    padding:30px 20px;
-}
-
+/* 카드 */
 .card{
-    background:#1b1b24;
-    border:1px solid #7d3cff;
-    border-radius:15px;
-    padding:25px;
-    margin-bottom:20px;
-    box-shadow:0 0 15px rgba(125,60,255,.2);
+  background:rgba(28,22,50,0.7);
+  border:1px solid rgba(125,60,255,0.15);
+  border-radius:18px;padding:26px 28px;
+  margin-bottom:16px;
+  transition:border-color .3s, box-shadow .3s;
+  position:relative;overflow:hidden;
+}
+.card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg, transparent, rgba(125,60,255,0.3), transparent);
+}
+.card:hover{
+  border-color:rgba(125,60,255,0.35);
+  box-shadow:0 8px 28px rgba(125,60,255,0.08);
 }
 
+/* 카드 상단 행 */
+.card-top{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:12px;flex-wrap:wrap;}
+.card-meta{display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+
+/* 배지 */
 .badge{
-    display:inline-block;
-    padding:5px 12px;
-    border-radius:20px;
-    font-size:12px;
-    margin-bottom:10px;
+  display:inline-flex;align-items:center;gap:5px;
+  padding:4px 12px;border-radius:999px;font-size:0.73rem;font-weight:700;
+  letter-spacing:0.3px;
 }
-
-.update{
-    background:#28a745;
-}
-
-.notice{
-    background:#ff9800;
-}
-
-.important{
-    background:#ff4444;
-}
+.badge-update{background:rgba(30,180,100,0.15);color:#5edfaa;border:1px solid rgba(30,180,100,0.25);}
+.badge-notice{background:rgba(255,160,30,0.12);color:#ffba4d;border:1px solid rgba(255,160,30,0.25);}
+.badge-important{background:rgba(220,60,60,0.12);color:#ff7a7a;border:1px solid rgba(220,60,60,0.25);}
 
 .date{
-    color:#999;
-    font-size:14px;
-    margin-top:8px;
+  display:flex;align-items:center;gap:5px;
+  font-size:0.78rem;color:rgba(196,168,255,0.35);white-space:nowrap;
 }
 
-.btn{
-    display:inline-block;
-    text-decoration:none;
-    color:white;
-    background:#7d3cff;
-    padding:12px 24px;
-    border-radius:10px;
-    margin-top:15px;
+.card h2{font-size:1.1rem;font-weight:600;color:#ddd0ff;margin-bottom:8px;}
+.card p{font-size:0.9rem;color:rgba(196,168,255,0.55);line-height:1.75;}
+
+.btn-link{
+  display:inline-flex;align-items:center;gap:7px;
+  margin-top:16px;padding:10px 20px;
+  background:#7d3cff;color:white;text-decoration:none;
+  border-radius:10px;font-size:0.85rem;font-weight:600;
+  transition:transform .25s, background .25s, box-shadow .25s;
+}
+.btn-link:hover{transform:translateY(-2px);background:#9257ff;box-shadow:0 6px 18px rgba(125,60,255,0.3);}
+
+/* 구분선 */
+.divider{
+  max-width:760px;margin:0 auto 28px;
+  height:1px;background:linear-gradient(90deg, transparent, rgba(125,60,255,0.15), transparent);
 }
 
+/* 빈 상태 */
+.empty{
+  text-align:center;padding:60px 20px;
+  color:rgba(196,168,255,0.35);font-size:0.9rem;display:none;
+}
+
+/* 디스코드 버튼 */
+.discord-btn{
+  position:fixed;right:20px;bottom:20px;
+  background:#5865F2;color:white;text-decoration:none;
+  padding:12px 20px;border-radius:999px;font-weight:600;font-size:0.88rem;
+  display:flex;align-items:center;gap:8px;
+  box-shadow:0 6px 20px rgba(88,101,242,0.4);z-index:9999;transition:.3s;
+}
+.discord-btn:hover{transform:translateY(-3px);box-shadow:0 10px 28px rgba(88,101,242,0.5);}
+
+/* 푸터 */
 footer{
-    text-align:center;
-    color:#888;
-    padding:30px;
+  text-align:center;padding:36px 24px;
+  border-top:1px solid rgba(125,60,255,0.1);
+  color:rgba(255,255,255,0.25);font-size:0.82rem;line-height:2;
+}
+
+@media(max-width:600px){
+  header{padding:14px 20px;}
+  .hero h1{font-size:2rem;}
+  .card{padding:20px;}
 }
 </style>
 </head>
 <body>
 
+<!-- 헤더 -->
 <header>
-    <h1>📢 업데이트 & 공지사항</h1>
-    <p>AXLIB 및 전산볼트 앱 최신 소식</p>
+  <a href="index.html" class="header-back">
+    <i class="ti ti-arrow-left" aria-hidden="true"></i> 홈으로
+  </a>
+  <a href="index.html" class="logo-text">AX<span>LIB</span></a>
+  <div style="width:70px;"></div>
 </header>
 
+<!-- 히어로 -->
+<div class="hero">
+  <div class="hero-badge">업데이트 & 공지사항</div>
+  <h1>AXLIB 최신 소식</h1>
+  <p>전산볼트 앱 및 AXLIB 서비스의 업데이트 내역과 공지사항입니다</p>
+</div>
+
+<!-- 컨텐츠 -->
 <div class="container">
 
-    <div class="card">
-        <span class="badge update">업데이트</span>
+  <!-- 필터 -->
+  <div class="filters">
+    <button class="filter-btn active" onclick="filterCards('all', this)">전체</button>
+    <button class="filter-btn" onclick="filterCards('update', this)">업데이트</button>
+    <button class="filter-btn" onclick="filterCards('notice', this)">공지</button>
+    <button class="filter-btn" onclick="filterCards('important', this)">중요</button>
+  </div>
 
-        <h2>전산볼트 앱 v1.0 출시</h2>
-
-        <p>
-            전산볼트 앱의 첫 번째 버전이 출시되었습니다.
-            볼트계산와 작업 기록 기능을 사용할 수 있습니다.
-        </p>
-
-        <div class="date">
-            2026-06-22
-        </div>
+  <!-- 카드: 업데이트 -->
+  <div class="card" data-type="update">
+    <div class="card-top">
+      <div class="card-meta">
+        <span class="badge badge-update">
+          <i class="ti ti-refresh" aria-hidden="true"></i> 업데이트
+        </span>
+      </div>
+      <div class="date">
+        <i class="ti ti-calendar" aria-hidden="true"></i> 2026-06-22
+      </div>
     </div>
+    <h2>전산볼트 앱 v1.0 출시</h2>
+    <p>전산볼트 앱의 첫 번째 버전이 출시되었습니다. 볼트 계산과 작업 기록 기능을 사용할 수 있습니다.</p>
+  </div>
 
-    <div class="card">
-        <span class="badge notice">공지</span>
-
-        <h2>공식 디스코드 서버 운영 중</h2>
-
-        <p>
-            버그 신고, 기능 제안, 고객 문의는 디스코드 서버를 이용해주세요.
-        </p>
-
-        <a href="https://discord.gg/DxY47Q3EHR"
-           target="_blank"
-           class="btn">
-            디스코드 참가
-        </a>
-
-        <div class="date">
-            2026-06-22
-        </div>
+  <!-- 카드: 공지 -->
+  <div class="card" data-type="notice">
+    <div class="card-top">
+      <div class="card-meta">
+        <span class="badge badge-notice">
+          <i class="ti ti-speakerphone" aria-hidden="true"></i> 공지
+        </span>
+      </div>
+      <div class="date">
+        <i class="ti ti-calendar" aria-hidden="true"></i> 2026-06-22
+      </div>
     </div>
+    <h2>공식 디스코드 서버 운영 중</h2>
+    <p>버그 신고, 기능 제안, 고객 문의는 디스코드 서버를 이용해 주세요.</p>
+    <a href="https://discord.gg/DxY47Q3EHR" target="_blank" class="btn-link">
+      <i class="ti ti-brand-discord" aria-hidden="true"></i> 디스코드 참가
+    </a>
+  </div>
 
-    <div class="card">
-        <span class="badge important">중요</span>
-
-        <h2>iPhone 버전 안내</h2>
-
-        <p>
-            현재 전산볼트 앱은 Android만 지원합니다.
-            iPhone(iOS) 버전은 준비 중입니다.
-        </p>
-
-        <div class="date">
-            2026-06-22
-        </div>
+  <!-- 카드: 중요 -->
+  <div class="card" data-type="important">
+    <div class="card-top">
+      <div class="card-meta">
+        <span class="badge badge-important">
+          <i class="ti ti-alert-triangle" aria-hidden="true"></i> 중요
+        </span>
+      </div>
+      <div class="date">
+        <i class="ti ti-calendar" aria-hidden="true"></i> 2026-06-22
+      </div>
     </div>
+    <h2>iPhone 버전 안내</h2>
+    <p>현재 전산볼트 앱은 Android만 지원합니다. iPhone(iOS) 버전은 준비 중입니다.</p>
+  </div>
+
+  <div class="empty" id="emptyMsg">
+    <i class="ti ti-inbox" style="font-size:2rem;display:block;margin-bottom:10px;color:rgba(125,60,255,0.3);" aria-hidden="true"></i>
+    해당 카테고리의 게시물이 없습니다.
+  </div>
 
 </div>
 
+<!-- 디스코드 버튼 -->
+<a href="https://discord.gg/DxY47Q3EHR" target="_blank" class="discord-btn">
+  <i class="ti ti-brand-discord" aria-hidden="true"></i> 고객 문의
+</a>
+
+<!-- 푸터 -->
 <footer>
-    © 2026 AXLIB
+  <p>© 2026 AXLIB. All Rights Reserved.</p>
+  <p>전산볼트 앱 · 라이브러리 플랫폼</p>
 </footer>
 
+<script>
+function filterCards(type, btn) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+
+  const cards = document.querySelectorAll('.card');
+  let visible = 0;
+  cards.forEach(card => {
+    const show = type === 'all' || card.dataset.type === type;
+    card.style.display = show ? 'block' : 'none';
+    if(show) visible++;
+  });
+
+  document.getElementById('emptyMsg').style.display = visible === 0 ? 'block' : 'none';
+}
+</script>
 </body>
 </html>
