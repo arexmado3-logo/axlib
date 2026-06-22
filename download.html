@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AXLIB 다운로드</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:#0f0f14;
+    color:white;
+    text-align:center;
+}
+
+header{
+    background:linear-gradient(90deg,#6a00ff,#a64dff);
+    padding:60px 20px;
+}
+
+h1{
+    font-size:3rem;
+}
+
+.subtitle{
+    margin-top:10px;
+    opacity:.9;
+}
+
+.container{
+    max-width:1000px;
+    margin:auto;
+    padding:50px 20px;
+}
+
+.card{
+    background:#1b1b24;
+    border:1px solid #7d3cff;
+    border-radius:15px;
+    padding:30px;
+    margin-bottom:25px;
+    box-shadow:0 0 15px rgba(125,60,255,.25);
+}
+
+.card h2{
+    color:#b388ff;
+    margin-bottom:15px;
+}
+
+.btn{
+    display:inline-block;
+    margin-top:15px;
+    padding:14px 28px;
+    background:#7d3cff;
+    color:white;
+    text-decoration:none;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.btn:hover{
+    background:#9657ff;
+    transform:scale(1.05);
+}
+
+.info{
+    color:#aaa;
+    margin-top:10px;
+}
+
+footer{
+    margin-top:40px;
+    padding:20px;
+    color:#888;
+    border-top:1px solid #222;
+}
+</style>
+</head>
+<body>
+
+<header>
+    <h1>📥 다운로드</h1>
+    <p class="subtitle">AXLIB 및 전산볼트 앱 다운로드 센터</p>
+</header>
+
+<div class="container">
+
+    <div class="card">
+        <h2>🔩 전산볼트 앱</h2>
+
+        <p>
+            최신 버전의 전산볼트 앱을 다운로드하세요.
+        </p>
+
+        <a href="files/junsanbolt.apk" class="btn" download>
+            Android APK 다운로드
+        </a>
+
+        <div class="info">
+            버전: v1.0.0
+        </div>
+    </div>
+
+    <div class="card">
+        <h2>📖 사용 설명서</h2>
+
+        <p>
+            설치 및 사용 방법을 확인하세요.
+        </p>
+
+        <a href="android_manual.html" class="btn">
+            설명서 열기
+        </a>
+    </div>
+
+    <div class="card">
+        <h2>ℹ️ 다운로드 안내</h2>
+
+        <p>
+            APK 설치 시 "알 수 없는 앱 설치 허용"이 필요할 수 있습니다.
+        </p>
+
+        <button class="btn" onclick="showHelp()">
+            설치 도움말
+        </button>
+    </div>
+<a href="https://discord.gg/DxY47Q3EHR"
+target="_blank"
+onmouseover="this.style.transform='translateY(-3px)'"
+onmouseout="this.style.transform='translateY(0px)'"
+style="
+position:fixed;
+right:18px;
+bottom:18px;
+background:#5865F2;
+color:white;
+text-decoration:none;
+padding:14px 20px;
+border-radius:999px;
+font-weight:bold;
+box-shadow:0 4px 15px rgba(0,0,0,.3);
+z-index:9999;
+transition:.3s;
+">
+💬 고객 문의
+</a>
+</div>
+
+<footer>
+    © 2026 AXLIB
+</footer>
+
+<script>
+function showHelp(){
+    alert(
+        "설치 방법\n\n" +
+        "1. APK 다운로드\n" +
+        "2. 파일 열기\n" +
+        "3. 설치 허용\n" +
+        "4. 앱 실행"
+    );
+}
+</script>
+
+</body>
+</html>

@@ -1,3 +1,86 @@
-<h1>기기를 골라주세요!</h1><br>
-<h3 id="android">안드로이드</h3><br>
-<h3 id="ios">아이폰(지원 안됨)</h3><br>
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>사용 설명서 선택</title>
+
+<style>
+body{
+    background:#0f0f14;
+    color:white;
+    font-family:Arial,sans-serif;
+    text-align:center;
+    padding-top:100px;
+}
+
+h1{
+    color:#b388ff;
+}
+
+.btn{
+    display:inline-block;
+    margin:15px;
+    padding:15px 30px;
+    background:#7d3cff;
+    color:white;
+    text-decoration:none;
+    border-radius:10px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.btn:hover{
+    transform:scale(1.05);
+    background:#9657ff;
+}
+
+.disabled{
+    display:inline-block;
+    margin:15px;
+    padding:15px 30px;
+    background:#444;
+    color:#aaa;
+    border-radius:10px;
+    cursor:pointer;
+}
+</style>
+</head>
+<body>
+
+<h1>📱 기기를 골라주세요!</h1>
+
+<a href="android_manual.html" class="btn">
+    안드로이드
+</a>
+
+<div class="disabled" id="ios" onclick="iosClick()">
+    아이폰 (지원 안됨)
+</div>
+<a href="https://discord.gg/DxY47Q3EHR"
+target="_blank"
+onmouseover="this.style.transform='translateY(-3px)'"
+onmouseout="this.style.transform='translateY(0px)'"
+style="
+position:fixed;
+right:18px;
+bottom:18px;
+background:#5865F2;
+color:white;
+text-decoration:none;
+padding:14px 20px;
+border-radius:999px;
+font-weight:bold;
+box-shadow:0 4px 15px rgba(0,0,0,.3);
+z-index:9999;
+transition:.3s;
+">
+💬 고객 문의
+</a>
+<script>
+function iosClick() {
+    alert("현재 iPhone(iOS) 버전은 지원되지 않습니다.");
+}
+</script>
+
+</body>
+</html>

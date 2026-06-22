@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AXLIB - 고객 문의</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:#0f0f14;
+    color:white;
+}
+
+header{
+    background:linear-gradient(90deg,#6a00ff,#a64dff);
+    text-align:center;
+    padding:50px 20px;
+}
+
+h1{
+    font-size:3rem;
+}
+
+.subtitle{
+    margin-top:10px;
+    opacity:.9;
+}
+
+.container{
+    max-width:900px;
+    margin:40px auto;
+    padding:20px;
+}
+
+.card{
+    background:#1b1b24;
+    border:1px solid #7d3cff;
+    border-radius:15px;
+    padding:25px;
+    margin-bottom:20px;
+}
+
+.card h2{
+    color:#b388ff;
+    margin-bottom:15px;
+}
+
+.btn{
+    display:inline-block;
+    margin-top:15px;
+    padding:12px 24px;
+    background:#7d3cff;
+    color:white;
+    text-decoration:none;
+    border-radius:10px;
+    transition:.3s;
+}
+
+.btn:hover{
+    background:#9657ff;
+    transform:scale(1.05);
+}
+
+footer{
+    text-align:center;
+    color:#888;
+    padding:30px;
+    border-top:1px solid #222;
+    margin-top:40px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>📞 고객 문의</h1>
+    <p class="subtitle">AXLIB 공식 고객 지원 센터</p>
+</header>
+
+<div class="container">
+
+    <div class="card">
+        <h2>💬 디스코드 문의</h2>
+
+        <p>
+            AXLIB 및 전산볼트 앱 관련 문의는 공식 디스코드 서버를 이용해 주세요.
+        </p>
+
+        <br>
+
+        <p>✔ 버그 신고</p>
+        <p>✔ 기능 제안</p>
+        <p>✔ 사용 방법 문의</p>
+        <p>✔ 일반 문의</p>
+
+        <a href="https://discord.gg/DxY47Q3EHR"
+           target="_blank"
+           class="btn">
+           디스코드 서버 참가
+        </a>
+    </div>
+
+    <div class="card">
+        <h2>❓ 자주 묻는 질문</h2>
+
+        <p><b>Q.</b> 전산볼트 앱은 무료인가요?</p>
+        <p><b>A.</b> 현재 무료로 제공됩니다.</p>
+
+        <br>
+
+        <p><b>Q.</b> iPhone 버전이 있나요?</p>
+        <p><b>A.</b> 현재 Android 버전만 지원합니다.</p>
+
+        <br>
+
+        <p><b>Q.</b> 버그를 발견했어요.</p>
+        <p><b>A.</b> 디스코드 서버의 문의 채널에 제보해 주세요.</p>
+    </div>
+<a href="https://discord.gg/DxY47Q3EHR"
+target="_blank"
+onmouseover="this.style.transform='translateY(-3px)'"
+onmouseout="this.style.transform='translateY(0px)'"
+style="
+position:fixed;
+right:18px;
+bottom:18px;
+background:#5865F2;
+color:white;
+text-decoration:none;
+padding:14px 20px;
+border-radius:999px;
+font-weight:bold;
+box-shadow:0 4px 15px rgba(0,0,0,.3);
+z-index:9999;
+transition:.3s;
+">
+💬 고객 문의
+</a>
+</div>
+
+<footer>
+    © 2026 AXLIB. All Rights Reserved.
+</footer>
+
+</body>
+</html>

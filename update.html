@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AXLIB - 업데이트 및 공지사항</title>
+
+<style>
+body{
+    margin:0;
+    background:#0f0f14;
+    color:white;
+    font-family:Arial,sans-serif;
+}
+
+header{
+    background:linear-gradient(90deg,#6a00ff,#a64dff);
+    padding:50px 20px;
+    text-align:center;
+}
+
+.container{
+    max-width:1000px;
+    margin:auto;
+    padding:30px 20px;
+}
+
+.card{
+    background:#1b1b24;
+    border:1px solid #7d3cff;
+    border-radius:15px;
+    padding:25px;
+    margin-bottom:20px;
+    box-shadow:0 0 15px rgba(125,60,255,.2);
+}
+
+.badge{
+    display:inline-block;
+    padding:5px 12px;
+    border-radius:20px;
+    font-size:12px;
+    margin-bottom:10px;
+}
+
+.update{
+    background:#28a745;
+}
+
+.notice{
+    background:#ff9800;
+}
+
+.important{
+    background:#ff4444;
+}
+
+.date{
+    color:#999;
+    font-size:14px;
+    margin-top:8px;
+}
+
+.btn{
+    display:inline-block;
+    text-decoration:none;
+    color:white;
+    background:#7d3cff;
+    padding:12px 24px;
+    border-radius:10px;
+    margin-top:15px;
+}
+
+footer{
+    text-align:center;
+    color:#888;
+    padding:30px;
+}
+</style>
+</head>
+<body>
+
+<header>
+    <h1>📢 업데이트 & 공지사항</h1>
+    <p>AXLIB 및 전산볼트 앱 최신 소식</p>
+</header>
+
+<div class="container">
+
+    <div class="card">
+        <span class="badge update">업데이트</span>
+
+        <h2>전산볼트 앱 v1.0 출시</h2>
+
+        <p>
+            전산볼트 앱의 첫 번째 버전이 출시되었습니다.
+            볼트계산와 작업 기록 기능을 사용할 수 있습니다.
+        </p>
+
+        <div class="date">
+            2026-06-22
+        </div>
+    </div>
+
+    <div class="card">
+        <span class="badge notice">공지</span>
+
+        <h2>공식 디스코드 서버 운영 중</h2>
+
+        <p>
+            버그 신고, 기능 제안, 고객 문의는 디스코드 서버를 이용해주세요.
+        </p>
+
+        <a href="https://discord.gg/DxY47Q3EHR"
+           target="_blank"
+           class="btn">
+            디스코드 참가
+        </a>
+
+        <div class="date">
+            2026-06-22
+        </div>
+    </div>
+
+    <div class="card">
+        <span class="badge important">중요</span>
+
+        <h2>iPhone 버전 안내</h2>
+
+        <p>
+            현재 전산볼트 앱은 Android만 지원합니다.
+            iPhone(iOS) 버전은 준비 중입니다.
+        </p>
+
+        <div class="date">
+            2026-06-22
+        </div>
+    </div>
+
+</div>
+
+<footer>
+    © 2026 AXLIB
+</footer>
+
+</body>
+</html>

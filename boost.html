@@ -1,19 +1,114 @@
 <section id="support">
+
     <h2>💜 후원하기</h2>
+    <p class="subtitle">
+        후원금은 AXLIB 및 전산볼트 앱 개발에 사용됩니다. <br>
+        그리고 기타 앱 개발에 사용됩니다. <br>
+        그리고 저희가 이 서비스를 제공하기 위해 저희를 위해 사용됩니다<br>
+        💜 후원 안내<br>
+        <br>
+        후원금은 AXLIB 및 전산볼트 앱 개발에 사용됩니다.<br>
+        <br>
+        후원 전 계좌번호와 금액을 반드시 확인해 주세요.<br>
+        오입금 및 송금 실수에 대해서는 개별 문의해 주시기 바랍니다.
+    </p>
 
-    <div class="support-card">
-        <h3>토스 결제</h3>
-        <p>토스를 통해 간편하게 후원할 수 있습니다.</p>
-        <a href="토스후원링크" target="_blank">
-            후원하기
-        </a>
-    </div>
+    <div class="support-container">
 
-    <div class="support-card">
-        <h3>계좌이체</h3>
-        <p>모든 은행에서 송금 가능합니다.</p>
-        <p>은행: ○○은행</p>
-        <p>계좌번호: ○○○-○○○○-○○○○○</p>
-        <p>예금주: ○○○</p>
+        <div class="support-card">
+<a href="https://www.buymeacoffee.com/axlib"><img src="https://img.buymeacoffee.com/button-api/?text=후원을 주세요&emoji=💜&slug=axlib&button_colour=BD5FFF&font_colour=ffffff&font_family=Cookie&outline_colour=000000&coffee_colour=FFDD00" /></a>
+        </div>
+
+        <div class="support-card">
+            <h3>🏦 계좌이체</h3>
+
+            <p>모든 은행에서 송금 가능합니다.</p>
+
+            <p><b>은행</b> : ○○은행</p>
+            <p><b>계좌번호</b> : ○○○-○○○○-○○○○○</p>
+            <p><b>예금주</b> : ○○○</p>
+
+            <button class="btn" onclick="copyAccount()">
+                계좌번호 복사
+            </button>
+        </div>
+
     </div>
+<a href="https://discord.gg/DxY47Q3EHR"
+target="_blank"
+onmouseover="this.style.transform='translateY(-3px)'"
+onmouseout="this.style.transform='translateY(0px)'"
+style="
+position:fixed;
+right:18px;
+bottom:18px;
+background:#5865F2;
+color:white;
+text-decoration:none;
+padding:14px 20px;
+border-radius:999px;
+font-weight:bold;
+box-shadow:0 4px 15px rgba(0,0,0,.3);
+z-index:9999;
+transition:.3s;
+">
+💬 고객 문의
+</a>
 </section>
+
+<style>
+#support{
+    padding:80px 20px;
+    text-align:center;
+}
+
+.subtitle{
+    color:#aaa;
+    margin-bottom:30px;
+}
+
+.support-container{
+    display:flex;
+    justify-content:center;
+    gap:20px;
+    flex-wrap:wrap;
+}
+
+.support-card{
+    width:320px;
+    background:#1b1b24;
+    border:1px solid #7d3cff;
+    border-radius:15px;
+    padding:25px;
+    box-shadow:0 0 15px rgba(125,60,255,.3);
+}
+
+.btn{
+    display:inline-block;
+    margin-top:15px;
+    padding:12px 24px;
+    background:#7d3cff;
+    color:white;
+    text-decoration:none;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.btn:hover{
+    background:#9657ff;
+    transform:scale(1.05);
+}
+</style>
+
+<script>
+function copyAccount(){
+
+    const account = "000-0000-000000";
+
+    navigator.clipboard.writeText(account);
+
+    alert("계좌번호가 복사되었습니다!");
+}
+</script>
