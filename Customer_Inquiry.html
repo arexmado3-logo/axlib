@@ -30,11 +30,11 @@ h1{
 
 .subtitle{
     margin-top:10px;
-    opacity:0.9;
+    opacity:.9;
 }
 
 .container{
-    max-width:800px;
+    max-width:900px;
     margin:40px auto;
     padding:20px;
 }
@@ -52,40 +52,20 @@ h1{
     margin-bottom:15px;
 }
 
-input,
-textarea{
-    width:100%;
-    padding:12px;
-    margin-top:8px;
-    margin-bottom:15px;
-    border:none;
-    border-radius:8px;
-    background:#2a2a35;
-    color:white;
-}
-
-textarea{
-    resize:vertical;
-    min-height:150px;
-}
-
 .btn{
+    display:inline-block;
+    margin-top:15px;
+    padding:12px 24px;
     background:#7d3cff;
     color:white;
-    border:none;
-    padding:12px 24px;
+    text-decoration:none;
     border-radius:10px;
-    cursor:pointer;
     transition:.3s;
 }
 
 .btn:hover{
     background:#9657ff;
-}
-
-.notice{
-    color:#aaa;
-    margin-top:10px;
+    transform:scale(1.05);
 }
 
 footer{
@@ -102,34 +82,34 @@ footer{
 
 <header>
     <h1>📞 고객 문의</h1>
-    <p class="subtitle">AXLIB 문의 및 건의사항 접수</p>
+    <p class="subtitle">AXLIB 공식 고객 지원 센터</p>
 </header>
 
 <div class="container">
 
     <div class="card">
-        <h2>문의하기</h2>
+        <h2>💬 디스코드 문의</h2>
 
-        <label>이름</label>
-        <input type="text" id="name" placeholder="이름을 입력하세요">
-
-        <label>이메일</label>
-        <input type="email" id="email" placeholder="이메일을 입력하세요">
-
-        <label>문의 내용</label>
-        <textarea id="message" placeholder="문의 내용을 입력하세요"></textarea>
-
-        <button class="btn" onclick="sendInquiry()">
-            문의 접수
-        </button>
-
-        <p class="notice">
-            ※ 현재는 예시 페이지이며 실제 전송 기능은 연결되어 있지 않습니다.
+        <p>
+            AXLIB 및 전산볼트 앱 관련 문의는 공식 디스코드 서버를 이용해 주세요.
         </p>
+
+        <br>
+
+        <p>✔ 버그 신고</p>
+        <p>✔ 기능 제안</p>
+        <p>✔ 사용 방법 문의</p>
+        <p>✔ 일반 문의</p>
+
+        <a href="https://discord.gg/DxY47Q3EHR"
+           target="_blank"
+           class="btn">
+           디스코드 서버 참가
+        </a>
     </div>
 
     <div class="card">
-        <h2>자주 묻는 질문</h2>
+        <h2>❓ 자주 묻는 질문</h2>
 
         <p><b>Q.</b> 전산볼트 앱은 무료인가요?</p>
         <p><b>A.</b> 현재 무료로 제공됩니다.</p>
@@ -137,38 +117,19 @@ footer{
         <br>
 
         <p><b>Q.</b> iPhone 버전이 있나요?</p>
-        <p><b>A.</b> 현재는 Android만 지원합니다.</p>
+        <p><b>A.</b> 현재 Android 버전만 지원합니다.</p>
+
+        <br>
+
+        <p><b>Q.</b> 버그를 발견했어요.</p>
+        <p><b>A.</b> 디스코드 서버의 문의 채널에 제보해 주세요.</p>
     </div>
 
 </div>
 
 <footer>
-    © 2026 AXLIB
+    © 2026 AXLIB. All Rights Reserved.
 </footer>
-
-<script>
-function sendInquiry(){
-
-    const name = document.getElementById("name").value;
-    const email = document.getElementById("email").value;
-    const message = document.getElementById("message").value;
-
-    if(name === "" || email === "" || message === ""){
-        alert("모든 항목을 입력해주세요.");
-        return;
-    }
-
-    alert(
-        "문의가 접수되었습니다.\n\n" +
-        "이름: " + name + "\n" +
-        "이메일: " + email
-    );
-
-    document.getElementById("name").value = "";
-    document.getElementById("email").value = "";
-    document.getElementById("message").value = "";
-}
-</script>
 
 </body>
 </html>
