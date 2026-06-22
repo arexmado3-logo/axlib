@@ -1,15 +1,67 @@
-<h1>기기를 골라주세요!</h1>
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>사용 설명서 선택</title>
 
-<a href="android_manual.html">
+<style>
+body{
+    background:#0f0f14;
+    color:white;
+    font-family:Arial,sans-serif;
+    text-align:center;
+    padding-top:100px;
+}
+
+h1{
+    color:#b388ff;
+}
+
+.btn{
+    display:inline-block;
+    margin:15px;
+    padding:15px 30px;
+    background:#7d3cff;
+    color:white;
+    text-decoration:none;
+    border-radius:10px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.btn:hover{
+    transform:scale(1.05);
+    background:#9657ff;
+}
+
+.disabled{
+    display:inline-block;
+    margin:15px;
+    padding:15px 30px;
+    background:#444;
+    color:#aaa;
+    border-radius:10px;
+    cursor:pointer;
+}
+</style>
+</head>
+<body>
+
+<h1>📱 기기를 골라주세요!</h1>
+
+<a href="android_manual.html" class="btn">
     안드로이드
 </a>
 
-<h6 id="ios" onclick="iosClick()">
-    아이폰(지원 안됨)
-</h6>
+<div class="disabled" id="ios" onclick="iosClick()">
+    아이폰 (지원 안됨)
+</div>
 
 <script>
 function iosClick() {
-    alert("현재 아이폰은 지원되지 않습니다.");
+    alert("현재 iPhone(iOS) 버전은 지원되지 않습니다.");
 }
 </script>
+
+</body>
+</html>
