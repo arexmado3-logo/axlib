@@ -2,74 +2,267 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AXLIB</title>
 
 <style>
-body{
-    background:#111;
-    color:white;
-    text-align:center;
-    font-family:Arial;
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
 }
 
-h1{
-    color:#a855f7;
+body{
+    background:#0f0f14;
+    color:white;
+}
+
+header{
+    position:fixed;
+    top:0;
+    width:100%;
+    background:rgba(15,15,20,.95);
+    backdrop-filter:blur(10px);
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:15px 40px;
+    border-bottom:1px solid #7d3cff;
+    z-index:1000;
+}
+
+.logo{
+    font-size:1.8rem;
+    font-weight:bold;
+    color:#b388ff;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+    margin-left:20px;
+    transition:.3s;
+}
+
+nav a:hover{
+    color:#b388ff;
+}
+
+.hero{
+    height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    background:
+    radial-gradient(circle at center,#7d3cff33,transparent 60%);
+}
+
+.hero h1{
+    font-size:5rem;
+    color:#b388ff;
+}
+
+.hero p{
+    margin-top:15px;
+    font-size:1.3rem;
+    opacity:.9;
 }
 
 .btn{
-    background:#7e22ce;
-    color:white;
+    margin-top:30px;
+    padding:15px 30px;
     border:none;
-    padding:15px 25px;
-    border-radius:10px;
+    border-radius:12px;
+    background:#7d3cff;
+    color:white;
     cursor:pointer;
-    margin:10px;
+    font-size:1rem;
+    transition:.3s;
 }
 
 .btn:hover{
     transform:scale(1.05);
 }
 
-#info{
-    display:none;
+.section{
+    max-width:1200px;
+    margin:auto;
+    padding:100px 20px;
+}
+
+.section h2{
+    text-align:center;
+    margin-bottom:40px;
+    color:#b388ff;
+}
+
+.cards{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:25px;
+}
+
+.card{
+    background:#1b1b24;
+    border:1px solid #7d3cff;
+    border-radius:15px;
+    padding:25px;
+    transition:.3s;
+}
+
+.card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 0 20px rgba(125,60,255,.4);
+}
+
+.card h3{
+    margin-bottom:15px;
+}
+
+footer{
+    text-align:center;
+    padding:40px;
+    border-top:1px solid #333;
+    color:#888;
+}
+
+.counter{
+    font-size:3rem;
+    color:#b388ff;
+    text-align:center;
     margin-top:20px;
-    background:#222;
-    padding:20px;
-    border-radius:10px;
 }
 </style>
 </head>
+
 <body>
 
-<h1>AXLIB</h1>
+<header>
+    <div class="logo">AXLIB</div>
 
-<button class="btn" onclick="support()">
-💜 후원하기
-</button>
+    <nav>
+        <a href="#about">회사소개</a>
+        <a href="#services">서비스</a>
+        <a href="#bolt">전산볼트</a>
+        <a href="#support">후원</a>
+    </nav>
+</header>
 
-<button class="btn" onclick="manual()">
-📖 사용 설명서
-</button>
+<section class="hero">
+    <h1>AXLIB</h1>
+    <p>소프트웨어와 라이브러리를 만드는 개발 플랫폼</p>
 
-<div id="info">
-    🔩 전산볼트 앱 개발 진행중!
-</div>
+    <button class="btn" onclick="welcome()">
+        시작하기
+    </button>
+</section>
+
+<section class="section" id="about">
+    <h2>회사 소개</h2>
+
+    <div class="cards">
+        <div class="card">
+            <h3>🚀 혁신</h3>
+            <p>사용하기 쉬운 소프트웨어를 개발합니다.</p>
+        </div>
+
+        <div class="card">
+            <h3>💻 개발</h3>
+            <p>웹, 앱, 라이브러리를 제작합니다.</p>
+        </div>
+
+        <div class="card">
+            <h3>🌍 오픈소스</h3>
+            <p>누구나 사용할 수 있는 프로젝트를 지향합니다.</p>
+        </div>
+    </div>
+</section>
+
+<section class="section" id="services">
+    <h2>서비스</h2>
+
+    <div class="cards">
+        <div class="card">
+            <h3>📖 사용 설명서</h3>
+            <p>AXLIB 제품 설명서를 확인하세요.</p>
+            <button class="btn" onclick="location.href='manual.html'">
+                열기
+            </button>
+        </div>
+
+        <div class="card">
+            <h3>📦 라이브러리</h3>
+            <p>다양한 개발용 라이브러리를 제공합니다.</p>
+        </div>
+    </div>
+</section>
+
+<section class="section" id="bolt">
+    <h2>전산볼트 앱</h2>
+
+    <div class="cards">
+        <div class="card">
+            <h3>🔩 재고 관리</h3>
+            <p>볼트 재고를 효율적으로 관리합니다.</p>
+        </div>
+
+        <div class="card">
+            <h3>📋 작업 기록</h3>
+            <p>작업 내역을 저장하고 조회할 수 있습니다.</p>
+        </div>
+
+        <div class="card">
+            <h3>📱 모바일 지원</h3>
+            <p>언제 어디서든 사용할 수 있습니다.</p>
+        </div>
+    </div>
+</section>
+
+<section class="section" id="support">
+    <h2>후원하기</h2>
+
+    <div class="cards">
+        <div class="card">
+            <h3>💜 토스 후원</h3>
+            <p>토스를 통해 후원할 수 있습니다.</p>
+
+            <button class="btn" onclick="location.href='boost.html'">
+                후원하기
+            </button>
+        </div>
+
+        <div class="card">
+            <h3>🏦 계좌이체</h3>
+            <p>모든 은행에서 송금 가능합니다.</p>
+        </div>
+    </div>
+
+    <div class="counter" id="visitorCount">
+        0
+    </div>
+</section>
+
+<footer>
+    © 2026 AXLIB. All Rights Reserved.
+</footer>
 
 <script>
-function support(){
-    alert("후원 페이지로 이동합니다!");
-    window.open("boost.html","_blank");
+function welcome(){
+    alert("AXLIB에 오신 것을 환영합니다!");
 }
 
-function manual(){
-    let box = document.getElementById("info");
+let count = 0;
 
-    if(box.style.display === "none"){
-        box.style.display = "block";
-    }else{
-        box.style.display = "none";
+setInterval(() => {
+    if(count < 1000){
+        count += 10;
+        document.getElementById("visitorCount").innerText =
+        count + "+ Users";
     }
-}
+},20);
 </script>
 
 </body>
