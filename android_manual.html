@@ -1,186 +1,415 @@
-
 <!DOCTYPE html>
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AXLIB Android 설명서</title>
-
+<title>Android 설명서 — AXLIB</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
 <style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Arial,sans-serif;
-}
-
+*{margin:0;padding:0;box-sizing:border-box;}
 body{
-    background:#0f0f14;
-    color:white;
-    line-height:1.6;
+  background:#080810;color:#e8e4ff;
+  font-family:'Segoe UI',Arial,sans-serif;
+  min-height:100vh;line-height:1.7;
 }
 
+/* 헤더 */
 header{
-    background:linear-gradient(90deg,#6a00ff,#a64dff);
-    text-align:center;
-    padding:50px 20px;
+  position:fixed;top:0;left:0;width:100%;
+  padding:16px 48px;
+  display:flex;align-items:center;justify-content:space-between;
+  background:rgba(8,8,16,0.92);backdrop-filter:blur(16px);
+  border-bottom:1px solid rgba(125,60,255,0.25);
+  z-index:100;
+}
+.logo-text{font-size:1.4rem;font-weight:700;letter-spacing:2px;color:#c4a8ff;text-decoration:none;}
+.logo-text span{color:#7d3cff;}
+.header-back{
+  display:flex;align-items:center;gap:6px;
+  color:rgba(196,168,255,0.6);text-decoration:none;font-size:0.85rem;transition:color .2s;
+}
+.header-back:hover{color:#c4a8ff;}
+
+/* 히어로 */
+.hero{
+  padding:130px 24px 56px;
+  text-align:center;position:relative;overflow:hidden;
+}
+.hero::before{
+  content:'';position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(ellipse 65% 60% at 50% 60%, rgba(125,60,255,0.13) 0%, transparent 70%);
+}
+.hero-badge{
+  display:inline-block;
+  background:rgba(125,60,255,0.15);border:1px solid rgba(125,60,255,0.4);
+  color:#b388ff;font-size:0.72rem;letter-spacing:1.5px;
+  padding:5px 16px;border-radius:999px;margin-bottom:18px;text-transform:uppercase;
+}
+.hero h1{font-size:2.6rem;font-weight:700;color:#ddd0ff;letter-spacing:-0.5px;margin-bottom:10px;}
+.hero p{color:rgba(196,168,255,0.5);font-size:0.95rem;}
+
+/* 레이아웃 */
+.layout{
+  max-width:900px;margin:0 auto;padding:0 24px 80px;
+  display:grid;grid-template-columns:200px 1fr;gap:32px;align-items:start;
 }
 
-h1{
-    font-size:3rem;
+/* 사이드바 목차 */
+.sidebar{
+  position:sticky;top:80px;
 }
-
-.subtitle{
-    opacity:.9;
-    margin-top:10px;
+.sidebar-title{
+  font-size:0.72rem;letter-spacing:1.5px;text-transform:uppercase;
+  color:#7d3cff;font-weight:600;margin-bottom:12px;
 }
-
-.container{
-    max-width:1000px;
-    margin:auto;
-    padding:40px 20px;
+.sidebar-nav{display:flex;flex-direction:column;gap:2px;}
+.sidebar-nav a{
+  display:flex;align-items:center;gap:8px;
+  padding:8px 12px;border-radius:9px;
+  color:rgba(196,168,255,0.5);text-decoration:none;font-size:0.84rem;
+  transition:background .2s, color .2s;
 }
+.sidebar-nav a:hover{background:rgba(125,60,255,0.1);color:#c4a8ff;}
+.sidebar-nav a.active{background:rgba(125,60,255,0.15);color:#c4a8ff;font-weight:600;}
+.sidebar-nav a i{font-size:0.95rem;width:16px;text-align:center;}
 
+/* 콘텐츠 */
+.content{min-width:0;}
+
+/* 섹션 카드 */
 .card{
-    background:#1b1b24;
-    border:1px solid #7d3cff;
-    border-radius:15px;
-    padding:25px;
-    margin-bottom:25px;
-    box-shadow:0 0 15px rgba(125,60,255,.2);
+  background:rgba(28,22,50,0.7);
+  border:1px solid rgba(125,60,255,0.15);
+  border-radius:20px;padding:28px;
+  margin-bottom:20px;
+  position:relative;overflow:hidden;
+  transition:border-color .3s;
+  scroll-margin-top:90px;
 }
+.card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg, transparent, rgba(125,60,255,0.3), transparent);
+}
+.card:hover{border-color:rgba(125,60,255,0.32);}
 
-.card h2{
-    color:#b388ff;
-    margin-bottom:15px;
+.card-header{display:flex;align-items:center;gap:12px;margin-bottom:18px;}
+.card-num{
+  width:30px;height:30px;border-radius:50%;flex-shrink:0;
+  background:rgba(125,60,255,0.2);border:1px solid rgba(125,60,255,0.35);
+  display:flex;align-items:center;justify-content:center;
+  font-size:0.78rem;font-weight:700;color:#b388ff;
 }
+.card h2{font-size:1.05rem;font-weight:600;color:#ddd0ff;}
 
-.btn{
-    display:inline-block;
-    margin-top:15px;
-    padding:12px 24px;
-    background:#7d3cff;
-    color:white;
-    text-decoration:none;
-    border:none;
-    border-radius:10px;
-    cursor:pointer;
-    transition:.3s;
+/* 스텝 */
+.steps{display:flex;flex-direction:column;gap:10px;}
+.step{
+  display:flex;align-items:flex-start;gap:12px;
+  padding:13px 15px;border-radius:12px;
+  background:rgba(125,60,255,0.06);border:1px solid rgba(125,60,255,0.1);
 }
+.step-icon{color:#9f6fff;font-size:1rem;flex-shrink:0;margin-top:2px;}
+.step-text{font-size:0.88rem;color:rgba(196,168,255,0.65);line-height:1.6;}
+.step-text strong{color:#ddd0ff;font-weight:600;}
 
-.btn:hover{
-    background:#9657ff;
-    transform:scale(1.05);
+/* 기능 그리드 */
+.feature-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-top:4px;}
+.feature-item{
+  display:flex;flex-direction:column;align-items:center;gap:8px;
+  padding:16px 12px;border-radius:13px;text-align:center;
+  background:rgba(125,60,255,0.07);border:1px solid rgba(125,60,255,0.13);
 }
+.feature-item i{font-size:1.4rem;color:#b388ff;}
+.feature-item span{font-size:0.82rem;color:rgba(196,168,255,0.6);}
+
+/* FAQ */
+.faq{display:flex;flex-direction:column;gap:12px;}
+.faq-item{
+  border-radius:13px;overflow:hidden;
+  border:1px solid rgba(125,60,255,0.12);
+  background:rgba(125,60,255,0.04);
+}
+.faq-q{
+  display:flex;align-items:center;gap:10px;
+  padding:14px 16px;cursor:pointer;
+  font-size:0.88rem;font-weight:600;color:#ddd0ff;
+  transition:background .2s;user-select:none;
+}
+.faq-q:hover{background:rgba(125,60,255,0.08);}
+.faq-q-badge{
+  font-size:0.7rem;font-weight:700;
+  background:rgba(125,60,255,0.2);color:#b388ff;
+  padding:3px 9px;border-radius:999px;flex-shrink:0;
+}
+.faq-q i.arrow{margin-left:auto;color:rgba(196,168,255,0.3);transition:transform .25s;font-size:0.95rem;}
+.faq-item.open .faq-q i.arrow{transform:rotate(180deg);}
+.faq-a{
+  max-height:0;overflow:hidden;transition:max-height .3s ease, padding .3s;
+  font-size:0.87rem;color:rgba(196,168,255,0.55);line-height:1.75;
+  padding:0 16px;
+}
+.faq-item.open .faq-a{max-height:300px;padding:0 16px 16px;}
+.faq-a a{color:#9f6fff;text-decoration:none;}
+.faq-a a:hover{text-decoration:underline;}
+
+/* 경고 배너 */
+.warn-box{
+  display:flex;align-items:flex-start;gap:10px;
+  background:rgba(255,160,30,0.07);border:1px solid rgba(255,160,30,0.2);
+  border-radius:11px;padding:13px 15px;margin-top:12px;
+}
+.warn-box i{color:#ffba4d;flex-shrink:0;font-size:1rem;margin-top:1px;}
+.warn-box p{font-size:0.83rem;color:rgba(255,210,120,0.65);line-height:1.6;}
+
+/* 문의 카드 */
+.contact-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:4px;}
+.contact-btn{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:11px 22px;border-radius:11px;font-size:0.88rem;font-weight:600;
+  text-decoration:none;transition:transform .25s, box-shadow .25s;
+}
+.contact-btn:hover{transform:translateY(-2px);}
+.btn-discord{background:#5865F2;color:white;box-shadow:0 4px 14px rgba(88,101,242,0.3);}
+.btn-discord:hover{box-shadow:0 8px 22px rgba(88,101,242,0.45);}
+.btn-site{
+  background:transparent;color:#c4a8ff;
+  border:1px solid rgba(125,60,255,0.4);
+}
+.btn-site:hover{background:rgba(125,60,255,0.1);}
+
+/* 디스코드 플로팅 */
+.discord-btn{
+  position:fixed;right:20px;bottom:20px;
+  background:#5865F2;color:white;text-decoration:none;
+  padding:12px 20px;border-radius:999px;font-weight:600;font-size:0.88rem;
+  display:flex;align-items:center;gap:8px;
+  box-shadow:0 6px 20px rgba(88,101,242,0.4);z-index:9999;transition:.3s;
+}
+.discord-btn:hover{transform:translateY(-3px);box-shadow:0 10px 28px rgba(88,101,242,0.5);}
 
 footer{
-    text-align:center;
-    color:#888;
-    padding:30px;
-    border-top:1px solid #222;
+  text-align:center;padding:36px 24px;
+  border-top:1px solid rgba(125,60,255,0.1);
+  color:rgba(255,255,255,0.25);font-size:0.82rem;line-height:2.2;
+}
+
+/* 모바일 */
+@media(max-width:660px){
+  header{padding:14px 20px;}
+  .hero h1{font-size:2rem;}
+  .layout{grid-template-columns:1fr;}
+  .sidebar{display:none;}
 }
 </style>
 </head>
 <body>
 
+<!-- 헤더 -->
 <header>
-    <h1>📱 Android 설명서</h1>
-    <p class="subtitle">AXLIB 및 전산볼트 앱 사용 가이드</p>
+  <a href="manual.html" class="header-back">
+    <i class="ti ti-arrow-left" aria-hidden="true"></i> 기기 선택
+  </a>
+  <a href="index.html" class="logo-text">AX<span>LIB</span></a>
+  <div style="width:80px;"></div>
 </header>
 
-<div class="container">
-
-    <div class="card">
-        <h2>1. 앱 설치</h2>
-        <p>
-            APK 파일을 다운로드한 후 설치를 진행합니다.
-        </p>
-        <p>
-            설치가 차단되면 "알 수 없는 앱 설치 허용"을 활성화하세요.
-        </p>
-        <p>
-            만약에 그래도 안되면 "자동 위협 차단"을 꺼주세요
-        </p>
-    </div>
-
-    <div class="card">
-        <h2>2. 앱 실행</h2>
-        <p>
-            설치가 완료되면 앱을 실행합니다.
-        </p>
-        <p>
-            필요한 권한이 요청되면 허용해주세요.
-        </p>
-        <p>
-            알림은 필수 권한이 아닙니다.
-        </p>
-    </div>
-
-    <div class="card">
-        <h2>3. 전산볼트 앱 사용</h2>
-        <p>🔩 볼트 계산</p>
-        <p>📋 작업 기록 확인</p>
-        <p>📦 부품 정보 조회</p>
-    </div>
-
-    <div class="card">
-        <h2>4. 자주 묻는 질문</h2>
-
-        <p><b>Q.</b> 설치가 안 돼요.</p>
-        <p><b>A.</b> 알 수 없는 앱 설치를 허용하세요.<br>
-        그래도 안된다면 "자동 위협보호" 또는 "자동 위협 차단"을 잠시만 꺼주세요.
-        </p>
-        
-
-        <br>
-
-        <p><b>Q.</b> 앱이 실행되지 않아요.</p>
-        <p><b>A.</b> 최신 Android 버전인지 확인하세요.</p>
-
-
-        <br>
-
-
-        <p><b>Q.</b> 바이러스에 걸렸다고 뜨는데 어떻해야 하나요?</p>
-        <p><b>A.</b> 저희 프로그램에는 바이러스가 없습니다.<br>
-        만약 백신 프로그램에 있다고 뜨면은 그 앱을 삭제해주세요,<br>
-        그 앱은 저희 회사의 앱이 아닙니다. 낚시성 앱이니 삭제후 공식 사이트<a href=" https://arexmado3-logo.github.io/axlib">링크</a> 에 문의해 주세요<br>
-        만일 공식 사이트에서 다운 받았을때 바이러스에 걸린다면 빠른시일내로 수정하겠습니다.<br>
-        그리고 절대로 공식사이트에서 바이러스를 넣지않습니다, 만일 바이러스에 걸린다면 저희 사이트가 해킹됬거나 고장난겁니다.</p>
-    </div>
-
-    <div class="card">
-        <h2>5. 문의</h2>
-        <p>
-            문제가 발생하면 AXLIB 지원팀에 문의하세요.
-        </p>
-    </div>
-<a href="https://discord.gg/DxY47Q3EHR"
-target="_blank"
-onmouseover="this.style.transform='translateY(-3px)'"
-onmouseout="this.style.transform='translateY(0px)'"
-style="
-position:fixed;
-right:18px;
-bottom:18px;
-background:#5865F2;
-color:white;
-text-decoration:none;
-padding:14px 20px;
-border-radius:999px;
-font-weight:bold;
-box-shadow:0 4px 15px rgba(0,0,0,.3);
-z-index:9999;
-transition:.3s;
-">
-💬 고객 문의
-</a>
+<!-- 히어로 -->
+<div class="hero">
+  <div class="hero-badge">Android 설명서</div>
+  <h1>사용 가이드</h1>
+  <p>전산볼트 앱 설치부터 사용까지 단계별로 안내합니다</p>
 </div>
 
+<div class="layout">
+
+  <!-- 사이드바 목차 -->
+  <aside class="sidebar">
+    <div class="sidebar-title">목차</div>
+    <nav class="sidebar-nav">
+      <a href="#install" class="active"><i class="ti ti-download" aria-hidden="true"></i> 앱 설치</a>
+      <a href="#launch"><i class="ti ti-player-play" aria-hidden="true"></i> 앱 실행</a>
+      <a href="#features"><i class="ti ti-bolt" aria-hidden="true"></i> 기능 안내</a>
+      <a href="#faq"><i class="ti ti-help-circle" aria-hidden="true"></i> 자주 묻는 질문</a>
+      <a href="#contact"><i class="ti ti-message-circle" aria-hidden="true"></i> 문의</a>
+    </nav>
+  </aside>
+
+  <!-- 메인 콘텐츠 -->
+  <main class="content">
+
+    <!-- 1. 앱 설치 -->
+    <div class="card" id="install">
+      <div class="card-header">
+        <div class="card-num">1</div>
+        <h2>앱 설치</h2>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <i class="ti ti-download step-icon" aria-hidden="true"></i>
+          <div class="step-text"><strong>APK 다운로드</strong> — 공식 사이트에서 최신 APK 파일을 다운로드합니다.</div>
+        </div>
+        <div class="step">
+          <i class="ti ti-shield-off step-icon" aria-hidden="true"></i>
+          <div class="step-text"><strong>설치 허용</strong> — 설치가 차단되면 설정 → 보안 → <strong>알 수 없는 앱 설치 허용</strong>을 활성화하세요.</div>
+        </div>
+        <div class="step">
+          <i class="ti ti-alert-triangle step-icon" aria-hidden="true"></i>
+          <div class="step-text"><strong>그래도 안 된다면</strong> — 보안 앱의 <strong>자동 위협 차단</strong> 기능을 일시적으로 꺼주세요.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. 앱 실행 -->
+    <div class="card" id="launch">
+      <div class="card-header">
+        <div class="card-num">2</div>
+        <h2>앱 실행</h2>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <i class="ti ti-device-mobile step-icon" aria-hidden="true"></i>
+          <div class="step-text"><strong>앱 실행</strong> — 설치가 완료되면 전산볼트 앱을 실행합니다.</div>
+        </div>
+        <div class="step">
+          <i class="ti ti-check step-icon" aria-hidden="true"></i>
+          <div class="step-text"><strong>권한 허용</strong> — 요청되는 권한은 허용해 주세요.</div>
+        </div>
+        <div class="step">
+          <i class="ti ti-bell-off step-icon" aria-hidden="true"></i>
+          <div class="step-text"><strong>알림 권한</strong> — 알림은 필수 권한이 아닙니다. 거부해도 앱 사용에 문제 없습니다.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. 기능 안내 -->
+    <div class="card" id="features">
+      <div class="card-header">
+        <div class="card-num">3</div>
+        <h2>전산볼트 앱 기능</h2>
+      </div>
+      <div class="feature-grid">
+        <div class="feature-item">
+          <i class="ti ti-bolt" aria-hidden="true"></i>
+          <span>볼트 계산</span>
+        </div>
+        <div class="feature-item">
+          <i class="ti ti-clipboard-list" aria-hidden="true"></i>
+          <span>작업 기록</span>
+        </div>
+        <div class="feature-item">
+          <i class="ti ti-package" aria-hidden="true"></i>
+          <span>부품 정보 조회</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. FAQ -->
+    <div class="card" id="faq">
+      <div class="card-header">
+        <div class="card-num">4</div>
+        <h2>자주 묻는 질문</h2>
+      </div>
+      <div class="faq">
+
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            <span class="faq-q-badge">Q</span>
+            설치가 안 돼요.
+            <i class="ti ti-chevron-down arrow" aria-hidden="true"></i>
+          </div>
+          <div class="faq-a">
+            설정 → 보안에서 <strong>알 수 없는 앱 설치</strong>를 허용해 주세요.
+            그래도 설치되지 않으면 보안 앱의 <strong>자동 위협 차단</strong> 기능을 일시적으로 꺼주세요.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            <span class="faq-q-badge">Q</span>
+            앱이 실행되지 않아요.
+            <i class="ti ti-chevron-down arrow" aria-hidden="true"></i>
+          </div>
+          <div class="faq-a">
+            기기의 Android 버전이 최소 요구 사양을 충족하는지 확인해 주세요.
+            문제가 지속되면 디스코드 서버를 통해 문의해 주세요.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            <span class="faq-q-badge">Q</span>
+            바이러스 경고가 뜨는데 어떻게 하나요?
+            <i class="ti ti-chevron-down arrow" aria-hidden="true"></i>
+          </div>
+          <div class="faq-a">
+            AXLIB 공식 앱에는 바이러스가 없습니다.
+            <div class="warn-box" style="margin-top:10px;">
+              <i class="ti ti-alert-triangle" aria-hidden="true"></i>
+              <p>
+                보안 앱이 오탐지하는 경우라면 무시하고 설치를 진행하셔도 됩니다.<br>
+                만약 <strong>공식 사이트 외 출처</strong>에서 다운받은 앱에서 경고가 뜬다면 즉시 삭제 후
+                <a href="https://arexmado3-logo.github.io/axlib" target="_blank">공식 사이트</a>에서 다시 다운로드하세요.<br>
+                공식 사이트에서 받은 파일에서도 바이러스가 감지된다면 빠르게 수정하겠습니다.
+              </p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- 5. 문의 -->
+    <div class="card" id="contact">
+      <div class="card-header">
+        <div class="card-num">5</div>
+        <h2>문의</h2>
+      </div>
+      <p style="font-size:0.9rem;color:rgba(196,168,255,0.55);margin-bottom:16px;">
+        문제가 해결되지 않으면 공식 디스코드 서버나 사이트를 통해 문의해 주세요.
+      </p>
+      <div class="contact-row">
+        <a href="https://discord.gg/DxY47Q3EHR" target="_blank" class="contact-btn btn-discord">
+          <i class="ti ti-brand-discord" aria-hidden="true"></i> 디스코드 문의
+        </a>
+        <a href="https://arexmado3-logo.github.io/axlib" target="_blank" class="contact-btn btn-site">
+          <i class="ti ti-external-link" aria-hidden="true"></i> 공식 사이트
+        </a>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<!-- 디스코드 플로팅 -->
+<a href="https://discord.gg/DxY47Q3EHR" target="_blank" class="discord-btn">
+  <i class="ti ti-brand-discord" aria-hidden="true"></i> 고객 문의
+</a>
+
 <footer>
-    © 2026 AXLIB
+  <p>© 2026 AXLIB. All Rights Reserved.</p>
+  <p>전산볼트 앱 · 라이브러리 플랫폼</p>
 </footer>
 
+<script>
+function toggleFaq(el){
+  const item = el.closest('.faq-item');
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+  if(!isOpen) item.classList.add('open');
+}
 
+/* 사이드바 활성 링크 */
+const sections = document.querySelectorAll('.card[id]');
+const navLinks = document.querySelectorAll('.sidebar-nav a');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(s => {
+    if(window.scrollY >= s.offsetTop - 110) current = s.id;
+  });
+  navLinks.forEach(a => {
+    a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+  });
+});
+</script>
 </body>
 </html>
