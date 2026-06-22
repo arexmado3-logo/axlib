@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AXLIB - 고객 문의</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:#0f0f14;
+    color:white;
+}
+
+header{
+    background:linear-gradient(90deg,#6a00ff,#a64dff);
+    text-align:center;
+    padding:50px 20px;
+}
+
+h1{
+    font-size:3rem;
+}
+
+.subtitle{
+    margin-top:10px;
+    opacity:0.9;
+}
+
+.container{
+    max-width:800px;
+    margin:40px auto;
+    padding:20px;
+}
+
+.card{
+    background:#1b1b24;
+    border:1px solid #7d3cff;
+    border-radius:15px;
+    padding:25px;
+    margin-bottom:20px;
+}
+
+.card h2{
+    color:#b388ff;
+    margin-bottom:15px;
+}
+
+input,
+textarea{
+    width:100%;
+    padding:12px;
+    margin-top:8px;
+    margin-bottom:15px;
+    border:none;
+    border-radius:8px;
+    background:#2a2a35;
+    color:white;
+}
+
+textarea{
+    resize:vertical;
+    min-height:150px;
+}
+
+.btn{
+    background:#7d3cff;
+    color:white;
+    border:none;
+    padding:12px 24px;
+    border-radius:10px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.btn:hover{
+    background:#9657ff;
+}
+
+.notice{
+    color:#aaa;
+    margin-top:10px;
+}
+
+footer{
+    text-align:center;
+    color:#888;
+    padding:30px;
+    border-top:1px solid #222;
+    margin-top:40px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>📞 고객 문의</h1>
+    <p class="subtitle">AXLIB 문의 및 건의사항 접수</p>
+</header>
+
+<div class="container">
+
+    <div class="card">
+        <h2>문의하기</h2>
+
+        <label>이름</label>
+        <input type="text" id="name" placeholder="이름을 입력하세요">
+
+        <label>이메일</label>
+        <input type="email" id="email" placeholder="이메일을 입력하세요">
+
+        <label>문의 내용</label>
+        <textarea id="message" placeholder="문의 내용을 입력하세요"></textarea>
+
+        <button class="btn" onclick="sendInquiry()">
+            문의 접수
+        </button>
+
+        <p class="notice">
+            ※ 현재는 예시 페이지이며 실제 전송 기능은 연결되어 있지 않습니다.
+        </p>
+    </div>
+
+    <div class="card">
+        <h2>자주 묻는 질문</h2>
+
+        <p><b>Q.</b> 전산볼트 앱은 무료인가요?</p>
+        <p><b>A.</b> 현재 무료로 제공됩니다.</p>
+
+        <br>
+
+        <p><b>Q.</b> iPhone 버전이 있나요?</p>
+        <p><b>A.</b> 현재는 Android만 지원합니다.</p>
+    </div>
+
+</div>
+
+<footer>
+    © 2026 AXLIB
+</footer>
+
+<script>
+function sendInquiry(){
+
+    const name = document.getElementById("name").value;
+    const email = document.getElementById("email").value;
+    const message = document.getElementById("message").value;
+
+    if(name === "" || email === "" || message === ""){
+        alert("모든 항목을 입력해주세요.");
+        return;
+    }
+
+    alert(
+        "문의가 접수되었습니다.\n\n" +
+        "이름: " + name + "\n" +
+        "이메일: " + email
+    );
+
+    document.getElementById("name").value = "";
+    document.getElementById("email").value = "";
+    document.getElementById("message").value = "";
+}
+</script>
+
+</body>
+</html>
