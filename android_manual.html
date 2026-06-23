@@ -3,31 +3,500 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#080810">
 <title>Android 설명서 — AXLIB</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
 <style>
-:root{--bg:#080810;--panel:rgba(28,22,50,.72);--line:rgba(125,60,255,.18);--text:#f0ecff;--muted:rgba(196,168,255,.58);--accent:#7d3cff;--accent2:#b388ff;--shadow:0 18px 48px rgba(125,60,255,.12)}
-*{margin:0;padding:0;box-sizing:border-box} body{min-height:100vh;background:radial-gradient(circle at 20% 20%, rgba(125,60,255,.12), transparent 28%),radial-gradient(circle at 80% 12%, rgba(88,101,242,.08), transparent 25%),linear-gradient(180deg,#080810 0%,#0b0d18 100%);color:var(--text);font-family:'Segoe UI',Arial,sans-serif;line-height:1.7;overflow-x:hidden} a{color:inherit;text-decoration:none}
-body::before,body::after{content:'';position:fixed;width:34rem;height:34rem;border-radius:50%;filter:blur(120px);pointer-events:none;z-index:-2;opacity:.28} body::before{left:-12rem;top:-8rem;background:rgba(125,60,255,.22)} body::after{right:-14rem;bottom:-10rem;background:rgba(88,101,242,.16)}
-.progress{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,var(--accent),var(--accent2),#5865f2);z-index:3000;box-shadow:0 0 18px rgba(125,60,255,.45)}
-.topbar{position:sticky;top:0;z-index:1000;display:flex;justify-content:space-between;align-items:center;gap:14px;padding:16px 48px;background:rgba(8,8,16,.92);backdrop-filter:blur(16px);border-bottom:1px solid rgba(125,60,255,.22)}
-.logo{font-size:1.45rem;font-weight:800;letter-spacing:2px;color:#c4a8ff}.logo span{color:var(--accent)} .back{display:inline-flex;align-items:center;gap:6px;color:rgba(196,168,255,.62);font-size:.86rem}
-.hero{padding:114px 24px 36px;text-align:center;position:relative;overflow:hidden}.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 58% at 50% 60%, rgba(125,60,255,.16) 0%, transparent 70%);pointer-events:none}.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(125,60,255,.15);border:1px solid rgba(125,60,255,.38);color:#b388ff;font-size:.75rem;letter-spacing:1.5px;padding:6px 16px;border-radius:999px;text-transform:uppercase}.hero h1{font-size:clamp(2.4rem,5vw,4rem);line-height:1.02;letter-spacing:-.04em;margin-top:16px;color:#fff}.hero p{margin-top:12px;color:var(--muted)}
-.container{max-width:1120px;margin:0 auto;padding:0 24px 84px}.hero-actions{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:24px}.btn{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 18px;border-radius:14px;border:1px solid transparent;font-weight:700;cursor:pointer;transition:.22s ease;position:relative;overflow:hidden}.btn:hover{transform:translateY(-2px)}.btn-solid{background:var(--accent);color:#fff}.btn-ghost{background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.08);color:#c4a8ff}.btn-ghost:hover{border-color:rgba(125,60,255,.22)}
-.layout{display:grid;grid-template-columns:250px 1fr;gap:28px;align-items:start;margin-top:10px}.sidebar{position:sticky;top:96px}.sidebar-card{background:var(--panel);border:1px solid var(--line);border-radius:22px;padding:18px;box-shadow:var(--shadow)}.sidebar-title{font-size:.74rem;letter-spacing:1.6px;text-transform:uppercase;color:#7d3cff;font-weight:800;margin-bottom:12px}.sidebar-nav{display:grid;gap:6px}.sidebar-nav a{display:flex;align-items:center;gap:8px;padding:10px 12px;border-radius:12px;color:rgba(196,168,255,.62);font-size:.86rem;border:1px solid transparent;transition:.2s}.sidebar-nav a:hover,.sidebar-nav a.active{background:rgba(125,60,255,.12);border-color:rgba(125,60,255,.22);color:#fff}.sidebar-progress{margin-top:14px;padding:12px;border-radius:14px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08)}.sidebar-progress .label{font-size:.78rem;color:var(--muted);margin-bottom:8px}.bar{height:8px;border-radius:999px;background:rgba(255,255,255,.08);overflow:hidden}.bar > span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--accent2))}.sidebar-note{margin-top:14px;color:var(--muted);font-size:.84rem;line-height:1.8}
-.content{min-width:0}.panel{background:var(--panel);border:1px solid var(--line);border-radius:22px;padding:24px;box-shadow:var(--shadow);position:relative;overflow:hidden;transition:transform .24s,border-color .24s}.panel:hover{transform:translateY(-5px);border-color:rgba(125,60,255,.34)}.panel::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 90% 10%, rgba(125,60,255,.08), transparent 45%);pointer-events:none}
-.panel-head{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:center;margin-bottom:14px}.panel-head h2{font-size:1.2rem;color:#ddd0ff}.panel-head p{color:var(--muted);font-size:.9rem}.small-actions{display:flex;gap:10px;flex-wrap:wrap}.small-actions .btn{min-height:40px;padding:0 14px;font-size:.86rem}
-.steps{display:grid;gap:12px}.step{display:flex;gap:14px;align-items:flex-start;padding:14px 16px;border-radius:16px;background:rgba(125,60,255,.06);border:1px solid rgba(125,60,255,.08)}.step-num{width:28px;height:28px;border-radius:50%;background:rgba(125,60,255,.22);border:1px solid rgba(125,60,255,.34);display:grid;place-items:center;color:#b388ff;font-size:.76rem;font-weight:800;flex:0 0 auto}.step-text{font-size:.9rem;color:rgba(225,215,255,.86)}.step-text strong{color:#fff}.step-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
-.feature-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.feature-item{display:flex;flex-direction:column;align-items:center;gap:10px;padding:18px 14px;border-radius:18px;text-align:center;background:rgba(21,21,29,.95);border:1px solid rgba(125,60,255,.16)}.feature-item i{font-size:1.4rem;color:#b388ff}.feature-item span{font-size:.84rem;color:rgba(225,215,255,.8)}
-.accordion{display:grid;gap:12px}.faq-item{border-radius:16px;overflow:hidden;border:1px solid rgba(125,60,255,.18);background:rgba(21,21,29,.95)}.faq-q{display:flex;align-items:center;gap:10px;padding:14px 16px;cursor:pointer;font-size:.92rem;font-weight:800;color:#ddd0ff;transition:background .2s;user-select:none}.faq-q:hover{background:rgba(125,60,255,.1)}.faq-q-badge{font-size:.7rem;font-weight:800;background:rgba(125,60,255,.25);color:#b388ff;padding:3px 9px;border-radius:999px;flex-shrink:0}.faq-q i.arrow{margin-left:auto;color:rgba(196,168,255,.4);transition:transform .25s;font-size:.95rem}.faq-item.open .faq-q i.arrow{transform:rotate(180deg)}.faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease,padding .3s;font-size:.88rem;color:rgba(210,200,240,.8);line-height:1.8;padding:0 16px}.faq-item.open .faq-a{max-height:380px;padding:0 16px 16px}.faq-a a{color:#b388ff}
-.info-box{display:flex;align-items:flex-start;gap:10px;background:rgba(125,60,255,.08);border:1px solid rgba(125,60,255,.24);border-radius:12px;padding:13px 15px;margin-top:12px}.info-box i{color:#b388ff;flex-shrink:0;font-size:1rem;margin-top:1px}.info-box p{font-size:.85rem;color:rgba(210,200,240,.85);line-height:1.7}
-.toast{position:fixed;bottom:92px;left:50%;transform:translateX(-50%) translateY(18px);background:rgba(28,22,50,.92);border:1px solid rgba(125,60,255,.32);color:#ddd0ff;padding:12px 18px;border-radius:12px;font-size:.88rem;opacity:0;pointer-events:none;transition:opacity .28s,transform .28s;display:flex;align-items:center;gap:8px;z-index:9998;backdrop-filter:blur(10px)}.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
-.discord-btn{position:fixed;right:20px;bottom:20px;background:#5865F2;color:#fff;text-decoration:none;padding:12px 20px;border-radius:999px;font-weight:700;font-size:.88rem;display:flex;align-items:center;gap:8px;box-shadow:0 6px 20px rgba(88,101,242,.4);z-index:9999;transition:.3s}.discord-btn:hover{transform:translateY(-3px);box-shadow:0 10px 28px rgba(88,101,242,.5)}
-.footer{text-align:center;padding:40px 24px;border-top:1px solid rgba(125,60,255,.12);color:rgba(255,255,255,.28);font-size:.82rem;line-height:2.2}
-.reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease}.reveal.visible{opacity:1;transform:none}
-@media(max-width:960px){.layout{grid-template-columns:1fr}.sidebar{position:static}.feature-grid{grid-template-columns:1fr}}
-@media(max-width:640px){.topbar{padding:14px 18px;flex-direction:column;align-items:flex-start}.hero{padding-top:96px}.container{padding-inline:16px}.panel{padding:20px}.discord-btn{right:14px;bottom:14px;padding:11px 16px;font-size:.86rem}}
-@media(prefers-reduced-motion: reduce){html{scroll-behavior:auto}*,*::before,*::after{transition:none !important;animation:none !important;scroll-behavior:auto !important}.reveal{opacity:1;transform:none}}
+:root{
+  --bg:#080810;
+  --panel:rgba(28,22,50,.72);
+  --panel-soft:rgba(28,22,50,.56);
+  --line:rgba(125,60,255,.18);
+  --line-strong:rgba(125,60,255,.32);
+  --text:#e8e4ff;
+  --muted:rgba(196,168,255,.58);
+  --muted-2:rgba(196,168,255,.42);
+  --accent:#7d3cff;
+  --accent-2:#b388ff;
+  --accent-3:#5865f2;
+  --shadow:0 18px 48px rgba(125,60,255,.12);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  min-height:100vh;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(125,60,255,.12), transparent 28%),
+    radial-gradient(circle at 80% 12%, rgba(88,101,242,.08), transparent 22%),
+    linear-gradient(180deg,#080810 0%,#0b0d18 100%);
+  color:var(--text);
+  font-family:'Segoe UI',Arial,sans-serif;
+  line-height:1.7;
+  overflow-x:hidden;
+}
+body::before,
+body::after{
+  content:'';
+  position:fixed;
+  width:34rem;
+  height:34rem;
+  border-radius:50%;
+  filter:blur(130px);
+  pointer-events:none;
+  z-index:-2;
+  opacity:.28;
+}
+body::before{left:-12rem;top:-8rem;background:rgba(125,60,255,.22)}
+body::after{right:-14rem;bottom:-10rem;background:rgba(88,101,242,.16)}
+a{color:inherit;text-decoration:none}
+::selection{background:rgba(125,60,255,.35);color:#fff}
+
+.progress{
+  position:fixed;
+  top:0;
+  left:0;
+  width:0;
+  height:3px;
+  background:linear-gradient(90deg,var(--accent),var(--accent-2),var(--accent-3));
+  z-index:3000;
+  box-shadow:0 0 18px rgba(125,60,255,.45);
+}
+.topbar{
+  position:sticky;
+  top:0;
+  z-index:1000;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:14px;
+  padding:16px 48px;
+  background:rgba(8,8,16,.92);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid rgba(125,60,255,.22);
+}
+.logo{
+  font-size:1.45rem;
+  font-weight:800;
+  letter-spacing:2px;
+  color:#c4a8ff;
+}
+.logo span{color:var(--accent)}
+.back{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  color:rgba(196,168,255,.62);
+  font-size:.86rem;
+}
+
+.hero{
+  padding:108px 24px 40px;
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+}
+.hero::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:radial-gradient(ellipse 70% 58% at 50% 60%, rgba(125,60,255,.16) 0%, transparent 70%);
+  pointer-events:none;
+}
+.hero-inner{max-width:980px;margin:0 auto;position:relative;z-index:1}
+.hero-badge{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  background:rgba(125,60,255,.15);
+  border:1px solid rgba(125,60,255,.38);
+  color:#b388ff;
+  font-size:.75rem;
+  letter-spacing:1.5px;
+  padding:6px 16px;
+  border-radius:999px;
+  text-transform:uppercase;
+}
+.hero h1{
+  font-size:clamp(2.6rem,6vw,4.4rem);
+  line-height:1.02;
+  letter-spacing:-.05em;
+  margin-top:16px;
+  color:#fff;
+}
+.hero p{
+  margin-top:12px;
+  color:var(--muted);
+  max-width:760px;
+  margin-left:auto;
+  margin-right:auto;
+}
+.hero-actions{
+  display:flex;
+  justify-content:center;
+  gap:12px;
+  flex-wrap:wrap;
+  margin-top:24px;
+}
+.btn{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  min-height:44px;
+  padding:0 18px;
+  border-radius:14px;
+  border:1px solid transparent;
+  font-weight:700;
+  cursor:pointer;
+  transition:.22s ease;
+  position:relative;
+  overflow:hidden;
+}
+.btn:hover{transform:translateY(-2px)}
+.btn-solid{background:var(--accent);color:#fff;border-color:var(--accent)}
+.btn-ghost{background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.08);color:#c4a8ff}
+.btn-ghost:hover{border-color:rgba(125,60,255,.22);background:rgba(125,60,255,.08)}
+
+.container{
+  max-width:1120px;
+  margin:0 auto;
+  padding:0 24px 84px;
+}
+.layout{
+  display:grid;
+  grid-template-columns:260px 1fr;
+  gap:28px;
+  align-items:start;
+  margin-top:10px;
+}
+.sidebar{
+  position:sticky;
+  top:96px;
+}
+.sidebar-card{
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-radius:22px;
+  padding:18px;
+  box-shadow:var(--shadow);
+}
+.sidebar-title{
+  font-size:.74rem;
+  letter-spacing:1.6px;
+  text-transform:uppercase;
+  color:#7d3cff;
+  font-weight:800;
+  margin-bottom:12px;
+}
+.sidebar-nav{
+  display:grid;
+  gap:6px;
+}
+.sidebar-nav a{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  padding:10px 12px;
+  border-radius:12px;
+  color:rgba(196,168,255,.62);
+  font-size:.86rem;
+  border:1px solid transparent;
+  transition:.2s;
+}
+.sidebar-nav a:hover,
+.sidebar-nav a.active{
+  background:rgba(125,60,255,.12);
+  border-color:rgba(125,60,255,.22);
+  color:#fff;
+}
+.sidebar-progress{
+  margin-top:14px;
+  padding:12px;
+  border-radius:14px;
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.08);
+}
+.sidebar-progress .label{
+  font-size:.78rem;
+  color:var(--muted);
+  margin-bottom:8px;
+}
+.bar{
+  height:8px;
+  border-radius:999px;
+  background:rgba(255,255,255,.08);
+  overflow:hidden;
+}
+.bar > span{
+  display:block;
+  height:100%;
+  width:0;
+  background:linear-gradient(90deg,var(--accent),var(--accent-2));
+}
+.sidebar-note{
+  margin-top:14px;
+  color:var(--muted);
+  font-size:.84rem;
+  line-height:1.8;
+}
+.sidebar-stats{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:10px;
+  margin-top:14px;
+}
+.mini-stat{
+  padding:12px;
+  border-radius:14px;
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.08);
+  text-align:center;
+}
+.mini-stat .value{font-size:1.15rem;font-weight:900;color:#fff}
+.mini-stat .label{font-size:.78rem;color:var(--muted);margin-top:4px}
+
+.content{
+  display:grid;
+  gap:18px;
+  min-width:0;
+}
+.panel{
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-radius:22px;
+  padding:24px;
+  box-shadow:var(--shadow);
+  position:relative;
+  overflow:hidden;
+  transition:transform .24s,border-color .24s;
+}
+.panel:hover{
+  transform:translateY(-5px);
+  border-color:rgba(125,60,255,.34);
+}
+.panel::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:radial-gradient(circle at 90% 10%, rgba(125,60,255,.08), transparent 45%);
+  pointer-events:none;
+}
+.panel-head{
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+  flex-wrap:wrap;
+  align-items:center;
+  margin-bottom:14px;
+}
+.panel-head h2{
+  font-size:1.2rem;
+  color:#ddd0ff;
+}
+.panel-head p{
+  color:var(--muted);
+  font-size:.9rem;
+}
+.small-actions{display:flex;gap:10px;flex-wrap:wrap}
+.small-actions .btn{min-height:40px;padding:0 14px;font-size:.86rem}
+
+.steps{display:grid;gap:12px}
+.step{
+  display:flex;
+  gap:14px;
+  align-items:flex-start;
+  padding:14px 16px;
+  border-radius:16px;
+  background:rgba(125,60,255,.06);
+  border:1px solid rgba(125,60,255,.08);
+}
+.step-num{
+  width:28px;
+  height:28px;
+  border-radius:50%;
+  background:rgba(125,60,255,.22);
+  border:1px solid rgba(125,60,255,.34);
+  display:grid;
+  place-items:center;
+  color:#b388ff;
+  font-size:.76rem;
+  font-weight:800;
+  flex:0 0 auto;
+}
+.step-text{
+  font-size:.9rem;
+  color:rgba(225,215,255,.86);
+}
+.step-text strong{color:#fff}
+.step-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
+
+.feature-grid{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:14px;
+}
+.feature-item{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:10px;
+  padding:18px 14px;
+  border-radius:18px;
+  text-align:center;
+  background:rgba(21,21,29,.95);
+  border:1px solid rgba(125,60,255,.16);
+}
+.feature-item i{font-size:1.4rem;color:#b388ff}
+.feature-item span{font-size:.84rem;color:rgba(225,215,255,.8)}
+
+.accordion{display:grid;gap:12px}
+.faq-item{
+  border-radius:16px;
+  overflow:hidden;
+  border:1px solid rgba(125,60,255,.18);
+  background:rgba(21,21,29,.95);
+}
+.faq-q{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:14px 16px;
+  cursor:pointer;
+  font-size:.92rem;
+  font-weight:800;
+  color:#ddd0ff;
+  transition:background .2s;
+  user-select:none;
+}
+.faq-q:hover{background:rgba(125,60,255,.1)}
+.faq-q-badge{
+  font-size:.7rem;
+  font-weight:800;
+  background:rgba(125,60,255,.25);
+  color:#b388ff;
+  padding:3px 9px;
+  border-radius:999px;
+  flex-shrink:0;
+}
+.faq-q i.arrow{
+  margin-left:auto;
+  color:rgba(196,168,255,.4);
+  transition:transform .25s;
+  font-size:.95rem;
+}
+.faq-item.open .faq-q i.arrow{transform:rotate(180deg)}
+.faq-a{
+  max-height:0;
+  overflow:hidden;
+  transition:max-height .3s ease,padding .3s;
+  font-size:.88rem;
+  color:rgba(210,200,240,.8);
+  line-height:1.8;
+  padding:0 16px;
+}
+.faq-item.open .faq-a{max-height:380px;padding:0 16px 16px}
+.faq-a a{color:#b388ff}
+
+.info-box{
+  display:flex;
+  align-items:flex-start;
+  gap:10px;
+  background:rgba(125,60,255,.08);
+  border:1px solid rgba(125,60,255,.24);
+  border-radius:12px;
+  padding:13px 15px;
+  margin-top:12px;
+}
+.info-box i{
+  color:#b388ff;
+  flex-shrink:0;
+  font-size:1rem;
+  margin-top:1px;
+}
+.info-box p{
+  font-size:.85rem;
+  color:rgba(210,200,240,.85);
+  line-height:1.7;
+}
+
+.toast{
+  position:fixed;
+  bottom:92px;
+  left:50%;
+  transform:translateX(-50%) translateY(18px);
+  background:rgba(28,22,50,.92);
+  border:1px solid rgba(125,60,255,.32);
+  color:#ddd0ff;
+  padding:12px 18px;
+  border-radius:12px;
+  font-size:.88rem;
+  opacity:0;
+  pointer-events:none;
+  transition:opacity .28s,transform .28s;
+  display:flex;
+  align-items:center;
+  gap:8px;
+  z-index:9998;
+  backdrop-filter:blur(10px);
+}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+.discord-btn{
+  position:fixed;
+  right:20px;
+  bottom:20px;
+  background:#5865F2;
+  color:#fff;
+  text-decoration:none;
+  padding:12px 20px;
+  border-radius:999px;
+  font-weight:700;
+  font-size:.88rem;
+  display:flex;
+  align-items:center;
+  gap:8px;
+  box-shadow:0 6px 20px rgba(88,101,242,.4);
+  z-index:9999;
+  transition:.3s;
+}
+.discord-btn:hover{
+  transform:translateY(-3px);
+  box-shadow:0 10px 28px rgba(88,101,242,.5);
+}
+
+.footer{
+  text-align:center;
+  padding:40px 24px;
+  border-top:1px solid rgba(125,60,255,.12);
+  color:rgba(255,255,255,.28);
+  font-size:.82rem;
+  line-height:2.2;
+}
+
+.reveal{
+  opacity:0;
+  transform:translateY(18px);
+  transition:opacity .7s ease,transform .7s ease;
+}
+.reveal.visible{opacity:1;transform:none}
+
+@media(max-width:960px){
+  .layout{grid-template-columns:1fr}
+  .sidebar{position:static}
+  .feature-grid{grid-template-columns:1fr}
+}
+@media(max-width:640px){
+  .topbar{padding:14px 18px;flex-direction:column;align-items:flex-start}
+  .hero{padding-top:94px}
+  .container{padding-inline:16px}
+  .panel{padding:20px}
+  .discord-btn{right:14px;bottom:14px;padding:11px 16px;font-size:.86rem}
+  .sidebar-stats{grid-template-columns:1fr}
+}
+@media(prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{transition:none !important;animation:none !important;scroll-behavior:auto !important}
+  .reveal{opacity:1;transform:none}
+}
 </style>
 </head>
 <body>
@@ -39,12 +508,15 @@ body::before,body::after{content:'';position:fixed;width:34rem;height:34rem;bord
 </div>
 
 <header class="hero">
-  <div class="hero-badge">Android 사용 가이드</div>
-  <h1>전산볼트 앱 사용법</h1>
-  <p>설치부터 사용, 자주 묻는 질문까지 단계별로 안내합니다.</p>
-  <div class="hero-actions">
-    <button class="btn btn-solid ripple" id="openAllBtn" type="button"><i class="ti ti-chevron-down"></i> 모두 펼치기</button>
-    <a href="download.html" class="btn btn-ghost ripple"><i class="ti ti-download"></i> 다운로드로 이동</a>
+  <div class="hero-inner">
+    <div class="hero-badge">Android 사용 가이드</div>
+    <h1>전산볼트 앱 사용법</h1>
+    <p>설치부터 사용, 자주 묻는 질문까지 단계별로 안내합니다. 홈과 같은 디자인 언어로 정리해 더 자연스럽게 이어집니다.</p>
+    <div class="hero-actions">
+      <button class="btn btn-solid ripple" id="openAllBtn" type="button"><i class="ti ti-chevron-down"></i> 모두 펼치기</button>
+      <a href="download.html" class="btn btn-ghost ripple"><i class="ti ti-download"></i> 다운로드로 이동</a>
+      <button class="btn btn-ghost ripple" id="copySupportBtn" type="button"><i class="ti ti-brand-discord"></i> 문의 링크 복사</button>
+    </div>
   </div>
 </header>
 
@@ -62,22 +534,39 @@ body::before,body::after{content:'';position:fixed;width:34rem;height:34rem;bord
         </nav>
         <div class="sidebar-progress"><div class="label">읽은 정도</div><div class="bar"><span id="sideBarBar"></span></div></div>
         <div class="sidebar-note">설치 중 막히는 지점이 있으면 FAQ를 먼저 확인해 보세요. 대부분 빠르게 해결됩니다.</div>
+        <div class="sidebar-stats">
+          <div class="mini-stat"><div class="value">1</div><div class="label">지원 기기</div></div>
+          <div class="mini-stat"><div class="value">3</div><div class="label">핵심 기능</div></div>
+        </div>
       </div>
     </aside>
 
     <main class="content">
       <section class="panel reveal" data-reveal id="install">
-        <div class="panel-head"><div><h2>1. 앱 설치</h2><p>다운로드부터 시작하는 가장 기본적인 단계입니다.</p></div><div class="small-actions"><button class="btn btn-ghost ripple copy-section" data-copy="설치 섹션" type="button"><i class="ti ti-copy"></i> 섹션 복사</button></div></div>
+        <div class="panel-head">
+          <div><h2>1. 앱 설치</h2><p>다운로드부터 시작하는 가장 기본적인 단계입니다.</p></div>
+          <div class="small-actions">
+            <button class="btn btn-ghost ripple copy-section" data-copy="설치 섹션" type="button"><i class="ti ti-copy"></i> 섹션 복사</button>
+          </div>
+        </div>
         <div class="steps">
-          <div class="step"><div class="step-num">1</div><div><div class="step-text"><strong>APK 다운로드</strong> - 공식 사이트에서 최신 APK 파일을 다운로드합니다.</div><div class="step-actions"><a href="download.html" class="btn btn-solid ripple"><i class="ti ti-download"></i> 다운로드 열기</a></div></div></div>
+          <div class="step">
+            <div class="step-num">1</div>
+            <div>
+              <div class="step-text"><strong>APK 다운로드</strong> - 공식 사이트에서 최신 APK 파일을 다운로드합니다.</div>
+              <div class="step-actions"><a href="download.html" class="btn btn-solid ripple"><i class="ti ti-download"></i> 다운로드 열기</a></div>
+            </div>
+          </div>
           <div class="step"><div class="step-num">2</div><div><div class="step-text"><strong>보안 검사</strong> - 설치 전에 보안 앱으로 파일을 한 번 검사해 보시는 것을 권장합니다.</div></div></div>
           <div class="step"><div class="step-num">3</div><div><div class="step-text"><strong>설치 허용</strong> - 설정 → 보안 → 알 수 없는 앱 설치 허용을 활성화하세요.</div></div></div>
           <div class="step"><div class="step-num">4</div><div><div class="step-text"><strong>그래도 안 된다면</strong> - 공식 사이트에서 받은 파일인지 다시 확인하고, 계속 문제면 디스코드로 문의해 주세요.</div></div></div>
         </div>
       </section>
 
-      <section class="panel reveal" data-reveal id="launch" style="margin-top:18px">
-        <div class="panel-head"><div><h2>2. 앱 실행</h2><p>설치가 끝나면 권한과 초기 설정을 확인합니다.</p></div></div>
+      <section class="panel reveal" data-reveal id="launch">
+        <div class="panel-head">
+          <div><h2>2. 앱 실행</h2><p>설치가 끝나면 권한과 초기 설정을 확인합니다.</p></div>
+        </div>
         <div class="steps">
           <div class="step"><div class="step-num">1</div><div><div class="step-text"><strong>앱 실행</strong> - 설치가 완료되면 전산볼트 앱을 실행합니다.</div></div></div>
           <div class="step"><div class="step-num">2</div><div><div class="step-text"><strong>권한 허용</strong> - 요청되는 권한은 허용해 주세요.</div></div></div>
@@ -85,8 +574,10 @@ body::before,body::after{content:'';position:fixed;width:34rem;height:34rem;bord
         </div>
       </section>
 
-      <section class="panel reveal" data-reveal id="features" style="margin-top:18px">
-        <div class="panel-head"><div><h2>3. 전산볼트 앱 기능</h2><p>짧게 훑어보면 전체 구조를 이해하기 쉽습니다.</p></div></div>
+      <section class="panel reveal" data-reveal id="features">
+        <div class="panel-head">
+          <div><h2>3. 전산볼트 앱 기능</h2><p>짧게 훑어보면 전체 구조를 이해하기 쉽습니다.</p></div>
+        </div>
         <div class="feature-grid">
           <div class="feature-item"><i class="ti ti-bolt"></i><span>볼트 계산</span></div>
           <div class="feature-item"><i class="ti ti-clipboard-list"></i><span>작업 기록</span></div>
@@ -94,8 +585,11 @@ body::before,body::after{content:'';position:fixed;width:34rem;height:34rem;bord
         </div>
       </section>
 
-      <section class="panel reveal" data-reveal id="faq" style="margin-top:18px">
-        <div class="panel-head"><div><h2>4. 자주 묻는 질문</h2><p>자주 막히는 부분만 먼저 정리했습니다.</p></div><div class="small-actions"><button class="btn btn-ghost ripple" id="toggleFaqs" type="button"><i class="ti ti-toggle-right"></i> 모두 열기</button></div></div>
+      <section class="panel reveal" data-reveal id="faq">
+        <div class="panel-head">
+          <div><h2>4. 자주 묻는 질문</h2><p>자주 막히는 부분만 먼저 정리했습니다.</p></div>
+          <div class="small-actions"><button class="btn btn-ghost ripple" id="toggleFaqs" type="button"><i class="ti ti-toggle-right"></i> 모두 열기</button></div>
+        </div>
         <div class="accordion">
           <div class="faq-item">
             <div class="faq-q"><span class="faq-q-badge">Q</span> 설치가 안 돼요. <i class="ti ti-chevron-down arrow"></i></div>
@@ -114,12 +608,12 @@ body::before,body::after{content:'';position:fixed;width:34rem;height:34rem;bord
         </div>
       </section>
 
-      <section class="panel reveal" data-reveal id="contact" style="margin-top:18px">
+      <section class="panel reveal" data-reveal id="contact">
         <div class="panel-head"><div><h2>5. 문의</h2><p>문제가 해결되지 않으면 바로 문의하세요.</p></div></div>
         <div class="small-actions">
           <a href="https://discord.gg/DxY47Q3EHR" target="_blank" rel="noreferrer" class="btn btn-solid ripple"><i class="ti ti-brand-discord"></i> 디스코드 문의</a>
           <a href="https://arexmado3-logo.github.io/axlib" target="_blank" rel="noreferrer" class="btn btn-ghost ripple"><i class="ti ti-external-link"></i> 공식 사이트</a>
-          <button class="btn btn-ghost ripple" id="copySupportBtn" type="button"><i class="ti ti-copy"></i> 문의 링크 복사</button>
+          <button class="btn btn-ghost ripple" id="copySupportBtn2" type="button"><i class="ti ti-copy"></i> 문의 링크 복사</button>
         </div>
       </section>
     </main>
@@ -150,6 +644,7 @@ document.getElementById('toggleFaqs').addEventListener('click', ()=>{allFaqOpen=
 document.getElementById('openAllBtn').addEventListener('click', ()=>{faqItems.forEach(i=>i.classList.add('open')); allFaqOpen = true; document.getElementById('toggleFaqs').innerHTML = '<i class="ti ti-toggle-left"></i> 모두 닫기'; faqItems[0].scrollIntoView({behavior:'smooth', block:'start'});});
 document.getElementById('copyGuideLink').addEventListener('click', async ()=>{try{await navigator.clipboard.writeText(location.href); showToast('설명서 링크를 복사했습니다');}catch{showToast('복사에 실패했습니다')}});
 document.getElementById('copySupportBtn').addEventListener('click', async ()=>{try{await navigator.clipboard.writeText('https://discord.gg/DxY47Q3EHR'); showToast('문의 링크를 복사했습니다');}catch{showToast('복사에 실패했습니다')}});
+document.getElementById('copySupportBtn2').addEventListener('click', async ()=>{try{await navigator.clipboard.writeText('https://discord.gg/DxY47Q3EHR'); showToast('문의 링크를 복사했습니다');}catch{showToast('복사에 실패했습니다')}});
 document.querySelectorAll('.copy-section').forEach(btn=>btn.addEventListener('click', ()=>showToast(btn.dataset.copy + ' 이름을 복사했습니다')));
 window.addEventListener('scroll', updateProgress); window.addEventListener('resize', updateProgress); updateProgress();
 </script>
