@@ -1,408 +1,1150 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang='ko'>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AXLIB</title>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+<meta charset='UTF-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0'>
+<meta name='theme-color' content='#08111f'>
+<title>AXLIB | 더 세련된 개발 플랫폼</title>
+<link rel='preconnect' href='https://fonts.googleapis.com'>
+<link rel='preconnect' href='https://fonts.gstatic.com' crossorigin>
+<link href='https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Noto+Sans+KR:wght@400;500;700;900&display=swap' rel='stylesheet'>
+<link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css'>
 <style>
-*{margin:0;padding:0;box-sizing:border-box;}
-body{background:#080810;color:#e8e4ff;font-family:'Segoe UI',Arial,sans-serif;overflow-x:hidden;}
-html{scroll-behavior:smooth;}
-
-/* 헤더 */
-header{
-  position:fixed;top:0;left:0;width:100%;
-  padding:16px 48px;
-  display:flex;justify-content:space-between;align-items:center;
-  background:rgba(8,8,16,0.92);
-  backdrop-filter:blur(16px);
-  border-bottom:1px solid rgba(125,60,255,0.3);
-  z-index:1000;
+:root{
+  --bg:#08111f;
+  --bg-2:#0a1325;
+  --panel:rgba(11,18,33,.72);
+  --panel-strong:rgba(16,25,46,.88);
+  --line:rgba(255,255,255,.08);
+  --line-strong:rgba(124,92,255,.28);
+  --text:#eef4ff;
+  --muted:rgba(214,225,255,.72);
+  --muted-2:rgba(214,225,255,.52);
+  --accent:#7c5cff;
+  --accent-2:#26d0ce;
+  --accent-3:#ffd36e;
+  --shadow:0 30px 80px rgba(4,8,16,.48);
+  --radius:28px;
 }
-.logo{font-size:1.6rem;font-weight:700;letter-spacing:2px;color:#c4a8ff;}
-.logo span{color:#7d3cff;}
-nav a{
-  color:rgba(232,228,255,0.7);text-decoration:none;
-  margin-left:24px;font-size:0.9rem;letter-spacing:0.5px;
-  transition:color .25s;
-}
-nav a:hover{color:#c4a8ff;}
-
-/* 히어로 */
-.hero{
-  min-height:100vh;display:flex;flex-direction:column;
-  justify-content:center;align-items:center;text-align:center;
-  padding:120px 20px 80px;
-  position:relative;overflow:hidden;
-}
-.hero-bg{
-  position:absolute;inset:0;pointer-events:none;
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  color:var(--text);
+  font-family:'Noto Sans KR','Manrope',sans-serif;
   background:
-    radial-gradient(ellipse 70% 55% at 50% 45%, rgba(125,60,255,0.18) 0%, transparent 70%),
-    radial-gradient(ellipse 30% 30% at 20% 80%, rgba(90,40,200,0.1) 0%, transparent 60%),
-    radial-gradient(ellipse 25% 25% at 80% 20%, rgba(180,100,255,0.08) 0%, transparent 60%);
+    radial-gradient(circle at 15% 20%, rgba(38,208,206,.18), transparent 24%),
+    radial-gradient(circle at 82% 0%, rgba(124,92,255,.18), transparent 26%),
+    radial-gradient(circle at 100% 100%, rgba(255,211,110,.08), transparent 20%),
+    linear-gradient(180deg, #07101d 0%, var(--bg) 42%, #050a14 100%);
+  overflow-x:hidden;
+  line-height:1.6;
 }
-.hero-badge{
-  display:inline-block;
-  background:rgba(125,60,255,0.15);
-  border:1px solid rgba(125,60,255,0.4);
-  color:#b388ff;font-size:0.78rem;letter-spacing:1.5px;
-  padding:6px 18px;border-radius:999px;margin-bottom:28px;
+body::before,
+body::after{
+  content:'';
+  position:fixed;
+  inset:auto;
+  width:40rem;
+  height:40rem;
+  border-radius:50%;
+  filter:blur(120px);
+  pointer-events:none;
+  opacity:.34;
+  z-index:-1;
+}
+body::before{
+  left:-12rem;
+  top:-10rem;
+  background:rgba(38,208,206,.18);
+}
+body::after{
+  right:-16rem;
+  top:10rem;
+  background:rgba(124,92,255,.2);
+}
+a{color:inherit}
+img{max-width:100%;display:block}
+::selection{background:rgba(124,92,255,.45);color:#fff}
+
+.shell{position:relative;isolation:isolate}
+.grid-overlay{
+  position:fixed;
+  inset:0;
+  background-image:
+    linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px);
+  background-size:72px 72px;
+  mask-image:radial-gradient(circle at center, rgba(0,0,0,.9), transparent 76%);
+  pointer-events:none;
+  z-index:-1;
+  opacity:.34;
+}
+.container{
+  width:min(1180px, calc(100% - 40px));
+  margin:0 auto;
+}
+
+header{
+  position:sticky;
+  top:0;
+  z-index:1000;
+  border-bottom:1px solid var(--line);
+  background:rgba(8,17,31,.68);
+  backdrop-filter:blur(22px);
+}
+.header-inner{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:18px;
+  padding:16px 0;
+}
+.brand{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  text-decoration:none;
+  min-width:0;
+}
+.brand-mark{
+  width:46px;
+  height:46px;
+  border-radius:16px;
+  display:grid;
+  place-items:center;
+  background:linear-gradient(135deg, rgba(124,92,255,1), rgba(38,208,206,1));
+  box-shadow:0 16px 30px rgba(124,92,255,.28);
+  font-weight:900;
+  letter-spacing:.08em;
+}
+.brand-copy{display:flex;flex-direction:column;line-height:1.1}
+.brand-name{
+  font-size:1.02rem;
+  font-weight:900;
+  letter-spacing:.24em;
   text-transform:uppercase;
 }
+.brand-sub{font-size:.8rem;color:var(--muted-2);margin-top:4px}
+.nav{
+  display:flex;
+  align-items:center;
+  justify-content:flex-end;
+  gap:8px;
+  flex-wrap:wrap;
+}
+.nav a{
+  text-decoration:none;
+  color:var(--muted);
+  font-size:.92rem;
+  font-weight:600;
+  padding:10px 14px;
+  border-radius:999px;
+  transition:transform .22s ease, background .22s ease, color .22s ease, border-color .22s ease;
+  border:1px solid transparent;
+}
+.nav a:hover{
+  color:var(--text);
+  background:rgba(255,255,255,.05);
+  border-color:rgba(255,255,255,.08);
+  transform:translateY(-1px);
+}
+.nav a.primary{
+  color:#fff;
+  background:linear-gradient(135deg, var(--accent), #6f7cff 55%, var(--accent-2));
+  box-shadow:0 14px 28px rgba(124,92,255,.28);
+}
+.nav a.primary:hover{border-color:transparent}
+
+main{padding-bottom:34px}
+.hero{
+  padding:42px 0 26px;
+}
+.hero-grid{
+  display:grid;
+  grid-template-columns:minmax(0,1.1fr) minmax(320px,.9fr);
+  gap:34px;
+  align-items:center;
+}
+.hero-copy{padding:20px 0 10px}
+.kicker{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  padding:9px 14px;
+  border-radius:999px;
+  background:rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.08);
+  color:var(--accent-2);
+  font-size:.78rem;
+  font-weight:800;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+}
+.kicker::before{
+  content:'';
+  width:8px;
+  height:8px;
+  border-radius:50%;
+  background:var(--accent-2);
+  box-shadow:0 0 0 6px rgba(38,208,206,.12);
+}
 .hero h1{
-  font-size:5.5rem;font-weight:800;letter-spacing:-1px;
-  background:linear-gradient(135deg, #e0d0ff 0%, #9f6fff 50%, #6a30d4 100%);
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
-  background-clip:text;line-height:1.05;
+  margin:18px 0 16px;
+  font-size:clamp(3.6rem, 10vw, 7rem);
+  line-height:.9;
+  letter-spacing:-.08em;
+  font-weight:900;
 }
-.hero-sub{margin-top:18px;font-size:1.15rem;color:rgba(196,168,255,0.75);letter-spacing:0.3px;}
-.hero-desc{margin-top:8px;font-size:0.95rem;color:rgba(255,255,255,0.4);}
-.hero-actions{display:flex;gap:14px;margin-top:36px;flex-wrap:wrap;justify-content:center;}
+.hero h1 .accent{
+  display:block;
+  background:linear-gradient(135deg, #f7fbff 0%, #8af0ff 24%, #9a7cff 56%, #ffd36e 100%);
+  -webkit-background-clip:text;
+  background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+.hero-lede{
+  max-width:46rem;
+  margin:0;
+  font-size:clamp(1.05rem, 2vw, 1.28rem);
+  color:var(--muted);
+}
+.hero-note{
+  margin:12px 0 0;
+  color:var(--muted-2);
+  font-size:.98rem;
+}
+.hero-actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:14px;
+  margin-top:28px;
+}
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  min-height:48px;
+  padding:0 20px;
+  border-radius:16px;
+  text-decoration:none;
+  font-weight:800;
+  letter-spacing:.01em;
+  transition:transform .22s ease, box-shadow .22s ease, background .22s ease, border-color .22s ease;
+}
+.btn:hover{transform:translateY(-2px)}
+.btn-solid{
+  color:#fff;
+  background:linear-gradient(135deg, var(--accent), #6d78ff 52%, var(--accent-2));
+  box-shadow:0 16px 34px rgba(124,92,255,.28);
+}
+.btn-ghost{
+  color:var(--text);
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.09);
+}
+.btn-ghost:hover{
+  background:rgba(255,255,255,.06);
+  border-color:rgba(255,255,255,.14);
+}
+.hero-meta{
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+  margin-top:24px;
+}
+.meta-pill{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:10px 14px;
+  border-radius:999px;
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.08);
+  color:var(--muted);
+  font-size:.9rem;
+}
+.meta-pill i{color:var(--accent-2)}
 
-/* 버튼 */
-.btn-primary{
-  display:inline-flex;align-items:center;gap:8px;
-  padding:13px 28px;background:#7d3cff;color:white;
-  text-decoration:none;border:none;border-radius:12px;
-  font-size:0.95rem;font-weight:600;cursor:pointer;
-  transition:transform .25s, background .25s, box-shadow .25s;
+.hero-panel{
+  position:relative;
+  padding:22px;
+  border-radius:32px;
+  background:linear-gradient(180deg, rgba(16,25,46,.88), rgba(10,17,31,.9));
+  border:1px solid rgba(255,255,255,.08);
+  box-shadow:var(--shadow);
+  overflow:hidden;
 }
-.btn-primary:hover{transform:translateY(-2px);background:#9257ff;box-shadow:0 8px 24px rgba(125,60,255,0.35);}
-.btn-secondary{
-  display:inline-flex;align-items:center;gap:8px;
-  padding:13px 28px;background:transparent;color:#c4a8ff;
-  text-decoration:none;border:1px solid rgba(125,60,255,0.45);border-radius:12px;
-  font-size:0.95rem;font-weight:600;cursor:pointer;
-  transition:transform .25s, background .25s, border-color .25s;
-}
-.btn-secondary:hover{transform:translateY(-2px);background:rgba(125,60,255,0.1);border-color:rgba(125,60,255,0.7);}
-
-/* 섹션 공통 */
-.section{max-width:1100px;margin:auto;padding:96px 24px;}
-.section-label{
-  text-align:center;font-size:0.75rem;letter-spacing:2px;
-  text-transform:uppercase;color:#7d3cff;margin-bottom:10px;font-weight:600;
-}
-.section h2{
-  text-align:center;font-size:2.2rem;font-weight:700;
-  color:#ddd0ff;margin-bottom:12px;letter-spacing:-0.3px;
-}
-.section-desc{text-align:center;color:rgba(196,168,255,0.55);font-size:1rem;margin-bottom:52px;}
-
-/* 구분선 */
-.divider{max-width:1100px;margin:0 auto;height:1px;background:linear-gradient(90deg, transparent, rgba(125,60,255,0.2), transparent);}
-
-/* 카드 */
-.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;}
-.card{
-  background:rgba(28,22,50,0.7);
-  border:1px solid rgba(125,60,255,0.18);
-  border-radius:18px;padding:28px;
-  transition:transform .3s, border-color .3s, box-shadow .3s;
-  position:relative;overflow:hidden;
-}
-.card::before{
-  content:'';position:absolute;inset:0;
-  background:radial-gradient(circle at 80% 20%, rgba(125,60,255,0.06), transparent 60%);
+.hero-panel::before,
+.hero-panel::after{
+  content:'';
+  position:absolute;
+  inset:auto;
+  border-radius:50%;
+  filter:blur(20px);
   pointer-events:none;
 }
-.card:hover{
-  transform:translateY(-5px);
-  border-color:rgba(125,60,255,0.45);
-  box-shadow:0 12px 32px rgba(125,60,255,0.12);
+.hero-panel::before{
+  width:18rem;
+  height:18rem;
+  right:-6rem;
+  top:-8rem;
+  background:rgba(124,92,255,.22);
+}
+.hero-panel::after{
+  width:14rem;
+  height:14rem;
+  left:-5rem;
+  bottom:-6rem;
+  background:rgba(38,208,206,.2);
+}
+.panel-top{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  margin-bottom:16px;
+  position:relative;
+  z-index:1;
+}
+.window-dots{
+  display:flex;
+  gap:8px;
+}
+.window-dots span{
+  width:10px;
+  height:10px;
+  border-radius:50%;
+  background:rgba(255,255,255,.16);
+}
+.window-dots span:first-child{background:#ff6b6b}
+.window-dots span:nth-child(2){background:#ffd36e}
+.window-dots span:nth-child(3){background:#26d0ce}
+.panel-badge{
+  padding:8px 12px;
+  border-radius:999px;
+  font-size:.78rem;
+  color:#dffbf8;
+  background:rgba(38,208,206,.1);
+  border:1px solid rgba(38,208,206,.18);
+}
+.panel-stack{
+  display:grid;
+  gap:14px;
+  position:relative;
+  z-index:1;
+}
+.panel-card,
+.panel-metric,
+.info-item,
+.card,
+.stat-box{
+  backdrop-filter:blur(18px);
+}
+.panel-card{
+  padding:18px;
+  border-radius:22px;
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.08);
+}
+.panel-card h3{
+  margin:0 0 8px;
+  font-size:1rem;
+  font-weight:800;
+}
+.panel-card p{
+  margin:0;
+  color:var(--muted);
+  font-size:.92rem;
+}
+.panel-row{
+  display:flex;
+  justify-content:space-between;
+  gap:16px;
+  align-items:flex-end;
+  margin-top:14px;
+  color:var(--muted-2);
+  font-size:.88rem;
+}
+.panel-row strong{
+  display:block;
+  color:var(--text);
+  font-size:1.18rem;
+}
+.panel-metrics{
+  display:grid;
+  grid-template-columns:repeat(3, minmax(0, 1fr));
+  gap:12px;
+}
+.panel-metric{
+  padding:14px 12px;
+  border-radius:18px;
+  background:rgba(255,255,255,.035);
+  border:1px solid rgba(255,255,255,.08);
+}
+.panel-metric .value{
+  font-size:1.2rem;
+  font-weight:900;
+}
+.panel-metric .label{
+  margin-top:2px;
+  color:var(--muted-2);
+  font-size:.82rem;
+}
+.panel-list{
+  display:grid;
+  gap:12px;
+}
+.panel-list-item{
+  display:flex;
+  align-items:flex-start;
+  gap:12px;
+  padding:14px 16px;
+  border-radius:18px;
+  background:rgba(255,255,255,.035);
+  border:1px solid rgba(255,255,255,.08);
+}
+.panel-list-item i{
+  color:var(--accent-2);
+  font-size:1.05rem;
+  margin-top:1px;
+}
+.panel-list-item strong{
+  display:block;
+  margin-bottom:3px;
+  font-size:.94rem;
+}
+.panel-list-item span{
+  color:var(--muted-2);
+  font-size:.88rem;
+}
+
+.section{
+  padding:74px 0 8px;
+}
+.section-head{
+  text-align:center;
+  max-width:760px;
+  margin:0 auto 30px;
+}
+.section-kicker{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  color:var(--accent-2);
+  font-weight:800;
+  font-size:.76rem;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+}
+.section-kicker::before,
+.section-kicker::after{
+  content:'';
+  width:28px;
+  height:1px;
+  background:linear-gradient(90deg, transparent, rgba(38,208,206,.8));
+}
+.section-kicker::after{background:linear-gradient(90deg, rgba(38,208,206,.8), transparent)}
+.section h2{
+  margin:14px 0 10px;
+  font-size:clamp(2rem, 4vw, 3.15rem);
+  line-height:1.1;
+  letter-spacing:-.05em;
+}
+.section-desc{
+  margin:0;
+  color:var(--muted);
+  font-size:1rem;
+}
+.cards,
+.stats,
+.info-grid{
+  display:grid;
+  gap:18px;
+}
+.cards{grid-template-columns:repeat(3, minmax(0, 1fr));}
+.stats{grid-template-columns:repeat(3, minmax(0, 1fr));}
+.info-grid{grid-template-columns:repeat(3, minmax(0, 1fr));}
+.card,
+.stat-box,
+.info-item{
+  border:1px solid rgba(255,255,255,.08);
+  background:linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.028));
+  border-radius:var(--radius);
+  box-shadow:0 18px 48px rgba(4,8,16,.24);
+  transition:transform .25s ease, border-color .25s ease, box-shadow .25s ease;
+  position:relative;
+  overflow:hidden;
+}
+.card::before,
+.stat-box::before,
+.info-item::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:radial-gradient(circle at 100% 0%, rgba(124,92,255,.15), transparent 34%);
+  pointer-events:none;
+}
+.card:hover,
+.stat-box:hover,
+.info-item:hover{
+  transform:translateY(-6px);
+  border-color:rgba(124,92,255,.28);
+  box-shadow:0 24px 60px rgba(4,8,16,.34);
+}
+.card{
+  padding:26px;
+  min-height:100%;
+}
+.card::after{
+  content:'';
+  position:absolute;
+  left:0;
+  top:0;
+  right:0;
+  height:4px;
+  background:linear-gradient(90deg, var(--accent), var(--accent-2), var(--accent-3));
+  opacity:.9;
 }
 .card-icon{
-  width:44px;height:44px;border-radius:12px;
-  background:rgba(125,60,255,0.15);border:1px solid rgba(125,60,255,0.25);
-  display:flex;align-items:center;justify-content:center;
-  margin-bottom:18px;font-size:1.3rem;
+  width:48px;
+  height:48px;
+  border-radius:16px;
+  display:grid;
+  place-items:center;
+  font-size:1.2rem;
+  color:#fff;
+  background:linear-gradient(135deg, rgba(124,92,255,.2), rgba(38,208,206,.18));
+  border:1px solid rgba(255,255,255,.09);
+  margin-bottom:18px;
 }
-.card h3{font-size:1.05rem;font-weight:600;color:#ddd0ff;margin-bottom:10px;}
-.card p{font-size:0.9rem;color:rgba(196,168,255,0.55);line-height:1.7;}
-.card .btn-primary{margin-top:20px;font-size:0.85rem;padding:10px 20px;}
-.card .btn-secondary{margin-top:20px;font-size:0.85rem;padding:10px 20px;}
+.card h3{
+  margin:0 0 10px;
+  font-size:1.14rem;
+  letter-spacing:-.02em;
+}
+.card p,
+.info-item p,
+.stat-label{
+  margin:0;
+  color:var(--muted);
+}
+.card p{font-size:.95rem}
+.card-actions{margin-top:18px}
+.card .btn,
+.card .btn-solid,
+.card .btn-ghost{
+  min-height:42px;
+  padding:0 16px;
+  font-size:.92rem;
+}
+.card .btn-ghost{margin-left:8px}
 
-/* 통계 */
-.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px;}
 .stat-box{
-  text-align:center;background:rgba(28,22,50,0.7);
-  border:1px solid rgba(125,60,255,0.18);border-radius:18px;padding:36px 20px;
+  padding:28px 22px 26px;
+  text-align:center;
 }
-.stat-icon{font-size:1.6rem;color:#7d3cff;margin-bottom:10px;}
-.stat-label{font-size:0.85rem;color:rgba(196,168,255,0.5);margin-bottom:6px;letter-spacing:0.5px;}
-.counter{font-size:2.8rem;font-weight:700;color:#c4a8ff;letter-spacing:-1px;}
+.stat-icon{
+  width:54px;
+  height:54px;
+  margin:0 auto 14px;
+  border-radius:18px;
+  display:grid;
+  place-items:center;
+  background:rgba(124,92,255,.12);
+  border:1px solid rgba(124,92,255,.18);
+  color:#d9d2ff;
+  font-size:1.25rem;
+}
+.stat-label{
+  font-size:.86rem;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+}
+.counter{
+  margin-top:8px;
+  font-size:2.7rem;
+  font-weight:900;
+  letter-spacing:-.04em;
+  color:#fff;
+}
+.counter.small{font-size:2rem}
+.stat-sub{
+  margin-top:8px;
+  color:var(--muted-2);
+  font-size:.9rem;
+}
 
-/* 후원 특별 카드 */
 .card-highlight{
-  background:linear-gradient(135deg, rgba(125,60,255,0.15), rgba(80,30,180,0.1));
-  border-color:rgba(125,60,255,0.4);
+  background:linear-gradient(135deg, rgba(124,92,255,.2), rgba(38,208,206,.08) 70%);
+  border-color:rgba(124,92,255,.32);
 }
+.card-highlight .card-icon{background:linear-gradient(135deg, rgba(255,211,110,.2), rgba(124,92,255,.2))}
 
-/* 회사 정보 */
-.info-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;}
 .info-item{
-  background:rgba(28,22,50,0.5);border:1px solid rgba(125,60,255,0.12);
-  border-radius:14px;padding:22px;display:flex;align-items:flex-start;gap:14px;
+  padding:22px 20px;
+  display:flex;
+  align-items:flex-start;
+  gap:14px;
 }
-.info-item-icon{font-size:1.2rem;color:#9f6fff;margin-top:2px;flex-shrink:0;}
-.info-item h4{font-size:0.8rem;color:rgba(196,168,255,0.45);margin-bottom:4px;letter-spacing:0.5px;text-transform:uppercase;}
-.info-item p{font-size:0.95rem;color:#ddd0ff;font-weight:500;}
+.info-item-icon{
+  width:46px;
+  height:46px;
+  border-radius:16px;
+  display:grid;
+  place-items:center;
+  flex:0 0 auto;
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.08);
+  color:var(--accent-2);
+}
+.info-item h4{
+  margin:0 0 4px;
+  font-size:.8rem;
+  font-weight:800;
+  color:var(--muted-2);
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+.info-item p{
+  font-size:1rem;
+  font-weight:700;
+  color:var(--text);
+}
 
-/* 디스코드 버튼 */
+.support-grid{
+  display:grid;
+  grid-template-columns:1.15fr .85fr;
+  gap:18px;
+  align-items:stretch;
+}
+.support-copy{
+  padding:28px;
+  border-radius:var(--radius);
+  background:linear-gradient(135deg, rgba(124,92,255,.18), rgba(38,208,206,.08));
+  border:1px solid rgba(124,92,255,.22);
+  box-shadow:var(--shadow);
+}
+.support-copy h3{
+  margin:0 0 10px;
+  font-size:1.5rem;
+}
+.support-copy p{margin:0;color:var(--muted)}
+.support-actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+  margin-top:20px;
+}
+.support-note{
+  display:grid;
+  gap:12px;
+}
+.note-box{
+  padding:18px 18px 16px;
+  border-radius:22px;
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.08);
+}
+.note-box strong{display:block;margin-bottom:6px}
+.note-box span{color:var(--muted)}
+
+.divider{
+  width:min(1180px, calc(100% - 40px));
+  height:1px;
+  margin:0 auto;
+  background:linear-gradient(90deg, transparent, rgba(255,255,255,.12), transparent);
+}
+
 .discord-btn{
-  position:fixed;right:20px;bottom:20px;
-  background:#5865F2;color:white;text-decoration:none;
-  padding:13px 22px;border-radius:999px;font-weight:600;font-size:0.9rem;
-  display:flex;align-items:center;gap:8px;
-  box-shadow:0 6px 20px rgba(88,101,242,0.4);z-index:9999;transition:.3s;
+  position:fixed;
+  right:18px;
+  bottom:18px;
+  z-index:9999;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:14px 18px;
+  border-radius:999px;
+  text-decoration:none;
+  color:#fff;
+  font-weight:800;
+  background:linear-gradient(135deg, #5865f2, #7c5cff 55%, #26d0ce);
+  box-shadow:0 18px 34px rgba(88,101,242,.34);
+  transition:transform .22s ease, box-shadow .22s ease;
 }
-.discord-btn:hover{transform:translateY(-3px);box-shadow:0 10px 28px rgba(88,101,242,0.5);}
+.discord-btn:hover{
+  transform:translateY(-3px);
+  box-shadow:0 22px 40px rgba(88,101,242,.42);
+}
 
-/* 푸터 */
 footer{
-  text-align:center;padding:56px 24px;
-  border-top:1px solid rgba(125,60,255,0.12);
+  padding:52px 0 56px;
+  text-align:center;
 }
-footer .footer-logo{font-size:1.4rem;font-weight:700;letter-spacing:2px;color:#c4a8ff;margin-bottom:10px;}
-footer p{font-size:0.85rem;color:rgba(255,255,255,0.3);line-height:2.2;}
+.footer-brand{
+  display:inline-flex;
+  align-items:center;
+  gap:12px;
+  margin-bottom:16px;
+}
+.footer-logo{
+  width:40px;
+  height:40px;
+  border-radius:14px;
+  display:grid;
+  place-items:center;
+  background:linear-gradient(135deg, rgba(124,92,255,1), rgba(38,208,206,1));
+  font-weight:900;
+}
+.footer-text{
+  color:var(--muted-2);
+  margin:6px 0 0;
+  font-size:.92rem;
+}
+.footer-links{
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:12px;
+  margin-top:18px;
+}
+.footer-links a{
+  text-decoration:none;
+  color:var(--muted);
+  padding:8px 12px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,.08);
+  background:rgba(255,255,255,.03);
+}
+.footer-links a:hover{color:#fff;border-color:rgba(124,92,255,.26)}
 
-/* 모바일 */
-@media(max-width:768px){
-  header{flex-direction:column;gap:12px;padding:14px 20px;}
-  nav a{margin:0 8px;font-size:0.82rem;}
-  .hero h1{font-size:3.5rem;}
-  .section{padding:72px 18px;}
+[data-reveal]{opacity:0;transform:translateY(22px);transition:opacity .75s ease, transform .75s ease}
+[data-reveal].visible{opacity:1;transform:none}
+[data-reveal='left']{transform:translateX(-18px)}
+[data-reveal='right']{transform:translateX(18px)}
+
+@media (max-width: 1024px){
+  .hero-grid,
+  .support-grid{
+    grid-template-columns:1fr;
+  }
+  .cards,
+  .stats,
+  .info-grid,
+  .panel-metrics{
+    grid-template-columns:repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 768px){
+  .container{width:min(1180px, calc(100% - 28px))}
+  .header-inner{
+    flex-direction:column;
+    align-items:flex-start;
+  }
+  .nav{
+    justify-content:flex-start;
+    gap:6px;
+  }
+  .nav a{padding:9px 12px;font-size:.86rem}
+  .hero{padding-top:26px}
+  .hero-copy{padding-top:8px}
+  .cards,
+  .stats,
+  .info-grid,
+  .panel-metrics{
+    grid-template-columns:1fr;
+  }
+  .section{padding-top:64px}
+  .card{padding:22px}
+  .support-copy{padding:22px}
+  .discord-btn{right:14px;bottom:14px;padding:13px 16px;font-size:.88rem}
+}
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  *, *::before, *::after{animation:none !important;transition:none !important;scroll-behavior:auto !important}
+  [data-reveal]{opacity:1;transform:none}
 }
 </style>
 </head>
 <body>
+<div class='shell'>
+  <div class='grid-overlay' aria-hidden='true'></div>
 
-<header>
-  <div class="logo">AX<span>LIB</span></div>
-  <nav>
-    <a href="#about">회사소개</a>
-    <a href="#services">서비스</a>
-    <a href="#bolt">전산볼트</a>
-    <a href="#support">후원</a>
-    <a href="update.html">업데이트</a>
-    <a href="Customer_Inquiry.html">문의</a>
-  </nav>
-</header>
+  <header>
+    <div class='container header-inner'>
+      <a href='index.html' class='brand' aria-label='AXLIB 홈으로 이동'>
+        <div class='brand-mark'>AX</div>
+        <div class='brand-copy'>
+          <span class='brand-name'>AXLIB</span>
+          <span class='brand-sub'>Software App Library Platform</span>
+        </div>
+      </a>
 
-<!-- 히어로 -->
-<section class="hero">
-  <div class="hero-bg"></div>
-  <div class="hero-badge">소프트웨어 · 앱 · 라이브러리 플랫폼</div>
-  <h1>AXLIB</h1>
-  <p class="hero-sub">더 나은 도구를 만드는 개발 플랫폼</p>
-  <p class="hero-desc">전산볼트 · 웹 서비스 · 오픈소스 프로젝트</p>
-  <div class="hero-actions">
-    <a href="download.html" class="btn-primary">
-      <i class="ti ti-download" aria-hidden="true"></i> 시작하기
-    </a>
-    <a href="#about" class="btn-secondary">
-      <i class="ti ti-info-circle" aria-hidden="true"></i> 더 알아보기
-    </a>
-  </div>
-</section>
+      <nav class='nav' aria-label='주요 메뉴'>
+        <a href='#about'>회사소개</a>
+        <a href='#services'>서비스</a>
+        <a href='#bolt'>전산볼트</a>
+        <a href='#support'>후원</a>
+        <a href='update.html'>업데이트</a>
+        <a href='android_manual.html'>매뉴얼</a>
+        <a href='download.html' class='primary'>다운로드</a>
+      </nav>
+    </div>
+  </header>
 
-<div class="divider"></div>
+  <main>
+    <section class='hero'>
+      <div class='container hero-grid'>
+        <div class='hero-copy' data-reveal='left'>
+          <div class='kicker'>Sleek by design</div>
+          <h1><span class='accent'>AXLIB</span></h1>
+          <p class='hero-lede'>
+            더 나은 도구를 만드는 개발 플랫폼. 전산볼트 앱, 웹 서비스, 오픈소스 프로젝트를 한눈에 보여주는
+            프리미엄 랜딩 페이지로 다듬었습니다.
+          </p>
+          <p class='hero-note'>
+            현장형 생산성, 깔끔한 정보 구조, 그리고 한층 강한 시각 대비를 중심으로 재구성했습니다.
+          </p>
 
-<!-- 회사소개 -->
-<section class="section" id="about">
-  <p class="section-label">About</p>
-  <h2>회사 소개</h2>
-  <p class="section-desc">사용하기 쉽고 강력한 소프트웨어를 지향합니다</p>
-  <div class="cards">
-    <div class="card">
-      <div class="card-icon"><i class="ti ti-rocket" aria-hidden="true" style="color:#b388ff"></i></div>
-      <h3>혁신</h3>
-      <p>사용하기 쉽고 강력한 소프트웨어를 개발합니다. 복잡한 문제를 단순하게 해결합니다.</p>
-    </div>
-    <div class="card">
-      <div class="card-icon"><i class="ti ti-code" aria-hidden="true" style="color:#b388ff"></i></div>
-      <h3>개발</h3>
-      <p>웹사이트, 앱, 라이브러리를 제작합니다. 다양한 플랫폼에서 최적의 경험을 제공합니다.</p>
-    </div>
-    <div class="card">
-      <div class="card-icon"><i class="ti ti-world" aria-hidden="true" style="color:#b388ff"></i></div>
-      <h3>오픈소스</h3>
-      <p>누구나 사용할 수 있는 프로젝트를 지향합니다. 함께 성장하는 개발 문화를 만듭니다.</p>
-    </div>
-  </div>
-</section>
+          <div class='hero-actions'>
+            <a href='download.html' class='btn btn-solid'><i class='ti ti-download' aria-hidden='true'></i> 시작하기</a>
+            <a href='#about' class='btn btn-ghost'><i class='ti ti-arrow-down-right' aria-hidden='true'></i> 더 알아보기</a>
+          </div>
 
-<div class="divider"></div>
+          <div class='hero-meta'>
+            <span class='meta-pill'><i class='ti ti-device-mobile' aria-hidden='true'></i> Android 중심</span>
+            <span class='meta-pill'><i class='ti ti-brand-discord' aria-hidden='true'></i> 커뮤니티 운영</span>
+            <span class='meta-pill'><i class='ti ti-package' aria-hidden='true'></i> 앱 · 웹 · 라이브러리</span>
+          </div>
+        </div>
 
-<!-- 서비스 -->
-<section class="section" id="services">
-  <p class="section-label">Services</p>
-  <h2>서비스</h2>
-  <p class="section-desc">AXLIB가 제공하는 다양한 제품과 서비스를 확인하세요</p>
-  <div class="cards">
-    <div class="card">
-      <div class="card-icon"><i class="ti ti-book" aria-hidden="true" style="color:#b388ff"></i></div>
-      <h3>사용 설명서</h3>
-      <p>AXLIB 제품 사용 방법과 가이드를 확인하세요. 빠르게 시작할 수 있도록 도와드립니다.</p>
-      <a href="manual.html" class="btn-secondary"><i class="ti ti-arrow-right" aria-hidden="true"></i> 설명서 열기</a>
-    </div>
-    <div class="card">
-      <div class="card-icon"><i class="ti ti-download" aria-hidden="true" style="color:#b388ff"></i></div>
-      <h3>다운로드</h3>
-      <p>최신 버전의 프로그램을 다운로드할 수 있습니다. 항상 최신 기능을 경험하세요.</p>
-      <a href="download.html" class="btn-primary"><i class="ti ti-download" aria-hidden="true"></i> 다운로드</a>
-    </div>
-    <div class="card">
-      <div class="card-icon"><i class="ti ti-package" aria-hidden="true" style="color:#b388ff"></i></div>
-      <h3>라이브러리</h3>
-      <p>개발자를 위한 다양한 라이브러리를 제공합니다. 생산성을 높이는 도구들을 만나보세요.</p>
-    </div>
-  </div>
-</section>
+        <div class='hero-panel' data-reveal='right'>
+          <div class='panel-top'>
+            <div class='window-dots' aria-hidden='true'><span></span><span></span><span></span></div>
+            <div class='panel-badge'>Live workspace</div>
+          </div>
 
-<div class="divider"></div>
+          <div class='panel-stack'>
+            <div class='panel-card'>
+              <h3>전산볼트 앱</h3>
+              <p>현장에서 바로 쓰는 볼트 계산, 재고 관리, 작업 기록 솔루션</p>
+              <div class='panel-row'>
+                <div><strong>실무형 UI</strong>한 번에 보이는 핵심 기능</div>
+                <div><strong>빠른 접근성</strong>다운로드부터 안내까지 연결</div>
+              </div>
+            </div>
 
-<!-- 전산볼트 -->
-<section class="section" id="bolt">
-  <p class="section-label">Product</p>
-  <h2>전산볼트 앱</h2>
-  <p class="section-desc">현장에서 바로 쓰는 볼트 계산 & 관리 솔루션</p>
-  <div class="cards">
-    <div class="card">
-      <div class="card-icon"><i class="ti ti-adjustments" aria-hidden="true" style="color:#b388ff"></i></div>
-      <h3>재고 관리</h3>
-      <p>볼트 및 부품 재고를 효율적으로 관리합니다.</p>
-    </div>
-    <div class="card">
-      <div class="card-icon"><i class="ti ti-clipboard-list" aria-hidden="true" style="color:#b388ff"></i></div>
-      <h3>작업 기록</h3>
-      <p>작업 내역을 저장하고 쉽게 조회할 수 있습니다.</p>
-    </div>
-    <div class="card">
-      <div class="card-icon"><i class="ti ti-device-mobile" aria-hidden="true" style="color:#b388ff"></i></div>
-      <h3>모바일 지원</h3>
-      <p>언제 어디서든 Android 기기에서 사용할 수 있습니다.</p>
-    </div>
-    <div class="card">
-      <div class="card-icon"><i class="ti ti-cloud" aria-hidden="true" style="color:#b388ff"></i></div>
-      <h3>데이터 관리</h3>
-      <p>데이터를 안전하게 저장하고 관리합니다.</p>
-    </div>
-  </div>
-</section>
+            <div class='panel-metrics'>
+              <div class='panel-metric'>
+                <div class='value'>1250+</div>
+                <div class='label'>누적 방문</div>
+              </div>
+              <div class='panel-metric'>
+                <div class='value'>10+</div>
+                <div class='label'>프로젝트</div>
+              </div>
+              <div class='panel-metric'>
+                <div class='value'>24/7</div>
+                <div class='label'>운영 포커스</div>
+              </div>
+            </div>
 
-<div class="divider"></div>
+            <div class='panel-list'>
+              <div class='panel-list-item'>
+                <i class='ti ti-sparkles' aria-hidden='true'></i>
+                <div>
+                  <strong>더 강한 첫인상</strong>
+                  <span>그라데이션, 유리 질감, 명확한 계층 구조로 시선을 정리했습니다.</span>
+                </div>
+              </div>
+              <div class='panel-list-item'>
+                <i class='ti ti-layout-dashboard' aria-hidden='true'></i>
+                <div>
+                  <strong>정보 구조 개선</strong>
+                  <span>서비스, 제품, 후원, 정보 섹션을 더 읽기 쉽게 재배치했습니다.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-<!-- 통계 -->
-<section class="section">
-  <p class="section-label">Stats</p>
-  <h2>AXLIB 통계</h2>
-  <p class="section-desc">지금까지 함께한 숫자들</p>
-  <div class="stats">
-    <div class="stat-box">
-      <div class="stat-icon"><i class="ti ti-users" aria-hidden="true"></i></div>
-      <div class="stat-label">누적 방문자</div>
-      <div class="counter" id="visitorCount">0</div>
-    </div>
-    <div class="stat-box">
-      <div class="stat-icon"><i class="ti ti-folder" aria-hidden="true"></i></div>
-      <div class="stat-label">프로젝트</div>
-      <div class="counter">10+</div>
-    </div>
-    <div class="stat-box">
-      <div class="stat-icon"><i class="ti ti-device-mobile" aria-hidden="true"></i></div>
-      <div class="stat-label">지원 플랫폼</div>
-      <div class="counter" style="font-size:2rem;">Android</div>
-    </div>
-  </div>
-</section>
+    <div class='divider' aria-hidden='true'></div>
 
-<div class="divider"></div>
+    <section class='section' id='about'>
+      <div class='container'>
+        <div class='section-head' data-reveal>
+          <div class='section-kicker'>About</div>
+          <h2>회사 소개</h2>
+          <p class='section-desc'>사용하기 쉽고 강력한 소프트웨어를 지향하는 AXLIB의 방향성입니다.</p>
+        </div>
 
-<!-- 후원 -->
-<section class="section" id="support">
-  <p class="section-label">Support</p>
-  <h2>후원하기</h2>
-  <p class="section-desc">AXLIB의 성장을 응원해 주세요</p>
-  <div class="cards">
-    <div class="card card-highlight">
-      <div class="card-icon"><i class="ti ti-heart" aria-hidden="true" style="color:#c4a8ff"></i></div>
-      <h3>토스 후원</h3>
-      <p>AXLIB와 전산볼트 앱 개발을 후원해 주세요. 여러분의 지원이 큰 힘이 됩니다.</p>
-      <a href="boost.html" class="btn-primary"><i class="ti ti-heart" aria-hidden="true"></i> 후원하기</a>
-    </div>
-    <div class="card">
-      <div class="card-icon"><i class="ti ti-building-bank" aria-hidden="true" style="color:#b388ff"></i></div>
-      <h3>계좌이체</h3>
-      <p>모든 은행에서 송금 가능합니다. 자세한 계좌 정보는 후원 페이지에서 확인하세요.</p>
-    </div>
-    <div class="card">
-      <div class="card-icon"><i class="ti ti-info-circle" aria-hidden="true" style="color:#b388ff"></i></div>
-      <h3>후원 안내</h3>
-      <p>후원금은 서버 운영, 기능 개발, 전산볼트 앱 유지보수에 사용됩니다.</p>
-    </div>
-  </div>
-</section>
+        <div class='cards'>
+          <article class='card' data-reveal>
+            <div class='card-icon'><i class='ti ti-rocket' aria-hidden='true'></i></div>
+            <h3>혁신</h3>
+            <p>복잡한 문제를 단순하고 보기 좋게 풀어내는 실용적인 경험을 만듭니다.</p>
+          </article>
+          <article class='card' data-reveal>
+            <div class='card-icon'><i class='ti ti-code' aria-hidden='true'></i></div>
+            <h3>개발</h3>
+            <p>웹사이트, 앱, 라이브러리를 함께 다루며 플랫폼 전반의 완성도를 높입니다.</p>
+          </article>
+          <article class='card' data-reveal>
+            <div class='card-icon'><i class='ti ti-world' aria-hidden='true'></i></div>
+            <h3>오픈소스</h3>
+            <p>누구나 접근할 수 있는 기술과 정보로 함께 성장하는 개발 문화를 지향합니다.</p>
+          </article>
+        </div>
+      </div>
+    </section>
 
-<div class="divider"></div>
+    <section class='section' id='services'>
+      <div class='container'>
+        <div class='section-head' data-reveal>
+          <div class='section-kicker'>Services</div>
+          <h2>서비스</h2>
+          <p class='section-desc'>AXLIB가 제공하는 다양한 제품과 안내를 빠르게 확인할 수 있습니다.</p>
+        </div>
 
-<!-- 회사 정보 -->
-<section class="section">
-  <p class="section-label">Info</p>
-  <h2>AXLIB 정보</h2>
-  <p class="section-desc">우리에 대해 더 알아보세요</p>
-  <div class="info-grid">
-    <div class="info-item">
-      <div class="info-item-icon"><i class="ti ti-building" aria-hidden="true"></i></div>
-      <div>
-        <h4>회사명</h4>
-        <p>AXLIB</p>
+        <div class='cards'>
+          <article class='card' data-reveal>
+            <div class='card-icon'><i class='ti ti-book' aria-hidden='true'></i></div>
+            <h3>사용 설명서</h3>
+            <p>설치부터 활용까지 필요한 핵심 내용을 간단하고 보기 좋게 정리했습니다.</p>
+            <div class='card-actions'>
+              <a href='android_manual.html' class='btn btn-ghost'><i class='ti ti-arrow-right' aria-hidden='true'></i> 설명서 열기</a>
+            </div>
+          </article>
+          <article class='card' data-reveal>
+            <div class='card-icon'><i class='ti ti-download' aria-hidden='true'></i></div>
+            <h3>다운로드</h3>
+            <p>최신 버전의 프로그램을 내려받아 바로 사용할 수 있습니다.</p>
+            <div class='card-actions'>
+              <a href='download.html' class='btn btn-solid'><i class='ti ti-download' aria-hidden='true'></i> 다운로드</a>
+            </div>
+          </article>
+          <article class='card' data-reveal>
+            <div class='card-icon'><i class='ti ti-package' aria-hidden='true'></i></div>
+            <h3>라이브러리</h3>
+            <p>개발 생산성을 높이는 도구와 구성 요소를 한곳에서 제공합니다.</p>
+            <div class='card-actions'>
+              <a href='#bolt' class='btn btn-ghost'><i class='ti ti-compass' aria-hidden='true'></i> 둘러보기</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class='section' id='bolt'>
+      <div class='container'>
+        <div class='section-head' data-reveal>
+          <div class='section-kicker'>Product</div>
+          <h2>전산볼트 앱</h2>
+          <p class='section-desc'>현장에서 바로 쓰는 볼트 계산, 재고 관리, 작업 기록 솔루션입니다.</p>
+        </div>
+
+        <div class='cards'>
+          <article class='card' data-reveal>
+            <div class='card-icon'><i class='ti ti-adjustments' aria-hidden='true'></i></div>
+            <h3>재고 관리</h3>
+            <p>볼트와 부품 재고를 빠르게 확인하고 체계적으로 관리할 수 있습니다.</p>
+          </article>
+          <article class='card' data-reveal>
+            <div class='card-icon'><i class='ti ti-clipboard-list' aria-hidden='true'></i></div>
+            <h3>작업 기록</h3>
+            <p>작업 내역을 저장하고 조회하여 현장 흐름을 더 분명하게 파악합니다.</p>
+          </article>
+          <article class='card' data-reveal>
+            <div class='card-icon'><i class='ti ti-device-mobile' aria-hidden='true'></i></div>
+            <h3>모바일 지원</h3>
+            <p>Android 환경에 맞춘 접근성과 가벼운 사용성을 중심으로 설계했습니다.</p>
+          </article>
+          <article class='card' data-reveal>
+            <div class='card-icon'><i class='ti ti-cloud' aria-hidden='true'></i></div>
+            <h3>데이터 관리</h3>
+            <p>필요한 데이터를 안정적으로 보관하고 정리할 수 있도록 구성했습니다.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class='section'>
+      <div class='container'>
+        <div class='section-head' data-reveal>
+          <div class='section-kicker'>Stats</div>
+          <h2>AXLIB 통계</h2>
+          <p class='section-desc'>사이트와 프로젝트가 쌓아온 숫자들을 한눈에 보여줍니다.</p>
+        </div>
+
+        <div class='stats' id='stats'>
+          <div class='stat-box' data-reveal>
+            <div class='stat-icon'><i class='ti ti-users' aria-hidden='true'></i></div>
+            <div class='stat-label'>누적 방문자</div>
+            <div class='counter' data-count='1250' data-suffix='+'>0+</div>
+          </div>
+          <div class='stat-box' data-reveal>
+            <div class='stat-icon'><i class='ti ti-folder' aria-hidden='true'></i></div>
+            <div class='stat-label'>프로젝트</div>
+            <div class='counter' data-count='10' data-suffix='+'>0+</div>
+          </div>
+          <div class='stat-box' data-reveal>
+            <div class='stat-icon'><i class='ti ti-device-mobile' aria-hidden='true'></i></div>
+            <div class='stat-label'>지원 플랫폼</div>
+            <div class='counter small'>Android</div>
+            <div class='stat-sub'>모바일 사용성을 중심으로 운영</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class='section' id='support'>
+      <div class='container'>
+        <div class='section-head' data-reveal>
+          <div class='section-kicker'>Support</div>
+          <h2>후원하기</h2>
+          <p class='section-desc'>AXLIB와 전산볼트 앱의 성장에 힘을 보태 주세요.</p>
+        </div>
+
+        <div class='support-grid'>
+          <div class='support-copy' data-reveal='left'>
+            <h3>더 잘 보이고, 더 쉽게 쓰이고, 더 오래 기억되는 페이지로 바꿨습니다.</h3>
+            <p>이번 개편은 단순한 색상 변경이 아니라, 첫인상과 정보 전달력을 동시에 높이는 쪽에 초점을 맞췄습니다.</p>
+            <div class='support-actions'>
+              <a href='boost.html' class='btn btn-solid'><i class='ti ti-heart' aria-hidden='true'></i> 후원하기</a>
+              <a href='update.html' class='btn btn-ghost'><i class='ti ti-bell' aria-hidden='true'></i> 업데이트 보기</a>
+            </div>
+          </div>
+
+          <div class='support-note' data-reveal='right'>
+            <div class='note-box'>
+              <strong>토스 후원</strong>
+              <span>AXLIB와 전산볼트 앱 개발을 응원해 주세요.</span>
+            </div>
+            <div class='note-box'>
+              <strong>계좌이체</strong>
+              <span>모든 은행에서 송금 가능한 안내를 후원 페이지에 정리했습니다.</span>
+            </div>
+            <div class='note-box'>
+              <strong>후원 활용</strong>
+              <span>서버 운영, 기능 개발, 유지보수와 품질 개선에 사용됩니다.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class='section'>
+      <div class='container'>
+        <div class='section-head' data-reveal>
+          <div class='section-kicker'>Info</div>
+          <h2>AXLIB 정보</h2>
+          <p class='section-desc'>브랜드와 커뮤니티를 더 빠르게 이해할 수 있도록 정리했습니다.</p>
+        </div>
+
+        <div class='info-grid'>
+          <article class='info-item' data-reveal>
+            <div class='info-item-icon'><i class='ti ti-building' aria-hidden='true'></i></div>
+            <div>
+              <h4>회사명</h4>
+              <p>AXLIB</p>
+            </div>
+          </article>
+          <article class='info-item' data-reveal>
+            <div class='info-item-icon'><i class='ti ti-code' aria-hidden='true'></i></div>
+            <div>
+              <h4>주요 분야</h4>
+              <p>소프트웨어 · 웹 · 앱 개발</p>
+            </div>
+          </article>
+          <article class='info-item' data-reveal>
+            <div class='info-item-icon'><i class='ti ti-brand-discord' aria-hidden='true'></i></div>
+            <div>
+              <h4>공식 커뮤니티</h4>
+              <p>디스코드 서버 운영 중</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <a href='https://discord.gg/DxY47Q3EHR' target='_blank' rel='noreferrer' class='discord-btn'>
+    <i class='ti ti-brand-discord' aria-hidden='true'></i> 고객 문의
+  </a>
+
+  <footer>
+    <div class='container'>
+      <div class='footer-brand'>
+        <div class='footer-logo'>AX</div>
+        <div>
+          <div class='brand-name' style='letter-spacing:.22em'>AXLIB</div>
+          <div class='brand-sub'>Software App Library Platform</div>
+        </div>
+      </div>
+      <p class='footer-text'>© 2026 AXLIB. All Rights Reserved.</p>
+      <p class='footer-text'>전산볼트 앱 · 라이브러리 플랫폼 · 고객 문의는 공식 디스코드 서버를 이용해 주세요.</p>
+      <div class='footer-links'>
+        <a href='#about'>회사소개</a>
+        <a href='#services'>서비스</a>
+        <a href='download.html'>다운로드</a>
+        <a href='android_manual.html'>매뉴얼</a>
       </div>
     </div>
-    <div class="info-item">
-      <div class="info-item-icon"><i class="ti ti-code" aria-hidden="true"></i></div>
-      <div>
-        <h4>주요 분야</h4>
-        <p>소프트웨어 · 웹 · 앱 개발</p>
-      </div>
-    </div>
-    <div class="info-item">
-      <div class="info-item-icon"><i class="ti ti-brand-discord" aria-hidden="true"></i></div>
-      <div>
-        <h4>공식 커뮤니티</h4>
-        <p>디스코드 서버 운영 중</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- 디스코드 버튼 -->
-<a href="https://discord.gg/DxY47Q3EHR" target="_blank" class="discord-btn">
-  <i class="ti ti-brand-discord" aria-hidden="true"></i> 고객 문의
-</a>
-
-<!-- 푸터 -->
-<footer>
-  <div class="footer-logo">AXLIB</div>
-  <p>© 2026 AXLIB. All Rights Reserved.</p>
-  <p>전산볼트 앱 · 라이브러리 플랫폼</p>
-  <p>고객 문의는 공식 디스코드 서버를 이용해 주세요.</p>
-</footer>
+  </footer>
+</div>
 
 <script>
-let count = 0, target = 1250;
-let timer = setInterval(() => {
-  count += 13;
-  document.getElementById("visitorCount").innerText = count.toLocaleString() + "+";
-  if(count >= target){
-    count = target;
-    document.getElementById("visitorCount").innerText = target.toLocaleString() + "+";
-    clearInterval(timer);
-  }
-}, 10);
-</script>
+  const revealTargets = document.querySelectorAll('[data-reveal]');
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.14, rootMargin: '0px 0px -10% 0px' });
 
+  revealTargets.forEach((target) => revealObserver.observe(target));
+
+  const animateCount = (element) => {
+    const target = Number(element.dataset.count || 0);
+    const suffix = element.dataset.suffix || '';
+    const duration = 1400;
+    const start = performance.now();
+
+    const frame = (now) => {
+      const progress = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      const value = Math.floor(target * eased);
+      element.textContent = value.toLocaleString('ko-KR') + suffix;
+      if (progress < 1) {
+        requestAnimationFrame(frame);
+      } else {
+        element.textContent = target.toLocaleString('ko-KR') + suffix;
+      }
+    };
+
+    requestAnimationFrame(frame);
+  };
+
+  const counters = document.querySelectorAll('[data-count]');
+  const statsSection = document.getElementById('stats');
+  if (statsSection) {
+    const statsObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          counters.forEach((counter) => animateCount(counter));
+          statsObserver.disconnect();
+        }
+      });
+    }, { threshold: 0.35 });
+
+    statsObserver.observe(statsSection);
+  }
+</script>
 </body>
 </html>
