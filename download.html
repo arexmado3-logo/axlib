@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#080810">
 <title>다운로드 — AXLIB</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
 <style>
@@ -12,19 +13,24 @@ body::before,body::after{content:'';position:fixed;width:34rem;height:34rem;bord
 .progress{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,var(--accent),var(--accent2),#5865f2);z-index:3000;box-shadow:0 0 18px rgba(125,60,255,.45)}
 .topbar{position:sticky;top:0;z-index:1000;display:flex;justify-content:space-between;align-items:center;gap:14px;padding:16px 48px;background:rgba(8,8,16,.92);backdrop-filter:blur(16px);border-bottom:1px solid rgba(125,60,255,.22)}
 .logo{font-size:1.45rem;font-weight:800;letter-spacing:2px;color:#c4a8ff}.logo span{color:var(--accent)} .back{display:inline-flex;align-items:center;gap:6px;color:rgba(196,168,255,.62);font-size:.86rem}
-.hero{padding:112px 24px 44px;text-align:center;position:relative;overflow:hidden}.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 58% at 50% 60%, rgba(125,60,255,.16) 0%, transparent 70%);pointer-events:none}.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(125,60,255,.15);border:1px solid rgba(125,60,255,.38);color:#b388ff;font-size:.75rem;letter-spacing:1.5px;padding:6px 16px;border-radius:999px;text-transform:uppercase}.hero h1{font-size:clamp(2.5rem,6vw,4rem);line-height:1.02;letter-spacing:-.04em;margin-top:16px;color:#fff}.hero p{margin-top:12px;color:var(--muted)}
-.container{max-width:860px;margin:0 auto;padding:0 24px 84px}.section-title{text-align:center;margin:0 0 26px}.section-title h2{font-size:clamp(1.8rem,3vw,2.6rem);color:#ddd0ff;margin-bottom:10px}.section-title p{color:var(--muted)}
-.hero-actions{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:26px}.btn{display:inline-flex;align-items:center;gap:8px;min-height:46px;padding:0 18px;border-radius:14px;border:1px solid transparent;font-weight:700;cursor:pointer;transition:.22s ease;position:relative;overflow:hidden}.btn:hover{transform:translateY(-2px)}.btn-primary{background:var(--accent);color:#fff;box-shadow:0 8px 24px rgba(125,60,255,.34)}.btn-secondary{background:transparent;color:#c4a8ff;border-color:rgba(125,60,255,.42)}.btn-secondary:hover{background:rgba(125,60,255,.12)}
-.grid{display:grid;grid-template-columns:1.2fr .8fr;gap:18px;align-items:stretch}.card{background:var(--panel);border:1px solid var(--line);border-radius:22px;padding:28px;box-shadow:var(--shadow);position:relative;overflow:hidden;transition:transform .24s,border-color .24s,box-shadow .24s}.card:hover{transform:translateY(-6px);border-color:rgba(125,60,255,.38);box-shadow:0 16px 34px rgba(125,60,255,.16)}.card::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 90% 10%, rgba(125,60,255,.08), transparent 45%);pointer-events:none}
-.product{display:flex;align-items:flex-start;gap:14px}.product-icon{width:52px;height:52px;border-radius:16px;display:grid;place-items:center;background:rgba(125,60,255,.16);border:1px solid rgba(125,60,255,.26);font-size:1.4rem;color:#fff;flex:0 0 auto}.product h3{margin-bottom:6px;font-size:1.15rem;color:#ddd0ff}.meta{display:flex;flex-wrap:wrap;gap:10px;margin:18px 0;border-top:1px solid rgba(125,60,255,.08);border-bottom:1px solid rgba(125,60,255,.08);padding:14px 0}.meta-pill{display:inline-flex;align-items:center;gap:6px;font-size:.8rem;color:rgba(196,168,255,.5)}.chip{display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:999px;background:rgba(125,60,255,.12);border:1px solid rgba(125,60,255,.18);color:#c4a8ff;font-size:.78rem}.stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:16px}.stat{padding:14px 12px;border-radius:16px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);text-align:center}.stat .value{font-size:1.15rem;font-weight:900;color:#fff}.stat .label{font-size:.8rem;color:var(--muted);margin-top:4px}.downloads{display:grid;gap:14px}.mini{padding:20px;border-radius:18px;background:var(--panel2);border:1px solid rgba(125,60,255,.14)}.mini h4{font-size:1rem;color:#ddd0ff;margin-bottom:6px}.mini p{color:var(--muted);font-size:.88rem}.steps{display:grid;gap:12px;margin-top:16px}.step{display:flex;gap:12px;align-items:flex-start;padding:14px 16px;border-radius:14px;background:rgba(125,60,255,.06);border:1px solid rgba(125,60,255,.08)}.step-num{width:28px;height:28px;border-radius:50%;background:rgba(125,60,255,.22);border:1px solid rgba(125,60,255,.34);display:grid;place-items:center;color:#b388ff;font-size:.76rem;font-weight:800;flex:0 0 auto}.step-text{font-size:.9rem;color:rgba(225,215,255,.86)}.step-text strong{color:#fff}
-.panel-links{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}.panel-links .btn{padding:0 16px;min-height:42px;font-size:.9rem}
+.hero{padding:112px 24px 44px;text-align:center;position:relative;overflow:hidden}.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 58% at 50% 60%, rgba(125,60,255,.16) 0%, transparent 70%);pointer-events:none}.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(125,60,255,.15);border:1px solid rgba(125,60,255,.38);color:#b388ff;font-size:.75rem;letter-spacing:1.5px;padding:6px 16px;border-radius:999px;text-transform:uppercase}.hero h1{font-size:clamp(2.5rem,6vw,4rem);line-height:1.02;letter-spacing:-.04em;margin-top:16px;color:#fff}.hero p{margin-top:12px;color:var(--muted);max-width:760px;margin-left:auto;margin-right:auto}
+.container{max-width:1200px;margin:0 auto;padding:0 24px 84px}.hero-actions{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:26px}.btn{display:inline-flex;align-items:center;gap:8px;min-height:46px;padding:0 18px;border-radius:14px;border:1px solid transparent;font-weight:700;cursor:pointer;transition:.22s ease;position:relative;overflow:hidden}.btn:hover{transform:translateY(-2px)}.btn-primary{background:var(--accent);color:#fff;box-shadow:0 8px 24px rgba(125,60,255,.34)}.btn-secondary{background:transparent;color:#c4a8ff;border-color:rgba(125,60,255,.42)}.btn-secondary:hover{background:rgba(125,60,255,.12)}
+.section-title{text-align:center;margin:0 0 26px}.section-title h2{font-size:clamp(1.8rem,3vw,2.6rem);color:#ddd0ff;margin-bottom:10px}.section-title p{color:var(--muted)}
+.grid{display:grid;grid-template-columns:1.15fr .85fr;gap:18px;align-items:stretch}.card{background:var(--panel);border:1px solid var(--line);border-radius:22px;padding:28px;box-shadow:var(--shadow);position:relative;overflow:hidden;transition:transform .24s,border-color .24s,box-shadow .24s}.card:hover{transform:translateY(-6px);border-color:rgba(125,60,255,.38);box-shadow:0 16px 34px rgba(125,60,255,.16)}.card::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 90% 10%, rgba(125,60,255,.08), transparent 45%);pointer-events:none}
+.product{display:flex;align-items:flex-start;gap:14px}.product-icon{width:52px;height:52px;border-radius:16px;display:grid;place-items:center;background:rgba(125,60,255,.16);border:1px solid rgba(125,60,255,.26);font-size:1.4rem;color:#fff;flex:0 0 auto}.product h3{margin-bottom:6px;font-size:1.15rem;color:#ddd0ff}.product .subtitle{color:var(--muted);font-size:.9rem}
+.meta{display:flex;flex-wrap:wrap;gap:10px;margin:18px 0;border-top:1px solid rgba(125,60,255,.08);border-bottom:1px solid rgba(125,60,255,.08);padding:14px 0}.meta-pill{display:inline-flex;align-items:center;gap:6px;font-size:.8rem;color:rgba(196,168,255,.5)}.chip{display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:999px;background:rgba(125,60,255,.12);border:1px solid rgba(125,60,255,.18);color:#c4a8ff;font-size:.78rem}
+.stats-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:16px}.stat{padding:14px 12px;border-radius:16px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);text-align:center}.stat .value{font-size:1.15rem;font-weight:900;color:#fff}.stat .label{font-size:.8rem;color:var(--muted);margin-top:4px}.downloads{display:grid;gap:14px}.mini{padding:20px;border-radius:18px;background:var(--panel2);border:1px solid rgba(125,60,255,.14)}.mini h4{font-size:1rem;color:#ddd0ff;margin-bottom:6px}.mini p{color:var(--muted);font-size:.88rem}.mini .actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}.mini .actions .btn{min-height:40px;padding:0 14px;font-size:.88rem}
+.steps{display:grid;gap:12px;margin-top:16px}.step{display:flex;gap:12px;align-items:flex-start;padding:14px 16px;border-radius:14px;background:rgba(125,60,255,.06);border:1px solid rgba(125,60,255,.08)}.step-num{width:28px;height:28px;border-radius:50%;background:rgba(125,60,255,.22);border:1px solid rgba(125,60,255,.34);display:grid;place-items:center;color:#b388ff;font-size:.76rem;font-weight:800;flex:0 0 auto}.step-text{font-size:.9rem;color:rgba(225,215,255,.86)}.step-text strong{color:#fff}
+.catalog{margin-top:18px}.catalog-head{display:flex;justify-content:space-between;align-items:end;gap:16px;flex-wrap:wrap;margin-bottom:18px}.catalog-head h3{font-size:1.4rem;color:#fff}.catalog-head p{color:var(--muted);max-width:740px}.catalog-controls{display:flex;gap:10px;flex-wrap:wrap}.catalog-controls .btn{min-height:42px;padding:0 16px;font-size:.9rem}
+.apps-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}.app-card{padding:24px;border-radius:28px;background:rgba(255,255,255,.04);border:1px solid rgba(125,60,255,.12);box-shadow:var(--shadow);position:relative;overflow:hidden;transition:transform .25s ease,border-color .25s ease}.app-card:hover{transform:translateY(-6px);border-color:rgba(125,60,255,.28)}.app-card::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 100% 0%, rgba(125,60,255,.1), transparent 34%);pointer-events:none}.app-tag{display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:999px;background:rgba(125,60,255,.12);border:1px solid rgba(125,60,255,.18);color:#c4a8ff;font-size:.75rem;font-weight:800}.app-title{margin:16px 0 8px;font-size:1.15rem;color:#fff;font-weight:900}.app-desc{color:var(--muted);font-size:.92rem;line-height:1.8}.app-meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}.app-meta span{font-size:.78rem;color:rgba(196,168,255,.64);padding:6px 10px;border-radius:999px;background:rgba(28,22,50,.5);border:1px solid rgba(255,255,255,.08)}.app-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}.app-actions .btn{min-height:40px;padding:0 14px;font-size:.88rem}
+.hidden{display:none !important}.template{margin-top:18px;padding:24px;border-radius:22px;background:linear-gradient(135deg,rgba(125,60,255,.18),rgba(37,208,206,.08));border:1px solid rgba(125,60,255,.2)}.template h4{font-size:1.1rem;color:#fff;margin-bottom:8px}.template p{color:var(--muted);font-size:.9rem;line-height:1.8}.template code{display:block;margin-top:14px;padding:14px;border-radius:14px;background:rgba(8,8,16,.55);border:1px solid rgba(255,255,255,.08);color:#f7f4ff;overflow:auto;white-space:pre}
 .toast{position:fixed;bottom:92px;left:50%;transform:translateX(-50%) translateY(18px);background:rgba(28,22,50,.92);border:1px solid rgba(125,60,255,.32);color:#ddd0ff;padding:12px 18px;border-radius:12px;font-size:.88rem;opacity:0;pointer-events:none;transition:opacity .28s,transform .28s;display:flex;align-items:center;gap:8px;z-index:9998;backdrop-filter:blur(10px)}.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 .modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.68);backdrop-filter:blur(8px);z-index:9990;align-items:center;justify-content:center;padding:20px}.modal.open{display:flex}.modal-box{max-width:520px;width:100%;background:#15112a;border:1px solid rgba(125,60,255,.4);border-radius:22px;padding:28px;box-shadow:var(--shadow);position:relative}.modal-close{position:absolute;top:14px;right:14px;background:rgba(125,60,255,.12);border:1px solid rgba(125,60,255,.2);color:#b388ff;border-radius:10px;padding:6px 10px;cursor:pointer}.modal h3{font-size:1.2rem;color:#ddd0ff;margin-bottom:8px}.modal p{color:var(--muted);margin-bottom:14px}.modal .steps{margin-top:0}
 .discord-btn{position:fixed;right:20px;bottom:20px;background:#5865F2;color:#fff;text-decoration:none;padding:12px 20px;border-radius:999px;font-weight:700;font-size:.88rem;display:flex;align-items:center;gap:8px;box-shadow:0 6px 20px rgba(88,101,242,.4);z-index:9999;transition:.3s}.discord-btn:hover{transform:translateY(-3px);box-shadow:0 10px 28px rgba(88,101,242,.5)}
 .footer{text-align:center;padding:40px 24px;border-top:1px solid rgba(125,60,255,.12);color:rgba(255,255,255,.28);font-size:.82rem;line-height:2.2}
 .reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease}.reveal.visible{opacity:1;transform:none}
-@media(max-width:900px){.grid{grid-template-columns:1fr}.stat-row{grid-template-columns:1fr}}
-@media(max-width:640px){.topbar{padding:14px 18px;flex-direction:column;align-items:flex-start}.hero{padding-top:96px}.container{padding-inline:16px}.card{padding:22px}.hero-actions{justify-content:flex-start}.discord-btn{right:14px;bottom:14px;padding:11px 16px;font-size:.86rem}}
+@media(max-width:1100px){.grid,.apps-grid{grid-template-columns:1fr 1fr}.catalog-head{align-items:flex-start}}
+@media(max-width:760px){.grid,.apps-grid,.stats-grid{grid-template-columns:1fr}.topbar{padding:14px 18px;flex-direction:column;align-items:flex-start}.hero{padding-top:96px}.container{padding-inline:16px}.card{padding:22px}.discord-btn{right:14px;bottom:14px;padding:11px 16px;font-size:.86rem}}
 @media(prefers-reduced-motion: reduce){html{scroll-behavior:auto}*,*::before,*::after{transition:none !important;animation:none !important;scroll-behavior:auto !important}.reveal{opacity:1;transform:none}}
 </style>
 </head>
@@ -39,52 +45,46 @@ body::before,body::after{content:'';position:fixed;width:34rem;height:34rem;bord
 <header class="hero">
   <div class="hero-badge">다운로드 센터</div>
   <h1>AXLIB 다운로드</h1>
-  <p>전산볼트 앱을 내려받고, 설치와 사용 흐름까지 한 번에 확인하세요.</p>
+  <p>전산볼트 앱을 시작으로, 앞으로 추가될 다른 앱들도 같은 방식으로 내려받을 수 있게 정리했습니다.</p>
   <div class="hero-actions">
-    <a href="files/pro_nomal.apk" class="btn btn-primary ripple" id="downloadBtn" download><i class="ti ti-download"></i> APK 다운로드</a>
+    <a href="#catalog" class="btn btn-primary ripple" id="downloadBtn"><i class="ti ti-layout-grid"></i> 앱 카탈로그 보기</a>
     <button class="btn btn-secondary ripple" id="openModalBtn" type="button"><i class="ti ti-shield-check"></i> 설치 방법</button>
   </div>
 </header>
 
 <div class="container">
   <div class="section-title reveal" data-reveal>
-    <h2>전산볼트 앱 v1.0.0</h2>
-    <p>핵심 정보를 빠르게 보고 바로 내려받을 수 있도록 정리했습니다.</p>
+    <h2>앱별 다운로드</h2>
+    <p>새 앱은 같은 카드 구조를 복사해 붙여 넣기만 하면 됩니다.</p>
   </div>
 
   <div class="grid">
     <section class="card reveal" data-reveal>
       <div class="product">
         <div class="product-icon"><i class="ti ti-bolt" aria-hidden="true" style="color:#b388ff"></i></div>
-        <div class="product-copy">
+        <div>
           <h3>전산볼트 앱</h3>
-          <p style="color:var(--muted)">현장에서 바로 쓰는 볼트 계산 & 관리 솔루션입니다.</p>
+          <div class="subtitle">현장에서 바로 쓰는 볼트 계산 & 관리 솔루션입니다.</div>
         </div>
       </div>
-
       <div class="meta">
         <span class="meta-pill"><i class="ti ti-device-mobile"></i> Android</span>
         <span class="meta-pill"><i class="ti ti-file"></i> APK</span>
         <span class="meta-pill"><i class="ti ti-calendar"></i> 2026-06-22</span>
       </div>
-
-      <div class="stat-row">
+      <div class="stats-grid">
         <div class="stat"><div class="value" data-count="1250" data-suffix="+">0+</div><div class="label">누적 방문</div></div>
         <div class="stat"><div class="value" data-count="10" data-suffix="+">0+</div><div class="label">프로젝트</div></div>
-        <div class="stat"><div class="value" data-count="1" data-suffix="">0</div><div class="label">앱 버전</div></div>
+        <div class="stat"><div class="value" data-count="1" data-suffix="">0</div><div class="label">현재 앱</div></div>
       </div>
-
-      <div class="panel-links">
-        <a href="#steps" class="btn btn-secondary ripple"><i class="ti ti-arrow-down-right"></i> 설치 단계</a>
-        <button class="btn btn-primary ripple" id="copyLinkBtn" type="button"><i class="ti ti-link"></i> 다운로드 링크 복사</button>
-      </div>
+      <div class="actions-sm"><a href="#steps" class="btn btn-secondary ripple"><i class="ti ti-arrow-down-right"></i> 설치 단계</a><button class="btn btn-primary ripple" id="copyLinkBtn" type="button"><i class="ti ti-link"></i> 다운로드 링크 복사</button></div>
     </section>
 
     <aside class="downloads reveal" data-reveal>
       <div class="mini">
         <h4>설명서 바로가기</h4>
         <p>설치 전에 기기별 안내를 보면 더 빠르게 시작할 수 있습니다.</p>
-        <div class="panel-links"><a href="android_manual.html" class="btn btn-secondary ripple"><i class="ti ti-book"></i> 사용 설명서</a></div>
+        <div class="actions"><a href="manual.html" class="btn btn-secondary ripple"><i class="ti ti-book"></i> 사용 설명서</a><a href="android_manual.html" class="btn btn-secondary ripple"><i class="ti ti-device-mobile"></i> Android 가이드</a></div>
       </div>
       <div class="mini">
         <h4>주의 사항</h4>
@@ -96,6 +96,56 @@ body::before,body::after{content:'';position:fixed;width:34rem;height:34rem;bord
       </div>
     </aside>
   </div>
+
+  <section class="catalog reveal" data-reveal id="catalog">
+    <div class="catalog-head">
+      <div>
+        <h3>앱 카탈로그</h3>
+        <p>새 앱을 추가할 때는 아래 카드 하나를 복사해서 이름, 설명, 링크만 바꾸면 됩니다.</p>
+      </div>
+      <div class="catalog-controls">
+        <button class="btn btn-secondary ripple" id="filterAllBtn" type="button"><i class="ti ti-layout-grid"></i> 전체</button>
+        <button class="btn btn-secondary ripple" id="filterAndroidBtn" type="button"><i class="ti ti-device-mobile"></i> Android</button>
+        <button class="btn btn-secondary ripple" id="filterPlannedBtn" type="button"><i class="ti ti-hourglass"></i> 예정</button>
+      </div>
+    </div>
+
+    <div class="apps-grid" id="appGrid">
+      <article class="app-card reveal tilt" data-reveal data-tilt data-platform="android" data-state="released">
+        <span class="app-tag"><i class="ti ti-bolt"></i> 대표 앱</span>
+        <div class="app-title">전산볼트</div>
+        <div class="app-desc">현장에서 바로 쓰는 볼트 계산 & 관리 솔루션입니다. 계산, 재고, 작업 기록을 한 곳에서 처리합니다.</div>
+        <div class="app-meta"><span>Android</span><span>Released</span><span>v1.0.0</span></div>
+        <div class="app-actions"><a href="download.html" class="btn btn-primary ripple"><i class="ti ti-download"></i> 다운로드</a><a href="android_manual.html" class="btn btn-secondary ripple"><i class="ti ti-book"></i> 설명서</a></div>
+      </article>
+      <article class="app-card reveal tilt" data-reveal data-tilt data-platform="android" data-state="planned">
+        <span class="app-tag"><i class="ti ti-sparkles"></i> 예정 앱</span>
+        <div class="app-title">새 앱 추가 슬롯</div>
+        <div class="app-desc">이 카드를 복사해서 새로운 앱 이름, 설명, 다운로드 링크만 바꾸면 바로 확장할 수 있습니다.</div>
+        <div class="app-meta"><span>Android</span><span>Planned</span><span>Template</span></div>
+        <div class="app-actions"><a href="#download-template" class="btn btn-secondary ripple"><i class="ti ti-code"></i> 템플릿 보기</a></div>
+      </article>
+      <article class="app-card reveal tilt" data-reveal data-tilt data-platform="web" data-state="planned">
+        <span class="app-tag"><i class="ti ti-world"></i> 확장 가능</span>
+        <div class="app-title">웹/도구 앱</div>
+        <div class="app-desc">웹 대시보드나 내부 도구도 같은 카탈로그 안에 함께 넣을 수 있습니다.</div>
+        <div class="app-meta"><span>Web</span><span>Planned</span><span>Future</span></div>
+        <div class="app-actions"><a href="Customer_Inquiry.html" class="btn btn-secondary ripple"><i class="ti ti-message-circle"></i> 문의하기</a></div>
+      </article>
+    </div>
+
+    <div class="template" id="download-template">
+      <h4>새 앱 추가 템플릿</h4>
+      <p>아래 구조를 복사해서 카드 내용을 바꾸면 됩니다. `data-platform`, 이름, 설명, 링크만 수정하면 카탈로그에 자연스럽게 추가할 수 있습니다.</p>
+      <code>&lt;article class="app-card" data-platform="android" data-state="planned"&gt;
+  &lt;span class="app-tag"&gt;새 앱&lt;/span&gt;
+  &lt;div class="app-title"&gt;앱 이름&lt;/div&gt;
+  &lt;div class="app-desc"&gt;앱 설명&lt;/div&gt;
+  &lt;div class="app-meta"&gt;...&lt;/div&gt;
+  &lt;div class="app-actions"&gt;...&lt;/div&gt;
+&lt;/article&gt;</code>
+    </div>
+  </section>
 
   <section class="card reveal" data-reveal id="steps" style="margin-top:18px">
     <div class="section-title" style="text-align:left;margin-bottom:0">
@@ -126,27 +176,9 @@ body::before,body::after{content:'';position:fixed;width:34rem;height:34rem;bord
 
 <div class="toast" id="toast"><i class="ti ti-check"></i> 링크를 복사했습니다</div>
 <a href="https://discord.gg/DxY47Q3EHR" target="_blank" rel="noreferrer" class="discord-btn"><i class="ti ti-brand-discord"></i> 고객 문의</a>
-<footer class="footer">
-  <p>© 2026 AXLIB. All Rights Reserved.</p>
-  <p>전산볼트 앱 · 라이브러리 플랫폼</p>
-</footer>
+<footer class="footer"><p>© 2026 AXLIB. All Rights Reserved.</p><p>전산볼트 앱 · 라이브러리 플랫폼</p></footer>
 <script>
-const progress = document.getElementById('progress');
-const modal = document.getElementById('installModal');
-const toast = document.getElementById('toast');
-const randomTip = document.getElementById('randomTip');
-const tips = ['설치 전에 설명서를 한 번 보면 시행착오를 줄일 수 있습니다.','공식 파일인지 먼저 확인하면 불필요한 경고를 줄일 수 있습니다.','다운로드 후 파일명을 한 번 확인해 두면 찾기 쉽습니다.'];
-let tipIndex = 0;
-function showToast(text){toast.innerHTML = '<i class="ti ti-check"></i> ' + text; toast.classList.add('show'); setTimeout(()=>toast.classList.remove('show'),2200)}
-function updateProgress(){const max=document.documentElement.scrollHeight-innerHeight; progress.style.width = max>0 ? `${scrollY/max*100}%` : '0%';}
-function animateCounter(el){const target=Number(el.dataset.count||0); const suffix=el.dataset.suffix||''; const start=performance.now(); const duration=1300; const step=(now)=>{const t=Math.min((now-start)/duration,1); const eased=1-Math.pow(1-t,3); el.textContent = `${Math.floor(target*eased).toLocaleString('ko-KR')}${suffix}`; if(t<1) requestAnimationFrame(step); else el.textContent = `${target.toLocaleString('ko-KR')}${suffix}`}; requestAnimationFrame(step)}
-const io = new IntersectionObserver((entries)=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible'); if(entry.target.hasAttribute('data-count')) animateCounter(entry.target); io.unobserve(entry.target);}})},{threshold:.14,rootMargin:'0px 0px -8% 0px'}); document.querySelectorAll('[data-reveal]').forEach(el=>io.observe(el));
-document.querySelectorAll('.ripple').forEach(btn=>btn.addEventListener('click', (e)=>{const circle=document.createElement('span'); const r=btn.getBoundingClientRect(); const size=Math.max(r.width,r.height); circle.style.cssText=`position:absolute;width:${size}px;height:${size}px;left:${e.clientX-r.left-size/2}px;top:${e.clientY-r.top-size/2}px;border-radius:50%;background:rgba(255,255,255,.18);transform:scale(0);transition:transform .55s ease,opacity .55s ease;pointer-events:none;opacity:1`; btn.style.position='relative'; btn.style.overflow='hidden'; btn.appendChild(circle); requestAnimationFrame(()=>circle.style.transform='scale(1)'); setTimeout(()=>circle.style.opacity='0',250); setTimeout(()=>circle.remove(),650);}));
-document.getElementById('openModalBtn').addEventListener('click', ()=>{modal.classList.add('open'); modal.setAttribute('aria-hidden','false')}); document.getElementById('guideBtn').addEventListener('click', ()=>{document.getElementById('steps').scrollIntoView({behavior:'smooth', block:'start'})}); document.getElementById('closeModalBtn').addEventListener('click', ()=>{modal.classList.remove('open'); modal.setAttribute('aria-hidden','true')}); modal.addEventListener('click', e=>{if(e.target===modal){modal.classList.remove('open'); modal.setAttribute('aria-hidden','true')}}); document.addEventListener('keydown', e=>{if(e.key==='Escape'){modal.classList.remove('open'); modal.setAttribute('aria-hidden','true')}});
-document.getElementById('copyLinkBtn').addEventListener('click', async ()=>{try{await navigator.clipboard.writeText(location.href); showToast('다운로드 페이지 링크를 복사했습니다');}catch{showToast('복사에 실패했습니다');}});
-document.getElementById('downloadBtn').addEventListener('click', ()=>showToast('다운로드를 시작합니다'));
-setInterval(()=>{tipIndex=(tipIndex+1)%tips.length; randomTip.style.opacity='0.2'; setTimeout(()=>{randomTip.textContent=tips[tipIndex]; randomTip.style.opacity='1'},180);},3200);
-window.addEventListener('scroll', updateProgress); window.addEventListener('resize', updateProgress); updateProgress();
+const progress=document.getElementById('progress');const modal=document.getElementById('installModal');const toast=document.getElementById('toast');const randomTip=document.getElementById('randomTip');const tips=['설치 전에 설명서를 한 번 보면 시행착오를 줄일 수 있습니다.','공식 파일인지 먼저 확인하면 불필요한 경고를 줄일 수 있습니다.','다운로드 후 파일명을 한 번 확인해 두면 찾기 쉽습니다.'];let tipIndex=0;function showToast(text){toast.innerHTML='<i class="ti ti-check"></i> '+text;toast.classList.add('show');setTimeout(()=>toast.classList.remove('show'),2200)}function updateProgress(){const max=document.documentElement.scrollHeight-innerHeight;progress.style.width=max>0?`${scrollY/max*100}%`:'0%'}function animateCounter(el){const target=Number(el.dataset.count||0);const suffix=el.dataset.suffix||'';const start=performance.now();const duration=1300;const step=(now)=>{const t=Math.min((now-start)/duration,1);const eased=1-Math.pow(1-t,3);el.textContent=`${Math.floor(target*eased).toLocaleString('ko-KR')}${suffix}`;if(t<1)requestAnimationFrame(step);else el.textContent=`${target.toLocaleString('ko-KR')}${suffix}`};requestAnimationFrame(step)}const io=new IntersectionObserver((entries)=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');if(entry.target.hasAttribute('data-count'))animateCounter(entry.target);io.unobserve(entry.target)}})},{threshold:.14,rootMargin:'0px 0px -8% 0px'});document.querySelectorAll('[data-reveal]').forEach(el=>io.observe(el));document.querySelectorAll('.ripple').forEach(btn=>btn.addEventListener('click',e=>{const circle=document.createElement('span');const r=btn.getBoundingClientRect();const size=Math.max(r.width,r.height);circle.style.cssText=`position:absolute;width:${size}px;height:${size}px;left:${e.clientX-r.left-size/2}px;top:${e.clientY-r.top-size/2}px;border-radius:50%;background:rgba(255,255,255,.18);transform:scale(0);transition:transform .55s ease,opacity .55s ease;pointer-events:none;opacity:1`;btn.appendChild(circle);requestAnimationFrame(()=>circle.style.transform='scale(1)');setTimeout(()=>circle.style.opacity='0',250);setTimeout(()=>circle.remove(),650)}));document.getElementById('openModalBtn').addEventListener('click',()=>{modal.classList.add('open');modal.setAttribute('aria-hidden','false')});document.getElementById('guideBtn').addEventListener('click',()=>{document.getElementById('steps').scrollIntoView({behavior:'smooth',block:'start'})});document.getElementById('closeModalBtn').addEventListener('click',()=>{modal.classList.remove('open');modal.setAttribute('aria-hidden','true')});modal.addEventListener('click',e=>{if(e.target===modal){modal.classList.remove('open');modal.setAttribute('aria-hidden','true')}});document.addEventListener('keydown',e=>{if(e.key==='Escape'){modal.classList.remove('open');modal.setAttribute('aria-hidden','true')}});document.getElementById('copyLinkBtn').addEventListener('click',async()=>{try{await navigator.clipboard.writeText(location.href);showToast('다운로드 페이지 링크를 복사했습니다')}catch{showToast('복사에 실패했습니다')}});document.getElementById('downloadBtn').addEventListener('click',()=>showToast('앱 카탈로그로 이동합니다'));setInterval(()=>{tipIndex=(tipIndex+1)%tips.length;randomTip.style.opacity='0.2';setTimeout(()=>{randomTip.textContent=tips[tipIndex];randomTip.style.opacity='1'},180)},3200);window.addEventListener('scroll',updateProgress);window.addEventListener('resize',updateProgress);updateProgress();const appCards=[...document.querySelectorAll('.app-card')];function filterApps(mode){appCards.forEach(card=>{const show=mode==='all'||(mode==='android'&&card.dataset.platform==='android')||(mode==='planned'&&card.dataset.state==='planned');card.classList.toggle('hidden',!show)})}document.getElementById('filterAllBtn').addEventListener('click',()=>filterApps('all'));document.getElementById('filterAndroidBtn').addEventListener('click',()=>filterApps('android'));document.getElementById('filterPlannedBtn').addEventListener('click',()=>filterApps('planned'));document.querySelector('[href="#download-template"]').addEventListener('click',e=>{e.preventDefault();document.getElementById('download-template').scrollIntoView({behavior:'smooth',block:'start'})});
 </script>
 </body>
 </html>
