@@ -6,316 +6,127 @@
 <title>후원하기 — AXLIB</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
 <style>
-*{margin:0;padding:0;box-sizing:border-box;}
-body{
-  background:#080810;color:#e8e4ff;
-  font-family:'Segoe UI',Arial,sans-serif;
-  min-height:100vh;
-}
-
-.donate-btn{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  padding:12px 24px;
-  background:#7d3cff;
-  color:white;
-  text-decoration:none;
-  border-radius:12px;
-  font-weight:600;
-  transition:.25s;
-}
-
-.donate-btn:hover{
-  background:#9257ff;
-  transform:translateY(-2px);
-  box-shadow:0 8px 24px rgba(125,60,255,.3);
-}
-
-/* 헤더 */
-header{
-  position:fixed;top:0;left:0;width:100%;
-  padding:16px 48px;
-  display:flex;align-items:center;justify-content:space-between;
-  background:rgba(8,8,16,0.92);backdrop-filter:blur(16px);
-  border-bottom:1px solid rgba(125,60,255,0.25);
-  z-index:100;
-}
-.logo-text{font-size:1.4rem;font-weight:700;letter-spacing:2px;color:#c4a8ff;text-decoration:none;}
-.logo-text span{color:#7d3cff;}
-.header-back{
-  display:flex;align-items:center;gap:6px;
-  color:rgba(196,168,255,0.6);text-decoration:none;font-size:0.85rem;transition:color .2s;
-}
-.header-back:hover{color:#c4a8ff;}
-
-/* 히어로 */
-.hero{
-  padding:130px 24px 56px;
-  text-align:center;position:relative;overflow:hidden;
-}
-.hero::before{
-  content:'';position:absolute;inset:0;pointer-events:none;
-  background:radial-gradient(ellipse 65% 60% at 50% 60%, rgba(125,60,255,0.13) 0%, transparent 70%);
-}
-.hero-badge{
-  display:inline-block;
-  background:rgba(125,60,255,0.15);border:1px solid rgba(125,60,255,0.4);
-  color:#b388ff;font-size:0.72rem;letter-spacing:1.5px;
-  padding:5px 16px;border-radius:999px;margin-bottom:18px;text-transform:uppercase;
-}
-.hero h1{font-size:2.6rem;font-weight:700;color:#ddd0ff;letter-spacing:-0.5px;margin-bottom:10px;}
-.hero p{color:rgba(196,168,255,0.5);font-size:0.95rem;line-height:1.75;}
-
-/* 컨테이너 */
-.container{max-width:700px;margin:0 auto;padding:0 24px 80px;}
-
-/* 후원 용도 배너 */
-.usage-banner{
-  background:rgba(125,60,255,0.08);
-  border:1px solid rgba(125,60,255,0.2);
-  border-radius:16px;padding:22px 26px;
-  margin-bottom:24px;
-  display:flex;flex-direction:column;gap:10px;
-}
-.usage-title{
-  font-size:0.78rem;letter-spacing:1.5px;text-transform:uppercase;
-  color:#7d3cff;font-weight:600;margin-bottom:2px;
-}
-.usage-list{display:flex;flex-wrap:wrap;gap:10px;}
-.usage-item{
-  display:inline-flex;align-items:center;gap:6px;
-  background:rgba(125,60,255,0.12);border:1px solid rgba(125,60,255,0.2);
-  color:rgba(196,168,255,0.75);font-size:0.82rem;
-  padding:5px 14px;border-radius:999px;
-}
-.usage-item i{color:#9f6fff;font-size:0.9rem;}
-
-/* 카드 */
-.card{
-  background:rgba(28,22,50,0.7);
-  border:1px solid rgba(125,60,255,0.2);
-  border-radius:20px;padding:28px;
-  margin-bottom:16px;
-  position:relative;overflow:hidden;
-  transition:border-color .3s, box-shadow .3s;
-}
-.card::before{
-  content:'';position:absolute;top:0;left:0;right:0;height:1px;
-  background:linear-gradient(90deg, transparent, rgba(125,60,255,0.35), transparent);
-}
-.card:hover{border-color:rgba(125,60,255,0.4);box-shadow:0 10px 30px rgba(125,60,255,0.09);}
-
-.card-header{display:flex;align-items:center;gap:14px;margin-bottom:16px;}
-.card-icon{
-  width:46px;height:46px;border-radius:13px;flex-shrink:0;
-  background:rgba(125,60,255,0.15);border:1px solid rgba(125,60,255,0.28);
-  display:flex;align-items:center;justify-content:center;font-size:1.3rem;
-}
-.card h3{font-size:1.05rem;font-weight:600;color:#ddd0ff;}
-.card p{font-size:0.88rem;color:rgba(196,168,255,0.5);line-height:1.75;}
-
-/* Buy Me a Coffee 버튼 */
-.bmac-wrap{margin-top:6px;}
-.bmac-wrap img{height:50px;border-radius:10px;}
-
-/* 계좌 정보 테이블 */
-.account-table{
-  width:100%;margin:16px 0;border-collapse:collapse;
-}
-.account-table tr{border-bottom:1px solid rgba(125,60,255,0.08);}
-.account-table tr:last-child{border-bottom:none;}
-.account-table td{padding:11px 4px;font-size:0.88rem;vertical-align:middle;}
-.account-table td:first-child{
-  color:rgba(196,168,255,0.4);width:80px;font-size:0.8rem;
-  letter-spacing:0.3px;
-}
-.account-table td:last-child{color:#ddd0ff;font-weight:500;}
-
-/* 복사 버튼 */
-.btn-copy{
-  display:inline-flex;align-items:center;gap:7px;
-  padding:11px 22px;background:#7d3cff;color:white;
-  border:none;border-radius:11px;font-size:0.88rem;font-weight:600;
-  cursor:pointer;transition:transform .25s, background .25s, box-shadow .25s;
-  margin-top:4px;
-}
-.btn-copy:hover{transform:translateY(-2px);background:#9257ff;box-shadow:0 7px 20px rgba(125,60,255,0.32);}
-.btn-copy.copied{background:#1db87a;}
-
-/* 안내 카드 */
-.notice-card{
-  background:rgba(255,160,30,0.06);
-  border:1px solid rgba(255,160,30,0.18);
-  border-radius:14px;padding:18px 20px;
-  margin-bottom:16px;
-  display:flex;align-items:flex-start;gap:12px;
-}
-.notice-card i{color:#ffba4d;font-size:1.1rem;flex-shrink:0;margin-top:1px;}
-.notice-card p{font-size:0.85rem;color:rgba(255,210,120,0.7);line-height:1.7;}
-
-/* 토스트 */
-.toast{
-  position:fixed;bottom:90px;left:50%;transform:translateX(-50%) translateY(20px);
-  background:rgba(30,180,100,0.15);border:1px solid rgba(30,180,100,0.35);
-  color:#5edfaa;padding:12px 22px;border-radius:12px;font-size:0.88rem;
-  opacity:0;transition:opacity .3s, transform .3s;pointer-events:none;
-  white-space:nowrap;backdrop-filter:blur(10px);
-  display:flex;align-items:center;gap:8px;z-index:9998;
-}
-.toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
-
-/* 디스코드 버튼 */
-.discord-btn{
-  position:fixed;right:20px;bottom:20px;
-  background:#5865F2;color:white;text-decoration:none;
-  padding:12px 20px;border-radius:999px;font-weight:600;font-size:0.88rem;
-  display:flex;align-items:center;gap:8px;
-  box-shadow:0 6px 20px rgba(88,101,242,0.4);z-index:9999;transition:.3s;
-}
-.discord-btn:hover{transform:translateY(-3px);box-shadow:0 10px 28px rgba(88,101,242,0.5);}
-
-footer{
-  text-align:center;padding:36px 24px;
-  border-top:1px solid rgba(125,60,255,0.1);
-  color:rgba(255,255,255,0.25);font-size:0.82rem;line-height:2.2;
-}
-
-@media(max-width:600px){
-  header{padding:14px 20px;}
-  .hero h1{font-size:2rem;}
-  .card{padding:22px;}
-}
+:root{--bg:#080810;--panel:rgba(28,22,50,.72);--line:rgba(125,60,255,.18);--text:#e8e4ff;--muted:rgba(196,168,255,.58);--accent:#7d3cff;--accent2:#b388ff;--shadow:0 18px 48px rgba(125,60,255,.12)}
+*{margin:0;padding:0;box-sizing:border-box} body{min-height:100vh;background:radial-gradient(circle at 20% 20%, rgba(125,60,255,.12), transparent 28%),radial-gradient(circle at 80% 10%, rgba(88,101,242,.08), transparent 25%),linear-gradient(180deg,#080810 0%,#0b0d18 100%);color:var(--text);font-family:'Segoe UI',Arial,sans-serif;line-height:1.7;overflow-x:hidden} a{color:inherit;text-decoration:none}
+body::before,body::after{content:'';position:fixed;width:34rem;height:34rem;border-radius:50%;filter:blur(120px);pointer-events:none;z-index:-2;opacity:.28} body::before{left:-12rem;top:-8rem;background:rgba(125,60,255,.22)} body::after{right:-14rem;bottom:-10rem;background:rgba(88,101,242,.16)}
+.progress{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,var(--accent),var(--accent2),#5865f2);z-index:3000;box-shadow:0 0 18px rgba(125,60,255,.45)}
+.topbar{position:sticky;top:0;z-index:1000;display:flex;justify-content:space-between;align-items:center;gap:14px;padding:16px 48px;background:rgba(8,8,16,.92);backdrop-filter:blur(16px);border-bottom:1px solid rgba(125,60,255,.22)}
+.logo{font-size:1.45rem;font-weight:800;letter-spacing:2px;color:#c4a8ff}.logo span{color:var(--accent)} .back{display:inline-flex;align-items:center;gap:6px;color:rgba(196,168,255,.62);font-size:.86rem}
+.hero{padding:112px 24px 34px;text-align:center;position:relative;overflow:hidden}.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 58% at 50% 60%, rgba(125,60,255,.16) 0%, transparent 70%);pointer-events:none}.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(125,60,255,.15);border:1px solid rgba(125,60,255,.38);color:#b388ff;font-size:.75rem;letter-spacing:1.5px;padding:6px 16px;border-radius:999px;text-transform:uppercase}.hero h1{font-size:clamp(2.5rem,6vw,4rem);line-height:1.02;letter-spacing:-.04em;margin-top:16px;color:#fff}.hero p{margin-top:12px;color:var(--muted)}
+.container{max-width:1040px;margin:0 auto;padding:0 24px 84px}.statsbar{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;max-width:840px;margin:0 auto 18px}.stat{padding:16px 14px;border-radius:16px;background:rgba(28,22,50,.5);border:1px solid rgba(125,60,255,.14);text-align:center}.stat .num{font-size:1.15rem;font-weight:900;color:#fff}.stat .label{font-size:.8rem;color:var(--muted);margin-top:4px}
+.usage-banner{background:rgba(125,60,255,.08);border:1px solid rgba(125,60,255,.18);border-radius:18px;padding:22px 22px;margin:18px auto 22px;max-width:840px}.usage-title{font-size:.78rem;letter-spacing:1.5px;text-transform:uppercase;color:#7d3cff;font-weight:800;margin-bottom:10px}.usage-list{display:flex;flex-wrap:wrap;gap:10px}.usage-item{display:inline-flex;align-items:center;gap:6px;background:rgba(125,60,255,.12);border:1px solid rgba(125,60,255,.18);color:rgba(196,168,255,.78);font-size:.82rem;padding:5px 14px;border-radius:999px}
+.notice-card{max-width:840px;margin:0 auto 18px;background:rgba(255,160,30,.06);border:1px solid rgba(255,160,30,.18);border-radius:14px;padding:18px 20px;display:flex;align-items:flex-start;gap:12px}.notice-card i{color:#ffba4d;font-size:1.1rem;flex-shrink:0;margin-top:1px}.notice-card p{font-size:.85rem;color:rgba(255,210,120,.72);line-height:1.7}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:stretch}.card{background:var(--panel);border:1px solid var(--line);border-radius:22px;padding:28px;box-shadow:var(--shadow);position:relative;overflow:hidden;transition:transform .24s,border-color .24s}.card:hover{transform:translateY(-6px);border-color:rgba(125,60,255,.34)}.card::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 90% 10%, rgba(125,60,255,.08), transparent 45%);pointer-events:none}
+.card-header{display:flex;align-items:center;gap:14px;margin-bottom:16px}.card-icon{width:46px;height:46px;border-radius:13px;flex-shrink:0;background:rgba(125,60,255,.15);border:1px solid rgba(125,60,255,.28);display:grid;place-items:center;font-size:1.3rem}.card h3{font-size:1.05rem;font-weight:800;color:#ddd0ff}.card p{font-size:.88rem;color:rgba(196,168,255,.52);line-height:1.75}
+.donate-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:46px;padding:0 18px;background:var(--accent);color:#fff;text-decoration:none;border-radius:12px;font-weight:700;border:1px solid var(--accent);transition:.22s ease;position:relative;overflow:hidden}.donate-btn:hover{background:#9257ff;transform:translateY(-2px);box-shadow:0 8px 24px rgba(125,60,255,.3)}
+.table{width:100%;margin:16px 0;border-collapse:collapse}.table tr{border-bottom:1px solid rgba(125,60,255,.08)}.table tr:last-child{border-bottom:none}.table td{padding:11px 4px;font-size:.88rem}.table td:first-child{color:rgba(196,168,255,.42);width:88px}.table td:last-child{color:#ddd0ff;font-weight:600}
+.btn-copy{display:inline-flex;align-items:center;gap:7px;min-height:42px;padding:0 16px;background:var(--accent);color:#fff;border:none;border-radius:11px;font-size:.88rem;font-weight:700;cursor:pointer;transition:.22s ease;position:relative;overflow:hidden}.btn-copy:hover{transform:translateY(-2px);background:#9257ff;box-shadow:0 7px 20px rgba(125,60,255,.32)}.btn-copy.copied{background:#1db87a}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}.chip{padding:6px 12px;border-radius:999px;background:rgba(125,60,255,.12);border:1px solid rgba(125,60,255,.18);color:#c4a8ff;font-size:.78rem;font-weight:700}
+.note-list{display:grid;gap:12px}.note{padding:18px;border-radius:18px;background:rgba(28,22,50,.55);border:1px solid rgba(125,60,255,.14)}.note strong{display:block;color:#ddd0ff;margin-bottom:6px}.note span{color:var(--muted)}
+.toast{position:fixed;bottom:92px;left:50%;transform:translateX(-50%) translateY(18px);background:rgba(28,22,50,.92);border:1px solid rgba(125,60,255,.32);color:#ddd0ff;padding:12px 18px;border-radius:12px;font-size:.88rem;opacity:0;pointer-events:none;transition:opacity .28s,transform .28s;display:flex;align-items:center;gap:8px;z-index:9998;backdrop-filter:blur(10px)}.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.discord-btn{position:fixed;right:20px;bottom:20px;background:#5865F2;color:#fff;text-decoration:none;padding:12px 20px;border-radius:999px;font-weight:700;font-size:.88rem;display:flex;align-items:center;gap:8px;box-shadow:0 6px 20px rgba(88,101,242,.4);z-index:9999;transition:.3s}.discord-btn:hover{transform:translateY(-3px);box-shadow:0 10px 28px rgba(88,101,242,.5)}
+.footer{text-align:center;padding:40px 24px;border-top:1px solid rgba(125,60,255,.12);color:rgba(255,255,255,.28);font-size:.82rem;line-height:2.2}
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease}.reveal.visible{opacity:1;transform:none}
+@media(max-width:920px){.grid{grid-template-columns:1fr}.statsbar{grid-template-columns:1fr}.container{padding-inline:16px}}
+@media(max-width:640px){.topbar{padding:14px 18px;flex-direction:column;align-items:flex-start}.hero{padding-top:96px}.card{padding:22px}.discord-btn{right:14px;bottom:14px;padding:11px 16px;font-size:.86rem}}
+@media(prefers-reduced-motion: reduce){html{scroll-behavior:auto}*,*::before,*::after{transition:none !important;animation:none !important;scroll-behavior:auto !important}.reveal{opacity:1;transform:none}}
 </style>
 </head>
 <body>
-
-<!-- 헤더 -->
-<header>
-  <a href="index.html" class="header-back">
-    <i class="ti ti-arrow-left" aria-hidden="true"></i> 홈으로
-  </a>
-  <a href="index.html" class="logo-text">AX<span>LIB</span></a>
-  <div style="width:70px;"></div>
-</header>
-
-<!-- 히어로 -->
-<div class="hero">
-  <div class="hero-badge">후원하기</div>
-  <h1>AXLIB를 응원해 주세요</h1>
-  <p>여러분의 후원이 더 나은 앱과 서비스를 만드는 원동력이 됩니다</p>
+<div class="progress" id="progress"></div>
+<div class="topbar">
+  <a href="index.html" class="back"><i class="ti ti-arrow-left"></i> 홈으로</a>
+  <a href="index.html" class="logo">AX<span>LIB</span></a>
+  <button class="btn-copy" id="copyMoneyBtn" type="button"><i class="ti ti-copy"></i> 계좌 복사</button>
 </div>
 
-<div class="container">
+<header class="hero">
+  <div class="hero-badge">후원하기</div>
+  <h1>AXLIB를 응원해 주세요</h1>
+  <p>여러분의 후원이 더 나은 앱과 서비스를 만드는 원동력이 됩니다.</p>
+</header>
 
-  <!-- 후원 용도 -->
-  <div class="usage-banner">
+<div class="container">
+  <div class="statsbar reveal" data-reveal>
+    <div class="stat"><div class="num" data-count="2">0</div><div class="label">후원 방식</div></div>
+    <div class="stat"><div class="num" data-count="3">0</div><div class="label">사용 용도</div></div>
+    <div class="stat"><div class="num" data-count="1">0</div><div class="label">메인 앱</div></div>
+  </div>
+
+  <div class="usage-banner reveal" data-reveal>
     <div class="usage-title">후원금 사용처</div>
     <div class="usage-list">
-      <span class="usage-item"><i class="ti ti-bolt" aria-hidden="true"></i> 전산볼트 앱 개발</span>
-      <span class="usage-item"><i class="ti ti-server" aria-hidden="true"></i> 서버 운영</span>
-      <span class="usage-item"><i class="ti ti-code" aria-hidden="true"></i> 기타 앱 개발</span>
-      <span class="usage-item"><i class="ti ti-heart" aria-hidden="true"></i> 서비스 유지</span>
+      <span class="usage-item"><i class="ti ti-bolt"></i> 전산볼트 앱 개발</span>
+      <span class="usage-item"><i class="ti ti-server"></i> 서버 운영</span>
+      <span class="usage-item"><i class="ti ti-heart"></i> 서비스 유지</span>
+      <span class="usage-item"><i class="ti ti-code"></i> 기타 앱 개발</span>
     </div>
   </div>
 
-  <!-- 안내 -->
-  <div class="notice-card">
+  <div class="notice-card reveal" data-reveal>
     <i class="ti ti-alert-triangle" aria-hidden="true"></i>
     <p>후원 전 계좌번호와 금액을 반드시 확인해 주세요. 오입금 및 송금 실수에 대해서는 디스코드를 통해 개별 문의해 주시기 바랍니다.</p>
   </div>
 
-  <!-- Buy Me a Coffee -->
-  <div class="card">
-    <div class="card-header">
-<!-- Ko-fi -->
-<div class="card">
-  <div class="card-header">
-    <div class="card-icon">
-      <i class="ti ti-heart" aria-hidden="true" style="color:#b388ff"></i>
-    </div>
-    <div>
-      <h3>Ko-fi</h3>
-      <p style="margin:0;font-size:0.82rem;color:rgba(196,168,255,0.4);">
-        카드 결제 후원
-      </p>
-    </div>
-  </div>
-
-  <p style="margin-bottom:16px;">
-    버튼을 눌러 간편하게 후원할 수 있습니다.
-  </p>
-
-  <div class="bmac-wrap">
-    <a href="https://ko-fi.com/axlib" target="_blank" class="donate-btn">
-      💜 Ko-fi로 후원하기
-    </a>
-  </div>
-</div>
-  <!-- 계좌이체 -->
-  <div class="card">
-    <div class="card-header">
-      <div class="card-icon">
-        <i class="ti ti-building-bank" aria-hidden="true" style="color:#b388ff"></i>
+  <div class="grid">
+    <section class="card reveal" data-reveal>
+      <div class="card-header">
+        <div class="card-icon"><i class="ti ti-heart" aria-hidden="true" style="color:#b388ff"></i></div>
+        <div><h3>Ko-fi</h3><p style="margin:0;font-size:.82rem;color:rgba(196,168,255,.42)">카드 결제 후원</p></div>
       </div>
-      <div>
-        <h3>계좌이체</h3>
-        <p style="margin:0;font-size:0.82rem;color:rgba(196,168,255,0.4);">모든 은행에서 송금 가능</p>
+      <p>버튼을 눌러 간편하게 후원할 수 있습니다.</p>
+      <div class="chips"><span class="chip">간편 결제</span><span class="chip">빠른 응원</span><span class="chip">국제 결제 가능</span></div>
+      <div style="margin-top:18px"><a href="https://ko-fi.com/axlib" target="_blank" rel="noreferrer" class="donate-btn ripple"><i class="ti ti-cup"></i> Ko-fi로 후원하기</a></div>
+    </section>
+
+    <section class="card reveal" data-reveal>
+      <div class="card-header">
+        <div class="card-icon"><i class="ti ti-building-bank" aria-hidden="true" style="color:#b388ff"></i></div>
+        <div><h3>계좌이체</h3><p style="margin:0;font-size:.82rem;color:rgba(196,168,255,.42)">모든 은행에서 송금 가능</p></div>
       </div>
-    </div>
-    <table class="account-table">
-      <tr>
-        <td>은행</td>
-        <td>토스은행</td>
-      </tr>
-      <tr>
-        <td>계좌번호</td>
-        <td>1908-3819-7811</td>
-      </tr>
-      <tr>
-        <td>예금주</td>
-        <td>박시윤</td>
-      </tr>
-    </table>
-    <button class="btn-copy" id="copyBtn" onclick="copyAccount()">
-      <i class="ti ti-copy" aria-hidden="true"></i> 계좌번호 복사
-    </button>
+      <table class="table">
+        <tr><td>은행</td><td>토스은행</td></tr>
+        <tr><td>계좌번호</td><td id="accountText">1908-3819-7811</td></tr>
+        <tr><td>예금주</td><td>박시윤</td></tr>
+      </table>
+      <button class="btn-copy ripple" id="copyBtn" type="button"><i class="ti ti-copy"></i> 계좌번호 복사</button>
+      <p style="margin-top:14px;color:rgba(196,168,255,.5);font-size:.86rem">복사 후 모바일 뱅킹에 붙여넣기만 하면 됩니다.</p>
+    </section>
   </div>
 
+  <section class="card reveal" data-reveal style="margin-top:18px">
+    <div class="card-header">
+      <div class="card-icon"><i class="ti ti-shield-check" aria-hidden="true" style="color:#b388ff"></i></div>
+      <div><h3>후원 안내</h3><p style="margin:0;font-size:.82rem;color:rgba(196,168,255,.42)">후원 전에 알아두면 좋은 점</p></div>
+    </div>
+    <div class="note-list">
+      <div class="note"><strong>투명한 활용</strong><span>후원금은 서버 운영, 기능 개발, 유지보수에 사용됩니다.</span></div>
+      <div class="note"><strong>오입금 주의</strong><span>금액과 계좌번호를 한 번 더 확인해 주세요.</span></div>
+      <div class="note"><strong>문의 가능</strong><span>송금 문제나 확인이 필요하면 디스코드 문의를 이용해 주세요.</span></div>
+    </div>
+  </section>
 </div>
 
-<!-- 토스트 -->
-<div class="toast" id="toast">
-  <i class="ti ti-check" aria-hidden="true"></i> 계좌번호가 복사되었습니다
-</div>
-
-<!-- 디스코드 버튼 -->
-<a href="https://discord.gg/DxY47Q3EHR" target="_blank" class="discord-btn">
-  <i class="ti ti-brand-discord" aria-hidden="true"></i> 고객 문의
-</a>
-
-<footer>
+<div class="toast" id="toast"><i class="ti ti-check"></i> 완료</div>
+<a href="https://discord.gg/DxY47Q3EHR" target="_blank" rel="noreferrer" class="discord-btn"><i class="ti ti-brand-discord"></i> 고객 문의</a>
+<footer class="footer">
   <p>© 2026 AXLIB. All Rights Reserved.</p>
   <p>전산볼트 앱 · 라이브러리 플랫폼</p>
 </footer>
-
 <script>
-function copyAccount(){
-  const account = "1908-3819-7811";
-  navigator.clipboard.writeText(account).then(() => {
-    const btn = document.getElementById('copyBtn');
-    btn.classList.add('copied');
-    btn.innerHTML = '<i class="ti ti-check"></i> 복사 완료';
-    setTimeout(() => {
-      btn.classList.remove('copied');
-      btn.innerHTML = '<i class="ti ti-copy"></i> 계좌번호 복사';
-    }, 2000);
-
-    const toast = document.getElementById('toast');
-    toast.classList.add('show');
-    setTimeout(() => toast.classList.remove('show'), 2500);
-  });
-}
+const progress = document.getElementById('progress');
+const toast = document.getElementById('toast');
+const copyBtn = document.getElementById('copyBtn');
+const copyMoneyBtn = document.getElementById('copyMoneyBtn');
+function updateProgress(){const max=document.documentElement.scrollHeight-innerHeight; progress.style.width = max>0 ? `${scrollY/max*100}%` : '0%';}
+function showToast(message){toast.innerHTML = `<i class="ti ti-check"></i> ${message}`; toast.classList.add('show'); setTimeout(()=>toast.classList.remove('show'), 2400)}
+function animateCount(el){const target=Number(el.dataset.count||0); const start=performance.now(); const step=(now)=>{const t=Math.min((now-start)/1100,1); const eased=1-Math.pow(1-t,3); el.textContent=Math.floor(target*eased); if(t<1) requestAnimationFrame(step)}; requestAnimationFrame(step)}
+const io = new IntersectionObserver((entries)=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible'); entry.target.querySelectorAll('[data-count]').forEach(animateCount); io.unobserve(entry.target);}})},{threshold:.12,rootMargin:'0px 0px -8% 0px'}); document.querySelectorAll('[data-reveal]').forEach(el=>io.observe(el));
+document.querySelectorAll('.ripple').forEach(btn=>btn.addEventListener('click',(e)=>{const c=document.createElement('span'); const r=btn.getBoundingClientRect(); const size=Math.max(r.width,r.height); c.style.cssText=`position:absolute;width:${size}px;height:${size}px;left:${e.clientX-r.left-size/2}px;top:${e.clientY-r.top-size/2}px;border-radius:50%;background:rgba(255,255,255,.18);transform:scale(0);transition:transform .55s ease,opacity .55s ease;pointer-events:none;opacity:1`; btn.appendChild(c); requestAnimationFrame(()=>c.style.transform='scale(1)'); setTimeout(()=>c.style.opacity='0',250); setTimeout(()=>c.remove(),650);}));
+async function copyText(text, okMessage){ try{ await navigator.clipboard.writeText(text); showToast(okMessage); } catch { showToast('복사에 실패했습니다'); } }
+copyBtn.addEventListener('click', ()=>copyText('1908-3819-7811', '계좌번호가 복사되었습니다'));
+copyMoneyBtn.addEventListener('click', ()=>copyText('1908-3819-7811', '계좌번호가 복사되었습니다'));
+window.addEventListener('scroll', updateProgress); window.addEventListener('resize', updateProgress); updateProgress();
 </script>
 </body>
 </html>
