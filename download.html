@@ -6,355 +6,147 @@
 <title>다운로드 — AXLIB</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
 <style>
-*{margin:0;padding:0;box-sizing:border-box;}
-body{
-  background:#080810;color:#e8e4ff;
-  font-family:'Segoe UI',Arial,sans-serif;
-  min-height:100vh;
-}
-
-/* 헤더 */
-header{
-  position:fixed;top:0;left:0;width:100%;
-  padding:16px 48px;
-  display:flex;align-items:center;justify-content:space-between;
-  background:rgba(8,8,16,0.92);backdrop-filter:blur(16px);
-  border-bottom:1px solid rgba(125,60,255,0.25);
-  z-index:100;
-}
-.logo-text{font-size:1.4rem;font-weight:700;letter-spacing:2px;color:#c4a8ff;text-decoration:none;}
-.logo-text span{color:#7d3cff;}
-.header-back{
-  display:flex;align-items:center;gap:6px;
-  color:rgba(196,168,255,0.6);text-decoration:none;font-size:0.85rem;transition:color .2s;
-}
-.header-back:hover{color:#c4a8ff;}
-
-/* 히어로 */
-.hero{
-  padding:130px 24px 56px;
-  text-align:center;position:relative;overflow:hidden;
-}
-.hero::before{
-  content:'';position:absolute;inset:0;pointer-events:none;
-  background:radial-gradient(ellipse 65% 60% at 50% 60%, rgba(125,60,255,0.14) 0%, transparent 70%);
-}
-.hero-badge{
-  display:inline-block;
-  background:rgba(125,60,255,0.15);border:1px solid rgba(125,60,255,0.4);
-  color:#b388ff;font-size:0.72rem;letter-spacing:1.5px;
-  padding:5px 16px;border-radius:999px;margin-bottom:18px;text-transform:uppercase;
-}
-.hero h1{font-size:2.6rem;font-weight:700;color:#ddd0ff;letter-spacing:-0.5px;margin-bottom:10px;}
-.hero p{color:rgba(196,168,255,0.5);font-size:0.95rem;}
-
-/* 컨테이너 */
-.container{max-width:760px;margin:0 auto;padding:0 24px 80px;}
-
-/* 메인 다운로드 카드 */
-.download-card{
-  background:rgba(28,22,50,0.8);
-  border:1px solid rgba(125,60,255,0.3);
-  border-radius:22px;padding:36px;
-  margin-bottom:16px;
-  position:relative;overflow:hidden;
-  transition:border-color .3s, box-shadow .3s;
-}
-.download-card::before{
-  content:'';position:absolute;top:0;left:0;right:0;height:1px;
-  background:linear-gradient(90deg, transparent, rgba(125,60,255,0.4), transparent);
-}
-.download-card:hover{
-  border-color:rgba(125,60,255,0.5);
-  box-shadow:0 12px 36px rgba(125,60,255,0.1);
-}
-.download-card.featured{
-  border-color:rgba(125,60,255,0.45);
-  background:linear-gradient(135deg, rgba(28,22,50,0.9), rgba(50,30,90,0.5));
-}
-
-.card-header{display:flex;align-items:center;gap:16px;margin-bottom:20px;}
-.card-icon{
-  width:52px;height:52px;border-radius:14px;flex-shrink:0;
-  background:rgba(125,60,255,0.18);border:1px solid rgba(125,60,255,0.3);
-  display:flex;align-items:center;justify-content:center;font-size:1.5rem;
-}
-.card-title-group h2{font-size:1.15rem;font-weight:600;color:#ddd0ff;margin-bottom:4px;}
-.version-badge{
-  display:inline-flex;align-items:center;gap:4px;
-  background:rgba(125,60,255,0.15);border:1px solid rgba(125,60,255,0.3);
-  color:#b388ff;font-size:0.72rem;font-weight:600;
-  padding:3px 10px;border-radius:999px;
-}
-.card-desc{font-size:0.9rem;color:rgba(196,168,255,0.55);line-height:1.75;margin-bottom:20px;}
-
-/* 메타 정보 행 */
-.meta-row{
-  display:flex;gap:20px;flex-wrap:wrap;
-  padding:14px 0;border-top:1px solid rgba(125,60,255,0.1);
-  border-bottom:1px solid rgba(125,60,255,0.1);margin-bottom:20px;
-}
-.meta-item{display:flex;align-items:center;gap:6px;font-size:0.8rem;color:rgba(196,168,255,0.45);}
-.meta-item i{color:#7d3cff;font-size:0.95rem;}
-
-/* 버튼 */
-.btn-primary{
-  display:inline-flex;align-items:center;gap:8px;
-  padding:13px 26px;background:#7d3cff;color:white;
-  text-decoration:none;border:none;border-radius:12px;
-  font-size:0.92rem;font-weight:600;cursor:pointer;
-  transition:transform .25s, background .25s, box-shadow .25s;
-}
-.btn-primary:hover{transform:translateY(-2px);background:#9257ff;box-shadow:0 8px 22px rgba(125,60,255,0.35);}
-.btn-secondary{
-  display:inline-flex;align-items:center;gap:8px;
-  padding:13px 26px;background:transparent;color:#c4a8ff;
-  text-decoration:none;border:1px solid rgba(125,60,255,0.4);border-radius:12px;
-  font-size:0.92rem;font-weight:600;cursor:pointer;
-  transition:transform .25s, background .25s;
-}
-.btn-secondary:hover{transform:translateY(-2px);background:rgba(125,60,255,0.1);}
-.btn-row{display:flex;gap:12px;flex-wrap:wrap;}
-
-/* 일반 카드 */
-.card{
-  background:rgba(28,22,50,0.6);
-  border:1px solid rgba(125,60,255,0.15);
-  border-radius:18px;padding:26px 28px;
-  margin-bottom:16px;
-  transition:border-color .3s;
-}
-.card:hover{border-color:rgba(125,60,255,0.3);}
-.card-header-sm{display:flex;align-items:center;gap:12px;margin-bottom:12px;}
-.card-icon-sm{
-  width:40px;height:40px;border-radius:11px;flex-shrink:0;
-  background:rgba(125,60,255,0.13);border:1px solid rgba(125,60,255,0.22);
-  display:flex;align-items:center;justify-content:center;font-size:1.1rem;
-}
-.card h3{font-size:1rem;font-weight:600;color:#ddd0ff;}
-.card p{font-size:0.88rem;color:rgba(196,168,255,0.5);line-height:1.75;}
-
-/* 설치 단계 */
-.steps{display:flex;flex-direction:column;gap:12px;margin-top:16px;}
-.step{
-  display:flex;align-items:flex-start;gap:14px;
-  padding:14px 16px;border-radius:12px;
-  background:rgba(125,60,255,0.06);border:1px solid rgba(125,60,255,0.1);
-}
-.step-num{
-  width:26px;height:26px;border-radius:50%;flex-shrink:0;
-  background:rgba(125,60,255,0.2);border:1px solid rgba(125,60,255,0.35);
-  display:flex;align-items:center;justify-content:center;
-  font-size:0.75rem;font-weight:700;color:#b388ff;
-}
-.step-text{font-size:0.88rem;color:rgba(196,168,255,0.65);line-height:1.5;padding-top:3px;}
-.step-text strong{color:#ddd0ff;font-weight:600;}
-
-/* 모달 오버레이 */
-.modal-overlay{
-  display:none;position:fixed;inset:0;
-  background:rgba(0,0,0,0.65);backdrop-filter:blur(6px);
-  z-index:9990;align-items:center;justify-content:center;padding:20px;
-}
-.modal-overlay.open{display:flex;}
-.modal{
-  background:#16112a;border:1px solid rgba(125,60,255,0.4);
-  border-radius:20px;padding:32px;max-width:460px;width:100%;
-  position:relative;
-}
-.modal h3{font-size:1.1rem;font-weight:600;color:#ddd0ff;margin-bottom:6px;}
-.modal-desc{font-size:0.85rem;color:rgba(196,168,255,0.5);margin-bottom:20px;}
-.modal-close{
-  position:absolute;top:16px;right:16px;
-  background:rgba(125,60,255,0.12);border:1px solid rgba(125,60,255,0.2);
-  color:#b388ff;border-radius:8px;padding:6px 10px;
-  cursor:pointer;font-size:1rem;transition:.2s;
-}
-.modal-close:hover{background:rgba(125,60,255,0.25);}
-
-/* 디스코드 버튼 */
-.discord-btn{
-  position:fixed;right:20px;bottom:20px;
-  background:#5865F2;color:white;text-decoration:none;
-  padding:12px 20px;border-radius:999px;font-weight:600;font-size:0.88rem;
-  display:flex;align-items:center;gap:8px;
-  box-shadow:0 6px 20px rgba(88,101,242,0.4);z-index:9999;transition:.3s;
-}
-.discord-btn:hover{transform:translateY(-3px);box-shadow:0 10px 28px rgba(88,101,242,0.5);}
-
-footer{
-  text-align:center;padding:36px 24px;
-  border-top:1px solid rgba(125,60,255,0.1);
-  color:rgba(255,255,255,0.25);font-size:0.82rem;line-height:2.2;
-}
-
-@media(max-width:600px){
-  header{padding:14px 20px;}
-  .hero h1{font-size:2rem;}
-  .download-card{padding:24px;}
-  .btn-row{flex-direction:column;}
-  .btn-primary,.btn-secondary{justify-content:center;}
-}
+:root{--bg:#080810;--panel:rgba(28,22,50,.72);--panel2:rgba(28,22,50,.58);--line:rgba(125,60,255,.18);--text:#e8e4ff;--muted:rgba(196,168,255,.58);--accent:#7d3cff;--accent2:#b388ff;--shadow:0 18px 48px rgba(125,60,255,.12)}
+*{margin:0;padding:0;box-sizing:border-box} body{min-height:100vh;background:radial-gradient(circle at 20% 20%, rgba(125,60,255,.12), transparent 30%),radial-gradient(circle at 80% 10%, rgba(88,101,242,.08), transparent 25%),linear-gradient(180deg,#080810 0%,#0b0d18 100%);color:var(--text);font-family:'Segoe UI',Arial,sans-serif;line-height:1.7;overflow-x:hidden} a{color:inherit;text-decoration:none}
+body::before,body::after{content:'';position:fixed;width:34rem;height:34rem;border-radius:50%;filter:blur(120px);pointer-events:none;z-index:-2;opacity:.28} body::before{left:-12rem;top:-8rem;background:rgba(125,60,255,.22)} body::after{right:-14rem;bottom:-10rem;background:rgba(88,101,242,.16)}
+.progress{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,var(--accent),var(--accent2),#5865f2);z-index:3000;box-shadow:0 0 18px rgba(125,60,255,.45)}
+.topbar{position:sticky;top:0;z-index:1000;display:flex;justify-content:space-between;align-items:center;gap:14px;padding:16px 48px;background:rgba(8,8,16,.92);backdrop-filter:blur(16px);border-bottom:1px solid rgba(125,60,255,.22)}
+.logo{font-size:1.45rem;font-weight:800;letter-spacing:2px;color:#c4a8ff}.logo span{color:var(--accent)} .back{display:inline-flex;align-items:center;gap:6px;color:rgba(196,168,255,.62);font-size:.86rem}
+.hero{padding:112px 24px 44px;text-align:center;position:relative;overflow:hidden}.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 58% at 50% 60%, rgba(125,60,255,.16) 0%, transparent 70%);pointer-events:none}.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(125,60,255,.15);border:1px solid rgba(125,60,255,.38);color:#b388ff;font-size:.75rem;letter-spacing:1.5px;padding:6px 16px;border-radius:999px;text-transform:uppercase}.hero h1{font-size:clamp(2.5rem,6vw,4rem);line-height:1.02;letter-spacing:-.04em;margin-top:16px;color:#fff}.hero p{margin-top:12px;color:var(--muted)}
+.container{max-width:860px;margin:0 auto;padding:0 24px 84px}.section-title{text-align:center;margin:0 0 26px}.section-title h2{font-size:clamp(1.8rem,3vw,2.6rem);color:#ddd0ff;margin-bottom:10px}.section-title p{color:var(--muted)}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:26px}.btn{display:inline-flex;align-items:center;gap:8px;min-height:46px;padding:0 18px;border-radius:14px;border:1px solid transparent;font-weight:700;cursor:pointer;transition:.22s ease;position:relative;overflow:hidden}.btn:hover{transform:translateY(-2px)}.btn-primary{background:var(--accent);color:#fff;box-shadow:0 8px 24px rgba(125,60,255,.34)}.btn-secondary{background:transparent;color:#c4a8ff;border-color:rgba(125,60,255,.42)}.btn-secondary:hover{background:rgba(125,60,255,.12)}
+.grid{display:grid;grid-template-columns:1.2fr .8fr;gap:18px;align-items:stretch}.card{background:var(--panel);border:1px solid var(--line);border-radius:22px;padding:28px;box-shadow:var(--shadow);position:relative;overflow:hidden;transition:transform .24s,border-color .24s,box-shadow .24s}.card:hover{transform:translateY(-6px);border-color:rgba(125,60,255,.38);box-shadow:0 16px 34px rgba(125,60,255,.16)}.card::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 90% 10%, rgba(125,60,255,.08), transparent 45%);pointer-events:none}
+.product{display:flex;align-items:flex-start;gap:14px}.product-icon{width:52px;height:52px;border-radius:16px;display:grid;place-items:center;background:rgba(125,60,255,.16);border:1px solid rgba(125,60,255,.26);font-size:1.4rem;color:#fff;flex:0 0 auto}.product h3{margin-bottom:6px;font-size:1.15rem;color:#ddd0ff}.meta{display:flex;flex-wrap:wrap;gap:10px;margin:18px 0;border-top:1px solid rgba(125,60,255,.08);border-bottom:1px solid rgba(125,60,255,.08);padding:14px 0}.meta-pill{display:inline-flex;align-items:center;gap:6px;font-size:.8rem;color:rgba(196,168,255,.5)}.chip{display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:999px;background:rgba(125,60,255,.12);border:1px solid rgba(125,60,255,.18);color:#c4a8ff;font-size:.78rem}.stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:16px}.stat{padding:14px 12px;border-radius:16px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);text-align:center}.stat .value{font-size:1.15rem;font-weight:900;color:#fff}.stat .label{font-size:.8rem;color:var(--muted);margin-top:4px}.downloads{display:grid;gap:14px}.mini{padding:20px;border-radius:18px;background:var(--panel2);border:1px solid rgba(125,60,255,.14)}.mini h4{font-size:1rem;color:#ddd0ff;margin-bottom:6px}.mini p{color:var(--muted);font-size:.88rem}.steps{display:grid;gap:12px;margin-top:16px}.step{display:flex;gap:12px;align-items:flex-start;padding:14px 16px;border-radius:14px;background:rgba(125,60,255,.06);border:1px solid rgba(125,60,255,.08)}.step-num{width:28px;height:28px;border-radius:50%;background:rgba(125,60,255,.22);border:1px solid rgba(125,60,255,.34);display:grid;place-items:center;color:#b388ff;font-size:.76rem;font-weight:800;flex:0 0 auto}.step-text{font-size:.9rem;color:rgba(225,215,255,.86)}.step-text strong{color:#fff}
+.panel-links{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}.panel-links .btn{padding:0 16px;min-height:42px;font-size:.9rem}
+.toast{position:fixed;bottom:92px;left:50%;transform:translateX(-50%) translateY(18px);background:rgba(28,22,50,.92);border:1px solid rgba(125,60,255,.32);color:#ddd0ff;padding:12px 18px;border-radius:12px;font-size:.88rem;opacity:0;pointer-events:none;transition:opacity .28s,transform .28s;display:flex;align-items:center;gap:8px;z-index:9998;backdrop-filter:blur(10px)}.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.68);backdrop-filter:blur(8px);z-index:9990;align-items:center;justify-content:center;padding:20px}.modal.open{display:flex}.modal-box{max-width:520px;width:100%;background:#15112a;border:1px solid rgba(125,60,255,.4);border-radius:22px;padding:28px;box-shadow:var(--shadow);position:relative}.modal-close{position:absolute;top:14px;right:14px;background:rgba(125,60,255,.12);border:1px solid rgba(125,60,255,.2);color:#b388ff;border-radius:10px;padding:6px 10px;cursor:pointer}.modal h3{font-size:1.2rem;color:#ddd0ff;margin-bottom:8px}.modal p{color:var(--muted);margin-bottom:14px}.modal .steps{margin-top:0}
+.discord-btn{position:fixed;right:20px;bottom:20px;background:#5865F2;color:#fff;text-decoration:none;padding:12px 20px;border-radius:999px;font-weight:700;font-size:.88rem;display:flex;align-items:center;gap:8px;box-shadow:0 6px 20px rgba(88,101,242,.4);z-index:9999;transition:.3s}.discord-btn:hover{transform:translateY(-3px);box-shadow:0 10px 28px rgba(88,101,242,.5)}
+.footer{text-align:center;padding:40px 24px;border-top:1px solid rgba(125,60,255,.12);color:rgba(255,255,255,.28);font-size:.82rem;line-height:2.2}
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease}.reveal.visible{opacity:1;transform:none}
+@media(max-width:900px){.grid{grid-template-columns:1fr}.stat-row{grid-template-columns:1fr}}
+@media(max-width:640px){.topbar{padding:14px 18px;flex-direction:column;align-items:flex-start}.hero{padding-top:96px}.container{padding-inline:16px}.card{padding:22px}.hero-actions{justify-content:flex-start}.discord-btn{right:14px;bottom:14px;padding:11px 16px;font-size:.86rem}}
+@media(prefers-reduced-motion: reduce){html{scroll-behavior:auto}*,*::before,*::after{transition:none !important;animation:none !important;scroll-behavior:auto !important}.reveal{opacity:1;transform:none}}
 </style>
 </head>
 <body>
+<div class="progress" id="progress"></div>
+<div class="topbar">
+  <a href="index.html" class="back"><i class="ti ti-arrow-left"></i> 홈으로</a>
+  <a href="index.html" class="logo">AX<span>LIB</span></a>
+  <button class="btn btn-secondary" id="guideBtn" type="button"><i class="ti ti-info-circle"></i> 안내 열기</button>
+</div>
 
-<!-- 헤더 -->
-<header>
-  <a href="index.html" class="header-back">
-    <i class="ti ti-arrow-left" aria-hidden="true"></i> 홈으로
-  </a>
-  <a href="index.html" class="logo-text">AX<span>LIB</span></a>
-  <div style="width:70px;"></div>
-</header>
-
-<!-- 히어로 -->
-<div class="hero">
+<header class="hero">
   <div class="hero-badge">다운로드 센터</div>
   <h1>AXLIB 다운로드</h1>
-  <p>최신 버전의 전산볼트 앱을 다운로드하세요</p>
-</div>
+  <p>전산볼트 앱을 내려받고, 설치와 사용 흐름까지 한 번에 확인하세요.</p>
+  <div class="hero-actions">
+    <a href="files/pro_nomal.apk" class="btn btn-primary ripple" id="downloadBtn" download><i class="ti ti-download"></i> APK 다운로드</a>
+    <button class="btn btn-secondary ripple" id="openModalBtn" type="button"><i class="ti ti-shield-check"></i> 설치 방법</button>
+  </div>
+</header>
 
 <div class="container">
-
-  <!-- 메인 다운로드 카드 -->
-  <div class="download-card featured">
-    <div class="card-header">
-      <div class="card-icon">
-        <i class="ti ti-bolt" aria-hidden="true" style="color:#b388ff"></i>
-      </div>
-      <div class="card-title-group">
-        <h2>전산볼트 앱</h2>
-        <span class="version-badge">
-          <i class="ti ti-tag" aria-hidden="true"></i> v1.0.0
-        </span>
-      </div>
-    </div>
-
-    <p class="card-desc">
-      현장에서 바로 쓰는 볼트 계산 & 관리 솔루션.<br>
-      볼트 계산, 재고 관리, 작업 기록을 한 앱에서 처리하세요.
-    </p>
-
-    <div class="meta-row">
-      <div class="meta-item">
-        <i class="ti ti-device-mobile" aria-hidden="true"></i> Android
-      </div>
-      <div class="meta-item">
-        <i class="ti ti-calendar" aria-hidden="true"></i> 2026-06-22
-      </div>
-      <div class="meta-item">
-        <i class="ti ti-file" aria-hidden="true"></i> APK
-      </div>
-    </div>
-
-    <div class="btn-row">
-      <a href="files/pro_nomal.apk" class="btn-primary" download>
-        <i class="ti ti-download" aria-hidden="true"></i> Android APK 다운로드
-      </a>
-      <button class="btn-secondary" onclick="openModal()">
-        <i class="ti ti-info-circle" aria-hidden="true"></i> 설치 방법
-      </button>
-    </div>
+  <div class="section-title reveal" data-reveal>
+    <h2>전산볼트 앱 v1.0.0</h2>
+    <p>핵심 정보를 빠르게 보고 바로 내려받을 수 있도록 정리했습니다.</p>
   </div>
 
-  <!-- 설명서 카드 -->
-  <div class="card">
-    <div class="card-header-sm">
-      <div class="card-icon-sm">
-        <i class="ti ti-book" aria-hidden="true" style="color:#b388ff"></i>
+  <div class="grid">
+    <section class="card reveal" data-reveal>
+      <div class="product">
+        <div class="product-icon"><i class="ti ti-bolt" aria-hidden="true" style="color:#b388ff"></i></div>
+        <div class="product-copy">
+          <h3>전산볼트 앱</h3>
+          <p style="color:var(--muted)">현장에서 바로 쓰는 볼트 계산 & 관리 솔루션입니다.</p>
+        </div>
       </div>
-      <h3>사용 설명서</h3>
-    </div>
-    <p>설치 및 사용 방법을 단계별로 확인하세요.</p>
-    <div style="margin-top:16px;">
-      <a href="android_manual.html" class="btn-secondary" style="font-size:0.85rem;padding:10px 20px;">
-        <i class="ti ti-arrow-right" aria-hidden="true"></i> 설명서 열기
-      </a>
-    </div>
+
+      <div class="meta">
+        <span class="meta-pill"><i class="ti ti-device-mobile"></i> Android</span>
+        <span class="meta-pill"><i class="ti ti-file"></i> APK</span>
+        <span class="meta-pill"><i class="ti ti-calendar"></i> 2026-06-22</span>
+      </div>
+
+      <div class="stat-row">
+        <div class="stat"><div class="value" data-count="1250" data-suffix="+">0+</div><div class="label">누적 방문</div></div>
+        <div class="stat"><div class="value" data-count="10" data-suffix="+">0+</div><div class="label">프로젝트</div></div>
+        <div class="stat"><div class="value" data-count="1" data-suffix="">0</div><div class="label">앱 버전</div></div>
+      </div>
+
+      <div class="panel-links">
+        <a href="#steps" class="btn btn-secondary ripple"><i class="ti ti-arrow-down-right"></i> 설치 단계</a>
+        <button class="btn btn-primary ripple" id="copyLinkBtn" type="button"><i class="ti ti-link"></i> 다운로드 링크 복사</button>
+      </div>
+    </section>
+
+    <aside class="downloads reveal" data-reveal>
+      <div class="mini">
+        <h4>설명서 바로가기</h4>
+        <p>설치 전에 기기별 안내를 보면 더 빠르게 시작할 수 있습니다.</p>
+        <div class="panel-links"><a href="android_manual.html" class="btn btn-secondary ripple"><i class="ti ti-book"></i> 사용 설명서</a></div>
+      </div>
+      <div class="mini">
+        <h4>주의 사항</h4>
+        <p>외부 APK 설치 시 보안 경고가 표시될 수 있습니다. 공식 파일인지 확인한 뒤 설치해 주세요.</p>
+      </div>
+      <div class="mini">
+        <h4>빠른 메모</h4>
+        <p id="randomTip">버튼을 누르면 짧은 팁이 바뀝니다.</p>
+      </div>
+    </aside>
   </div>
 
-  <!-- 안내 카드 -->
-  <div class="card">
-    <div class="card-header-sm">
-      <div class="card-icon-sm">
-        <i class="ti ti-shield-check" aria-hidden="true" style="color:#b388ff"></i>
-      </div>
-      <h3>다운로드 안내</h3>
+  <section class="card reveal" data-reveal id="steps" style="margin-top:18px">
+    <div class="section-title" style="text-align:left;margin-bottom:0">
+      <h2 style="text-align:left;font-size:1.4rem">설치 단계</h2>
+      <p style="text-align:left;margin-bottom:16px">다운로드부터 실행까지 순서대로 따라가면 됩니다.</p>
     </div>
-    <p>APK 설치 시 "알 수 없는 앱 설치 허용" 설정이 필요할 수 있습니다.</p>
     <div class="steps">
-      <div class="step">
-        <div class="step-num">1</div>
-        <div class="step-text"><strong>APK 다운로드</strong> — 위 버튼을 눌러 APK 파일을 저장합니다.</div>
-      </div>
-      <div class="step">
-        <div class="step-num">2</div>
-        <div class="step-text"><strong>설치 허용</strong> — 설정 → 보안 → 알 수 없는 앱 설치를 허용합니다.</div>
-      </div>
-      <div class="step">
-        <div class="step-num">3</div>
-        <div class="step-text"><strong>파일 열기</strong> — 다운로드한 APK 파일을 열어 설치를 진행합니다.</div>
-      </div>
-      <div class="step">
-        <div class="step-num">4</div>
-        <div class="step-text"><strong>앱 실행</strong> — 설치 완료 후 전산볼트 앱을 실행하세요.</div>
-      </div>
+      <div class="step"><div class="step-num">1</div><div class="step-text"><strong>APK 다운로드</strong> - 위 버튼으로 파일을 저장합니다.</div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-text"><strong>설치 허용</strong> - 설정에서 알 수 없는 앱 설치를 허용합니다.</div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-text"><strong>파일 열기</strong> - 다운로드한 APK를 열어 설치합니다.</div></div>
+      <div class="step"><div class="step-num">4</div><div class="step-text"><strong>앱 실행</strong> - 설치 후 전산볼트 앱을 실행하세요.</div></div>
     </div>
-  </div>
-
+  </section>
 </div>
 
-<!-- 설치 방법 모달 -->
-<div class="modal-overlay" id="modalOverlay" onclick="closeModalOutside(event)">
-  <div class="modal">
-    <button class="modal-close" onclick="closeModal()">
-      <i class="ti ti-x" aria-hidden="true"></i>
-    </button>
-    <h3><i class="ti ti-device-mobile" aria-hidden="true" style="color:#b388ff;margin-right:8px;"></i>설치 방법</h3>
-    <p class="modal-desc">아래 순서대로 따라하시면 쉽게 설치할 수 있습니다.</p>
+<div class="modal" id="installModal" aria-hidden="true">
+  <div class="modal-box">
+    <button class="modal-close" id="closeModalBtn" type="button"><i class="ti ti-x"></i></button>
+    <h3>설치 방법</h3>
+    <p>안전하게 설치하는 순서만 빠르게 확인하세요.</p>
     <div class="steps">
-      <div class="step">
-        <div class="step-num">1</div>
-        <div class="step-text"><strong>APK 다운로드</strong> — 다운로드 버튼을 눌러 파일을 저장합니다.</div>
-      </div>
-      <div class="step">
-        <div class="step-num">2</div>
-        <div class="step-text"><strong>설치 허용</strong> — 설정 → 보안 → 알 수 없는 앱 설치를 허용합니다.</div>
-      </div>
-      <div class="step">
-        <div class="step-num">3</div>
-        <div class="step-text"><strong>파일 열기</strong> — APK 파일을 열어 설치를 진행합니다.</div>
-      </div>
-      <div class="step">
-        <div class="step-num">4</div>
-        <div class="step-text"><strong>앱 실행</strong> — 설치 완료 후 앱을 실행하세요.</div>
-      </div>
+      <div class="step"><div class="step-num">1</div><div class="step-text"><strong>다운로드</strong> - APK 파일을 저장합니다.</div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-text"><strong>권한 확인</strong> - 설치 차단이 있으면 허용합니다.</div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-text"><strong>실행</strong> - 설치가 끝나면 앱을 열어 바로 사용하세요.</div></div>
     </div>
   </div>
 </div>
 
-<!-- 디스코드 버튼 -->
-<a href="https://discord.gg/DxY47Q3EHR" target="_blank" class="discord-btn">
-  <i class="ti ti-brand-discord" aria-hidden="true"></i> 고객 문의
-</a>
-
-<footer>
+<div class="toast" id="toast"><i class="ti ti-check"></i> 링크를 복사했습니다</div>
+<a href="https://discord.gg/DxY47Q3EHR" target="_blank" rel="noreferrer" class="discord-btn"><i class="ti ti-brand-discord"></i> 고객 문의</a>
+<footer class="footer">
   <p>© 2026 AXLIB. All Rights Reserved.</p>
   <p>전산볼트 앱 · 라이브러리 플랫폼</p>
 </footer>
-
 <script>
-function openModal(){
-  document.getElementById('modalOverlay').classList.add('open');
-}
-function closeModal(){
-  document.getElementById('modalOverlay').classList.remove('open');
-}
-function closeModalOutside(e){
-  if(e.target === document.getElementById('modalOverlay')) closeModal();
-}
-document.addEventListener('keydown', e => { if(e.key === 'Escape') closeModal(); });
+const progress = document.getElementById('progress');
+const modal = document.getElementById('installModal');
+const toast = document.getElementById('toast');
+const randomTip = document.getElementById('randomTip');
+const tips = ['설치 전에 설명서를 한 번 보면 시행착오를 줄일 수 있습니다.','공식 파일인지 먼저 확인하면 불필요한 경고를 줄일 수 있습니다.','다운로드 후 파일명을 한 번 확인해 두면 찾기 쉽습니다.'];
+let tipIndex = 0;
+function showToast(text){toast.innerHTML = '<i class="ti ti-check"></i> ' + text; toast.classList.add('show'); setTimeout(()=>toast.classList.remove('show'),2200)}
+function updateProgress(){const max=document.documentElement.scrollHeight-innerHeight; progress.style.width = max>0 ? `${scrollY/max*100}%` : '0%';}
+function animateCounter(el){const target=Number(el.dataset.count||0); const suffix=el.dataset.suffix||''; const start=performance.now(); const duration=1300; const step=(now)=>{const t=Math.min((now-start)/duration,1); const eased=1-Math.pow(1-t,3); el.textContent = `${Math.floor(target*eased).toLocaleString('ko-KR')}${suffix}`; if(t<1) requestAnimationFrame(step); else el.textContent = `${target.toLocaleString('ko-KR')}${suffix}`}; requestAnimationFrame(step)}
+const io = new IntersectionObserver((entries)=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible'); if(entry.target.hasAttribute('data-count')) animateCounter(entry.target); io.unobserve(entry.target);}})},{threshold:.14,rootMargin:'0px 0px -8% 0px'}); document.querySelectorAll('[data-reveal]').forEach(el=>io.observe(el));
+document.querySelectorAll('.ripple').forEach(btn=>btn.addEventListener('click', (e)=>{const circle=document.createElement('span'); const r=btn.getBoundingClientRect(); const size=Math.max(r.width,r.height); circle.style.cssText=`position:absolute;width:${size}px;height:${size}px;left:${e.clientX-r.left-size/2}px;top:${e.clientY-r.top-size/2}px;border-radius:50%;background:rgba(255,255,255,.18);transform:scale(0);transition:transform .55s ease,opacity .55s ease;pointer-events:none;opacity:1`; btn.style.position='relative'; btn.style.overflow='hidden'; btn.appendChild(circle); requestAnimationFrame(()=>circle.style.transform='scale(1)'); setTimeout(()=>circle.style.opacity='0',250); setTimeout(()=>circle.remove(),650);}));
+document.getElementById('openModalBtn').addEventListener('click', ()=>{modal.classList.add('open'); modal.setAttribute('aria-hidden','false')}); document.getElementById('guideBtn').addEventListener('click', ()=>{document.getElementById('steps').scrollIntoView({behavior:'smooth', block:'start'})}); document.getElementById('closeModalBtn').addEventListener('click', ()=>{modal.classList.remove('open'); modal.setAttribute('aria-hidden','true')}); modal.addEventListener('click', e=>{if(e.target===modal){modal.classList.remove('open'); modal.setAttribute('aria-hidden','true')}}); document.addEventListener('keydown', e=>{if(e.key==='Escape'){modal.classList.remove('open'); modal.setAttribute('aria-hidden','true')}});
+document.getElementById('copyLinkBtn').addEventListener('click', async ()=>{try{await navigator.clipboard.writeText(location.href); showToast('다운로드 페이지 링크를 복사했습니다');}catch{showToast('복사에 실패했습니다');}});
+document.getElementById('downloadBtn').addEventListener('click', ()=>showToast('다운로드를 시작합니다'));
+setInterval(()=>{tipIndex=(tipIndex+1)%tips.length; randomTip.style.opacity='0.2'; setTimeout(()=>{randomTip.textContent=tips[tipIndex]; randomTip.style.opacity='1'},180);},3200);
+window.addEventListener('scroll', updateProgress); window.addEventListener('resize', updateProgress); updateProgress();
 </script>
 </body>
 </html>
