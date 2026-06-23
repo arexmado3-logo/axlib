@@ -1,517 +1,79 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang='ko'>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset='UTF-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0'>
+<meta name='theme-color' content='#080810'>
 <title>AXLIB</title>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+<link rel='preconnect' href='https://fonts.googleapis.com'>
+<link rel='preconnect' href='https://fonts.gstatic.com' crossorigin>
+<link href='https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Noto+Sans+KR:wght@400;500;700;900&display=swap' rel='stylesheet'>
+<link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css'>
 <style>
 :root{
-  --bg:#080810;
-  --bg2:#0e1020;
-  --panel:rgba(28,22,50,0.7);
-  --panel-soft:rgba(28,22,50,0.5);
-  --line:rgba(125,60,255,0.18);
-  --line-strong:rgba(125,60,255,0.34);
-  --text:#e8e4ff;
-  --muted:rgba(196,168,255,0.62);
-  --muted-2:rgba(196,168,255,0.42);
-  --accent:#7d3cff;
-  --accent-2:#b388ff;
-  --accent-3:#5865f2;
-  --shadow:0 18px 48px rgba(125,60,255,0.12);
+  --bg:#080810;--bg2:#0e1020;--panel:rgba(28,22,50,.72);--panel-soft:rgba(28,22,50,.5);--line:rgba(125,60,255,.18);--line-strong:rgba(125,60,255,.34);--text:#e8e4ff;--muted:rgba(196,168,255,.62);--muted-2:rgba(196,168,255,.42);--accent:#7d3cff;--accent-2:#b388ff;--accent-3:#5865f2;--shadow:0 18px 48px rgba(125,60,255,.12);--max:1180px;
 }
-*{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{
-  background:
-    radial-gradient(circle at 20% 20%, rgba(125,60,255,0.12), transparent 28%),
-    radial-gradient(circle at 82% 12%, rgba(88,101,242,0.08), transparent 22%),
-    linear-gradient(180deg, #080810 0%, #0b0d18 100%);
-  color:var(--text);
-  font-family:'Segoe UI',Arial,sans-serif;
-  overflow-x:hidden;
-  line-height:1.7;
-}
-body::before{
-  content:'';
-  position:fixed;
-  inset:auto;
-  width:34rem;
-  height:34rem;
-  left:-10rem;
-  top:-10rem;
-  border-radius:50%;
-  filter:blur(130px);
-  pointer-events:none;
-  opacity:.3;
-  background:rgba(125,60,255,0.2);
-  z-index:-2;
-}
-body::after{
-  content:'';
-  position:fixed;
-  inset:auto;
-  width:28rem;
-  height:28rem;
-  right:-10rem;
-  bottom:-12rem;
-  border-radius:50%;
-  filter:blur(130px);
-  pointer-events:none;
-  opacity:.22;
-  background:rgba(88,101,242,0.18);
-  z-index:-2;
-}
-a{color:inherit}
-::selection{background:rgba(125,60,255,0.35);color:#fff}
-
-.progress-bar{
-  position:fixed;
-  top:0;
-  left:0;
-  width:0;
-  height:3px;
-  background:linear-gradient(90deg,var(--accent),var(--accent-2),var(--accent-3));
-  z-index:3000;
-  box-shadow:0 0 18px rgba(125,60,255,0.45);
-}
-.header-glow{
-  position:fixed;
-  inset:0;
-  background:radial-gradient(circle at 50% 0%, rgba(125,60,255,0.08), transparent 36%);
-  pointer-events:none;
-  z-index:-1;
-}
-
-header{
-  position:sticky;
-  top:0;
-  left:0;
-  width:100%;
-  padding:16px 48px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:18px;
-  background:rgba(8,8,16,0.92);
-  backdrop-filter:blur(16px);
-  border-bottom:1px solid rgba(125,60,255,0.22);
-  z-index:1000;
-}
-.logo{
-  font-size:1.6rem;
-  font-weight:700;
-  letter-spacing:2px;
-  color:#c4a8ff;
-}
-.logo span{color:#7d3cff}
-nav{
-  display:flex;
-  gap:10px;
-  flex-wrap:wrap;
-  justify-content:flex-end;
-}
-nav a{
-  color:rgba(232,228,255,0.72);
-  text-decoration:none;
-  padding:10px 14px;
-  border-radius:999px;
-  font-size:0.9rem;
-  transition:transform .22s, background .22s, color .22s, border-color .22s;
-  border:1px solid transparent;
-}
-nav a:hover,
-nav a.active{
-  color:#fff;
-  background:rgba(125,60,255,0.12);
-  border-color:rgba(125,60,255,0.28);
-  transform:translateY(-1px);
-}
-nav a.primary{
-  background:#7d3cff;
-  color:#fff;
-  border-color:#7d3cff;
-}
-nav a.primary:hover{background:#9257ff;border-color:#9257ff}
-
-.hero{
-  min-height:100vh;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-  padding:120px 20px 80px;
-  position:relative;
-  overflow:hidden;
-}
-.hero-bg{
-  position:absolute;
-  inset:0;
-  pointer-events:none;
-  background:
-    radial-gradient(ellipse 72% 56% at 50% 42%, rgba(125,60,255,0.18) 0%, transparent 70%),
-    radial-gradient(ellipse 28% 28% at 18% 80%, rgba(88,101,242,0.12) 0%, transparent 62%),
-    radial-gradient(ellipse 22% 22% at 80% 20%, rgba(179,136,255,0.12) 0%, transparent 62%);
-}
-.hero-card{
-  position:relative;
-  z-index:1;
-  max-width:920px;
-}
-.hero-badge{
-  display:inline-block;
-  background:rgba(125,60,255,0.15);
-  border:1px solid rgba(125,60,255,0.36);
-  color:#b388ff;
-  font-size:0.78rem;
-  letter-spacing:1.5px;
-  padding:6px 18px;
-  border-radius:999px;
-  margin-bottom:28px;
-  text-transform:uppercase;
-}
-.hero h1{
-  font-size:clamp(3.2rem, 10vw, 5.8rem);
-  font-weight:900;
-  letter-spacing:-2px;
-  line-height:1.02;
-  background:linear-gradient(135deg, #f0ecff 0%, #c4a8ff 36%, #7d3cff 72%, #5865f2 100%);
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
-  background-clip:text;
-}
-.hero-sub{
-  margin-top:18px;
-  font-size:1.12rem;
-  color:rgba(196,168,255,0.78);
-}
-.hero-desc{
-  margin-top:8px;
-  font-size:0.95rem;
-  color:rgba(255,255,255,0.42);
-}
-.hero-actions{
-  display:flex;
-  gap:14px;
-  margin-top:34px;
-  flex-wrap:wrap;
-  justify-content:center;
-}
-.btn-primary,
-.btn-secondary{
-  display:inline-flex;
-  align-items:center;
-  gap:8px;
-  padding:13px 28px;
-  border-radius:12px;
-  font-size:0.95rem;
-  font-weight:600;
-  cursor:pointer;
-  text-decoration:none;
-  transition:transform .24s, background .24s, box-shadow .24s, border-color .24s;
-}
-.btn-primary{
-  background:#7d3cff;
-  color:#fff;
-  border:1px solid #7d3cff;
-}
-.btn-primary:hover{transform:translateY(-2px);background:#9257ff;box-shadow:0 8px 24px rgba(125,60,255,0.35)}
-.btn-secondary{
-  background:transparent;
-  color:#c4a8ff;
-  border:1px solid rgba(125,60,255,0.42);
-}
-.btn-secondary:hover{transform:translateY(-2px);background:rgba(125,60,255,0.12);border-color:rgba(125,60,255,0.6)}
-.hero-meta{
-  display:flex;
-  gap:12px;
-  margin-top:24px;
-  justify-content:center;
-  flex-wrap:wrap;
-}
-.meta-pill{
-  display:inline-flex;
-  align-items:center;
-  gap:8px;
-  padding:10px 14px;
-  border-radius:999px;
-  background:rgba(28,22,50,0.55);
-  border:1px solid rgba(125,60,255,0.16);
-  color:rgba(232,228,255,0.78);
-  font-size:0.9rem;
-  box-shadow:var(--shadow);
-}
+*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+body{background:radial-gradient(circle at 20% 20%, rgba(125,60,255,.12), transparent 28%),radial-gradient(circle at 82% 12%, rgba(88,101,242,.08), transparent 22%),linear-gradient(180deg,#080810 0%,#0b0d18 100%);color:var(--text);font-family:'Segoe UI',Arial,sans-serif;overflow-x:hidden;line-height:1.7}
+body::before,body::after{content:'';position:fixed;inset:auto;width:34rem;height:34rem;border-radius:50%;filter:blur(130px);pointer-events:none;opacity:.3;z-index:-2}
+body::before{left:-10rem;top:-10rem;background:rgba(125,60,255,.2)}body::after{right:-10rem;bottom:-12rem;background:rgba(88,101,242,.18)}
+a{color:inherit}::selection{background:rgba(125,60,255,.35);color:#fff}
+.progress-bar{position:fixed;top:0;left:0;width:0;height:3px;background:linear-gradient(90deg,var(--accent),var(--accent-2),var(--accent-3));z-index:3000;box-shadow:0 0 18px rgba(125,60,255,.45)}
+.header-glow{position:fixed;inset:0;background:radial-gradient(circle at 50% 0%, rgba(125,60,255,.08), transparent 36%);pointer-events:none;z-index:-1}
+header{position:sticky;top:0;left:0;width:100%;padding:16px 48px;display:flex;justify-content:space-between;align-items:center;gap:18px;background:rgba(8,8,16,.92);backdrop-filter:blur(16px);border-bottom:1px solid rgba(125,60,255,.22);z-index:1000}
+.logo{font-size:1.6rem;font-weight:700;letter-spacing:2px;color:#c4a8ff}.logo span{color:#7d3cff}
+nav{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end}
+nav a{color:rgba(232,228,255,.72);text-decoration:none;padding:10px 14px;border-radius:999px;font-size:.9rem;transition:transform .22s,background .22s,color .22s,border-color .22s;border:1px solid transparent}
+nav a:hover,nav a.active{color:#fff;background:rgba(125,60,255,.12);border-color:rgba(125,60,255,.28);transform:translateY(-1px)}
+nav a.primary{background:#7d3cff;color:#fff;border-color:#7d3cff}nav a.primary:hover{background:#9257ff;border-color:#9257ff}
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:120px 20px 80px;position:relative;overflow:hidden}
+.hero-bg{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 72% 56% at 50% 42%, rgba(125,60,255,.18) 0%, transparent 70%),radial-gradient(ellipse 28% 28% at 18% 80%, rgba(88,101,242,.12) 0%, transparent 62%),radial-gradient(ellipse 22% 22% at 80% 20%, rgba(179,136,255,.12) 0%, transparent 62%)}
+.hero-card{position:relative;z-index:1;max-width:920px}
+.hero-badge{display:inline-block;background:rgba(125,60,255,.15);border:1px solid rgba(125,60,255,.36);color:#b388ff;font-size:.78rem;letter-spacing:1.5px;padding:6px 18px;border-radius:999px;margin-bottom:28px;text-transform:uppercase}
+.hero h1{font-size:clamp(3.2rem,10vw,5.8rem);font-weight:900;letter-spacing:-2px;line-height:1.02;background:linear-gradient(135deg,#f0ecff 0%,#c4a8ff 36%,#7d3cff 72%,#5865f2 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-sub{margin-top:18px;font-size:1.12rem;color:rgba(196,168,255,.78)}.hero-desc{margin-top:8px;font-size:.95rem;color:rgba(255,255,255,.42)}
+.hero-actions{display:flex;gap:14px;margin-top:34px;flex-wrap:wrap;justify-content:center}
+.btn-primary,.btn-secondary{display:inline-flex;align-items:center;gap:8px;padding:13px 28px;border-radius:12px;font-size:.95rem;font-weight:600;cursor:pointer;text-decoration:none;transition:transform .24s,background .24s,box-shadow .24s,border-color .24s;position:relative;overflow:hidden}
+.btn-primary{background:#7d3cff;color:#fff;border:1px solid #7d3cff}.btn-primary:hover{transform:translateY(-2px);background:#9257ff;box-shadow:0 8px 24px rgba(125,60,255,.35)}
+.btn-secondary{background:transparent;color:#c4a8ff;border:1px solid rgba(125,60,255,.42)}.btn-secondary:hover{transform:translateY(-2px);background:rgba(125,60,255,.12);border-color:rgba(125,60,255,.6)}
+.hero-meta{display:flex;gap:12px;margin-top:24px;justify-content:center;flex-wrap:wrap}
+.meta-pill{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:999px;background:rgba(28,22,50,.55);border:1px solid rgba(125,60,255,.16);color:rgba(232,228,255,.78);font-size:.9rem;box-shadow:var(--shadow)}
 .meta-pill i{color:#b388ff}
-
-.section{
-  max-width:1100px;
-  margin:0 auto;
-  padding:94px 24px;
-  position:relative;
-}
-.section-label{
-  text-align:center;
-  font-size:0.75rem;
-  letter-spacing:2px;
-  text-transform:uppercase;
-  color:#7d3cff;
-  margin-bottom:10px;
-  font-weight:700;
-}
-.section h2{
-  text-align:center;
-  font-size:clamp(2rem, 4vw, 2.8rem);
-  color:#ddd0ff;
-  margin-bottom:12px;
-  letter-spacing:-0.5px;
-}
-.section-desc{
-  text-align:center;
-  color:rgba(196,168,255,0.55);
-  font-size:1rem;
-  margin-bottom:42px;
-}
-.cards{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-  gap:20px;
-}
-.card,
-.stat-box,
-.info-item{
-  background:rgba(28,22,50,0.7);
-  border:1px solid rgba(125,60,255,0.18);
-  border-radius:18px;
-  padding:28px;
-  position:relative;
-  overflow:hidden;
-  box-shadow:var(--shadow);
-  transition:transform .28s, border-color .28s, box-shadow .28s;
-}
-.card::before,
-.stat-box::before,
-.info-item::before{
-  content:'';
-  position:absolute;
-  inset:0;
-  background:radial-gradient(circle at 85% 15%, rgba(125,60,255,0.08), transparent 52%);
-  pointer-events:none;
-}
-.card:hover,
-.stat-box:hover,
-.info-item:hover{
-  transform:translateY(-6px);
-  border-color:rgba(125,60,255,0.42);
-  box-shadow:0 16px 34px rgba(125,60,255,0.12);
-}
-.card-icon,
-.stat-icon,
-.info-item-icon{
-  width:46px;
-  height:46px;
-  border-radius:14px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  background:rgba(125,60,255,0.16);
-  border:1px solid rgba(125,60,255,0.26);
-  font-size:1.2rem;
-  color:#fff;
-  margin-bottom:18px;
-}
-.card h3,
-.info-item h4{
-  font-size:1.05rem;
-  font-weight:600;
-  color:#ddd0ff;
-  margin-bottom:10px;
-}
-.card p,
-.info-item p,
-.stat-label,
-.stat-sub{
-  color:rgba(196,168,255,0.55);
-}
-.card p{font-size:0.9rem;line-height:1.75}
-.card .btn-primary,
-.card .btn-secondary{
-  margin-top:20px;
-  padding:10px 20px;
-  font-size:0.85rem;
-}
-.stat-box{text-align:center;padding:34px 20px}
-.stat-icon{margin:0 auto 12px}
-.stat-label{font-size:0.85rem;letter-spacing:0.5px;margin-bottom:6px}
-.counter{
-  font-size:2.6rem;
-  font-weight:900;
-  color:#c4a8ff;
-  letter-spacing:-1px;
-}
-.stat-sub{font-size:0.84rem;margin-top:6px}
-.card-highlight{
-  background:linear-gradient(135deg, rgba(125,60,255,0.2), rgba(88,101,242,0.12));
-  border-color:rgba(125,60,255,0.34);
-}
-.info-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:16px;
-}
-.info-item{display:flex;align-items:flex-start;gap:14px}
-.info-item-icon{margin-bottom:0;flex-shrink:0}
-.info-item h4{font-size:0.8rem;text-transform:uppercase;letter-spacing:0.5px;color:rgba(196,168,255,0.46);margin-bottom:4px}
-.info-item p{font-size:0.95rem;color:#ddd0ff;font-weight:500}
-
-.support-grid{
-  display:grid;
-  grid-template-columns:1.1fr .9fr;
-  gap:18px;
-  align-items:stretch;
-}
-.support-copy{
-  background:linear-gradient(135deg, rgba(125,60,255,0.18), rgba(88,101,242,0.1));
-  border:1px solid rgba(125,60,255,0.28);
-  border-radius:18px;
-  padding:28px;
-  box-shadow:var(--shadow);
-}
-.support-copy h3{font-size:1.4rem;color:#f1ecff;margin-bottom:10px}
-.support-copy p{color:rgba(196,168,255,0.68)}
-.support-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:20px}
-.support-note{display:grid;gap:12px}
-.note-box{
-  background:rgba(28,22,50,0.55);
-  border:1px solid rgba(125,60,255,0.14);
-  border-radius:16px;
-  padding:18px;
-}
-.note-box strong{display:block;color:#ddd0ff;margin-bottom:6px}
-.note-box span{color:rgba(196,168,255,0.58)}
-
-.divider{
-  max-width:1100px;
-  margin:0 auto;
-  height:1px;
-  background:linear-gradient(90deg, transparent, rgba(125,60,255,0.18), transparent);
-}
-
-.discord-btn{
-  position:fixed;
-  right:20px;
-  bottom:20px;
-  background:#5865F2;
-  color:white;
-  text-decoration:none;
-  padding:13px 22px;
-  border-radius:999px;
-  font-weight:600;
-  font-size:0.9rem;
-  display:flex;
-  align-items:center;
-  gap:8px;
-  box-shadow:0 6px 20px rgba(88,101,242,0.4);
-  z-index:9999;
-  transition:.3s;
-}
-.discord-btn:hover{transform:translateY(-3px);box-shadow:0 10px 28px rgba(88,101,242,0.5)}
-
-.footer{
-  text-align:center;
-  padding:56px 24px;
-  border-top:1px solid rgba(125,60,255,0.12);
-}
-.footer-logo{
-  font-size:1.4rem;
-  font-weight:700;
-  letter-spacing:2px;
-  color:#c4a8ff;
-  margin-bottom:10px;
-}
-.footer p{font-size:0.85rem;color:rgba(255,255,255,0.32);line-height:2.1}
-.footer-links{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:18px}
-.footer-links a{
-  text-decoration:none;
-  color:rgba(196,168,255,0.72);
-  border:1px solid rgba(125,60,255,0.16);
-  background:rgba(28,22,50,0.45);
-  padding:8px 12px;
-  border-radius:999px;
-}
-.footer-links a:hover{color:#fff;border-color:rgba(125,60,255,0.36)}
-
-.reveal{opacity:0;transform:translateY(24px);transition:opacity .75s ease, transform .75s ease}
-.reveal.visible{opacity:1;transform:none}
-.move-left{transform:translateX(-18px)}
-.move-right{transform:translateX(18px)}
-#cursorGlow{
-  position:fixed;
-  width:240px;
-  height:240px;
-  border-radius:50%;
-  pointer-events:none;
-  background:radial-gradient(circle, rgba(125,60,255,0.22), transparent 65%);
-  filter:blur(30px);
-  transform:translate(-50%,-50%);
-  opacity:0;
-  z-index:-1;
-}
-.top-anchor{
-  position:fixed;
-  right:20px;
-  bottom:84px;
-  width:44px;
-  height:44px;
-  border-radius:50%;
-  border:1px solid rgba(125,60,255,0.24);
-  background:rgba(28,22,50,0.72);
-  color:#c4a8ff;
-  display:grid;
-  place-items:center;
-  cursor:pointer;
-  opacity:0;
-  transform:translateY(12px);
-  transition:opacity .22s, transform .22s, background .22s;
-  z-index:9998;
-}
-.top-anchor.show{opacity:1;transform:none}
-.top-anchor:hover{background:rgba(125,60,255,0.12)}
-
-@media(max-width:900px){
-  .support-grid{grid-template-columns:1fr}
-}
-@media(max-width:768px){
-  header{padding:14px 20px;flex-direction:column;align-items:flex-start}
-  nav{justify-content:flex-start}
-  nav a{padding:9px 12px;font-size:0.84rem}
-  .hero{padding:110px 16px 70px;min-height:auto}
-  .section{padding:76px 16px}
-  .cards,.info-grid{grid-template-columns:1fr}
-  .card{padding:24px}
-  .discord-btn{right:14px;bottom:14px;padding:12px 18px;font-size:0.88rem}
-}
-@media(prefers-reduced-motion: reduce){
-  html{scroll-behavior:auto}
-  *,*::before,*::after{animation:none !important;transition:none !important;scroll-behavior:auto !important}
-  .reveal{opacity:1;transform:none}
-}
+.section{max-width:var(--max);margin:0 auto;padding:88px 24px 0}
+.section-head{text-align:center;max-width:760px;margin:0 auto 28px}.section-kicker{display:inline-flex;align-items:center;gap:10px;color:#25d0ce;font-weight:800;font-size:.76rem;letter-spacing:.22em;text-transform:uppercase}.section-kicker::before,.section-kicker::after{content:'';width:28px;height:1px;background:linear-gradient(90deg,transparent,rgba(37,208,206,.8))}.section-kicker::after{background:linear-gradient(90deg,rgba(37,208,206,.8),transparent)}
+.section h2{margin:14px 0 10px;font-size:clamp(2rem,4vw,3.15rem);line-height:1.1;letter-spacing:-.05em}.section-desc{margin:0;color:var(--muted)}
+.cards,.stats,.info-grid{display:grid;gap:18px}.cards{grid-template-columns:repeat(3,minmax(0,1fr))}.stats{grid-template-columns:repeat(3,minmax(0,1fr))}.info-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.card,.stat,.info{border:1px solid rgba(255,255,255,.08);background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.028));border-radius:var(--shadow);box-shadow:0 18px 48px rgba(4,8,16,.24);transition:transform .25s ease,border-color .25s ease,box-shadow .25s ease;position:relative;overflow:hidden}.card::before,.stat::before,.info::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 100% 0%, rgba(124,92,255,.15), transparent 34%);pointer-events:none}.card:hover,.stat:hover,.info:hover{transform:translateY(-6px);border-color:rgba(124,92,255,.28);box-shadow:0 24px 60px rgba(4,8,16,.34)}
+.card{padding:26px;border-radius:28px}.card::after{content:'';position:absolute;left:0;top:0;right:0;height:4px;background:linear-gradient(90deg,var(--accent),var(--accent-2),var(--accent-3));opacity:.9}
+.icon{width:48px;height:48px;border-radius:16px;display:grid;place-items:center;font-size:1.2rem;color:#fff;background:linear-gradient(135deg,rgba(124,92,255,.2),rgba(37,208,206,.18));border:1px solid rgba(255,255,255,.09);margin-bottom:18px}
+.card h3,.info h4{margin:0 0 10px;font-size:1.14rem;letter-spacing:-.02em}.card p,.info p,.stat-label{margin:0;color:var(--muted)}.card p{font-size:.95rem}
+.actions-sm{margin-top:18px;display:flex;flex-wrap:wrap;gap:10px}.actions-sm .btn,.card .btn-primary,.card .btn-secondary{min-height:42px;padding:0 16px;font-size:.92rem}
+.stat{padding:28px 22px 26px;text-align:center}.stat .icon{margin:0 auto 14px}.stat-label{font-size:.86rem;letter-spacing:.06em;text-transform:uppercase}.counter{margin-top:8px;font-size:2.7rem;font-weight:900;letter-spacing:-.04em;color:#fff}.sub{margin-top:8px;color:var(--muted-2);font-size:.9rem}
+.info{padding:22px 20px;display:flex;align-items:flex-start;gap:14px}.info .icon{flex:0 0 auto}.info h4{margin:0 0 4px;font-size:.8rem;font-weight:800;color:var(--muted-2);letter-spacing:.08em;text-transform:uppercase}.info p{font-size:1rem;font-weight:700;color:var(--text)}
+.support{display:grid;grid-template-columns:1.12fr .88fr;gap:18px;align-items:stretch}.support-copy{padding:28px;border-radius:28px;background:linear-gradient(135deg,rgba(124,92,255,.18),rgba(37,208,206,.08));border:1px solid rgba(124,92,255,.22);box-shadow:var(--shadow)}.support-copy h3{margin:0 0 10px;font-size:1.5rem}.support-copy p{margin:0;color:var(--muted)}.support-note{display:grid;gap:12px}.note{padding:18px;border-radius:22px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08)}.note strong{display:block;margin-bottom:6px}.note span{color:var(--muted)}
+.divider{width:min(var(--max), calc(100% - 36px));height:1px;margin:0 auto;background:linear-gradient(90deg,transparent,rgba(255,255,255,.12),transparent)}
+.discord-btn{position:fixed;right:18px;bottom:18px;z-index:9999;display:flex;align-items:center;gap:10px;padding:14px 18px;border-radius:999px;text-decoration:none;color:#fff;font-weight:800;background:linear-gradient(135deg,#5865f2,#7c5cff 55%,#25d0ce);box-shadow:0 18px 34px rgba(88,101,242,.34);transition:.22s ease}.discord-btn:hover{transform:translateY(-3px)}
+.footer{padding:52px 0 56px;text-align:center}.footer-brand{display:inline-flex;align-items:center;gap:12px;margin-bottom:16px}.footer-logo{width:40px;height:40px;border-radius:14px;display:grid;place-items:center;background:linear-gradient(135deg,var(--accent),var(--accent-2));font-weight:900}.footer-text{color:var(--muted-2);margin:6px 0 0;font-size:.92rem}.footer-links{display:flex;justify-content:center;flex-wrap:wrap;gap:12px;margin-top:18px}.footer-links a{text-decoration:none;color:var(--muted);padding:8px 12px;border-radius:999px;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.03)}.footer-links a:hover{color:#fff;border-color:rgba(124,92,255,.26)}
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .75s ease,transform .75s ease}.reveal.visible{opacity:1;transform:none}.left{transform:translateX(-18px)}.right{transform:translateX(18px)}
+#cursorGlow{position:fixed;width:240px;height:240px;border-radius:50%;pointer-events:none;background:radial-gradient(circle,rgba(125,60,255,.22),transparent 65%);filter:blur(30px);transform:translate(-50%,-50%);opacity:0;z-index:-1}.top-anchor{position:fixed;right:20px;bottom:84px;width:44px;height:44px;border-radius:50%;border:1px solid rgba(125,60,255,.24);background:rgba(28,22,50,.72);color:#c4a8ff;display:grid;place-items:center;cursor:pointer;opacity:0;transform:translateY(12px);transition:opacity .22s,transform .22s,background .22s;z-index:9998}.top-anchor.show{opacity:1;transform:none}.top-anchor:hover{background:rgba(125,60,255,.12)}
+.app-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}.app-card{padding:24px;border-radius:28px;background:rgba(255,255,255,.04);border:1px solid rgba(125,60,255,.12);box-shadow:var(--shadow);position:relative;overflow:hidden;transition:transform .25s ease,border-color .25s ease}.app-card:hover{transform:translateY(-6px);border-color:rgba(125,60,255,.28)}.app-card::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 100% 0%, rgba(125,60,255,.1), transparent 34%);pointer-events:none}.app-tag{display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:999px;background:rgba(125,60,255,.12);border:1px solid rgba(125,60,255,.18);color:#c4a8ff;font-size:.75rem;font-weight:800}.app-title{margin:16px 0 8px;font-size:1.15rem;color:#fff;font-weight:900}.app-desc{color:var(--muted);font-size:.92rem;line-height:1.8}.app-meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}.app-meta span{font-size:.78rem;color:rgba(196,168,255,.64);padding:6px 10px;border-radius:999px;background:rgba(28,22,50,.5);border:1px solid rgba(255,255,255,.08)}
+.catalog-head{display:flex;justify-content:space-between;align-items:end;gap:16px;flex-wrap:wrap;margin-bottom:24px}.catalog-controls{display:flex;gap:10px;flex-wrap:wrap}.catalog-controls .btn{min-height:42px;padding:0 16px;font-size:.9rem}.hidden{display:none !important}
+@media(max-width:1024px){.cards,.stats,.info-grid,.app-grid,.support{grid-template-columns:repeat(2,minmax(0,1fr));grid-template-columns:1fr 1fr}.support{grid-template-columns:1fr}.cards{grid-template-columns:repeat(2,minmax(0,1fr))}.info-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.app-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:768px){header{padding:14px 20px;flex-direction:column;align-items:flex-start}.hero{padding:110px 16px 70px;min-height:auto}.section{padding:76px 16px}.cards,.stats,.info-grid,.app-grid{grid-template-columns:1fr}.card{padding:24px}.support-copy{padding:22px}.discord-btn{right:14px;bottom:14px;padding:12px 16px;font-size:.88rem}.top-anchor{right:14px;bottom:84px}}
+@media(prefers-reduced-motion: reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none !important;transition:none !important;scroll-behavior:auto !important}.reveal{opacity:1;transform:none}}
 </style>
 </head>
 <body>
 <div class="progress-bar" id="progressBar"></div>
 <div class="header-glow" aria-hidden="true"></div>
 <div id="cursorGlow" aria-hidden="true"></div>
-<button class="top-anchor" id="topAnchor" type="button" aria-label="맨 위로 이동">
-  <i class="ti ti-arrow-up" aria-hidden="true"></i>
-</button>
+<button class="top-anchor" id="topAnchor" type="button" aria-label="맨 위로 이동"><i class="ti ti-arrow-up" aria-hidden="true"></i></button>
 
 <header>
   <div class="logo">AX<span>LIB</span></div>
   <nav id="siteNav">
     <a href="#about">회사소개</a>
+    <a href="#catalog">앱</a>
     <a href="#services">서비스</a>
-    <a href="#bolt">전산볼트</a>
     <a href="#support">후원</a>
     <a href="update.html">업데이트</a>
     <a href="Customer_Inquiry.html">문의</a>
@@ -521,19 +83,19 @@ nav a.primary:hover{background:#9257ff;border-color:#9257ff}
 
 <section class="hero" id="hero">
   <div class="hero-bg" id="heroBg"></div>
-  <div class="hero-card reveal move-left" data-reveal>
+  <div class="hero-card reveal left" data-reveal>
     <div class="hero-badge">소프트웨어 · 앱 · 라이브러리 플랫폼</div>
     <h1>AXLIB</h1>
-    <p class="hero-sub">더 나은 도구를 만드는 개발 플랫폼</p>
-    <p class="hero-desc" id="heroDesc">전산볼트 · 웹 서비스 · 오픈소스 프로젝트를 한 번에 보여줍니다.</p>
+    <p class="hero-sub">여러 앱을 하나의 플랫폼으로 관리하는 개발 허브</p>
+    <p class="hero-desc" id="heroDesc">전산볼트뿐 아니라 다른 앱도 계속 추가할 수 있는 구조로 바꿨습니다.</p>
     <div class="hero-actions">
-      <a href="download.html" class="btn-primary ripple"><i class="ti ti-download" aria-hidden="true"></i> 시작하기</a>
-      <a href="#about" class="btn-secondary ripple"><i class="ti ti-info-circle" aria-hidden="true"></i> 더 알아보기</a>
+      <a href="#catalog" class="btn-primary ripple"><i class="ti ti-layout-grid"></i> 앱 보기</a>
+      <a href="download.html" class="btn-secondary ripple"><i class="ti ti-download"></i> 다운로드</a>
     </div>
     <div class="hero-meta">
-      <span class="meta-pill"><i class="ti ti-device-mobile" aria-hidden="true"></i> Android 중심</span>
-      <span class="meta-pill"><i class="ti ti-brand-discord" aria-hidden="true"></i> 커뮤니티 운영</span>
-      <span class="meta-pill"><i class="ti ti-package" aria-hidden="true"></i> 앱 · 웹 · 라이브러리</span>
+      <span class="meta-pill"><i class="ti ti-device-mobile"></i> Android 중심</span>
+      <span class="meta-pill"><i class="ti ti-apps"></i> 멀티 앱 구조</span>
+      <span class="meta-pill"><i class="ti ti-brand-discord"></i> 커뮤니티 운영</span>
     </div>
   </div>
 </section>
@@ -541,306 +103,114 @@ nav a.primary:hover{background:#9257ff;border-color:#9257ff}
 <div class="divider"></div>
 
 <section class="section" id="about">
-  <p class="section-label reveal" data-reveal>About</p>
-  <h2 class="reveal" data-reveal>회사 소개</h2>
-  <p class="section-desc reveal" data-reveal>사용하기 쉽고 강력한 소프트웨어를 지향합니다</p>
+  <div class="section-head reveal" data-reveal>
+    <div class="section-kicker">About</div>
+    <h2>회사 소개</h2>
+    <p class="section-desc">사용하기 쉽고 강력한 소프트웨어를 지향하는 AXLIB의 방향성입니다.</p>
+  </div>
   <div class="cards">
-    <div class="card reveal tilt" data-reveal data-tilt>
-      <div class="card-icon"><i class="ti ti-rocket" aria-hidden="true" style="color:#b388ff"></i></div>
-      <h3>혁신</h3>
-      <p>복잡한 문제를 단순하고 보기 좋게 풀어내는 실용적인 경험을 만듭니다.</p>
+    <article class="card reveal tilt" data-reveal data-tilt><div class="icon"><i class="ti ti-rocket" aria-hidden="true" style="color:#b388ff"></i></div><h3>혁신</h3><p>복잡한 문제를 단순하고 보기 좋게 풀어내는 실용적인 경험을 만듭니다.</p></article>
+    <article class="card reveal tilt" data-reveal data-tilt><div class="icon"><i class="ti ti-code" aria-hidden="true" style="color:#b388ff"></i></div><h3>개발</h3><p>웹사이트, 앱, 라이브러리를 함께 다루며 플랫폼 전반의 완성도를 높입니다.</p></article>
+    <article class="card reveal tilt" data-reveal data-tilt><div class="icon"><i class="ti ti-world" aria-hidden="true" style="color:#b388ff"></i></div><h3>오픈소스</h3><p>누구나 접근할 수 있는 기술과 정보로 함께 성장하는 개발 문화를 지향합니다.</p></article>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section class="section" id="catalog">
+  <div class="catalog-head reveal" data-reveal>
+    <div>
+      <div class="section-kicker">Apps</div>
+      <h2>앱 카탈로그</h2>
+      <p class="section-desc" style="text-align:left;max-width:680px">앱을 카드 형태로 계속 추가할 수 있게 바꿨습니다. 새 앱은 같은 카드 구조를 복사해 붙여 넣으면 됩니다.</p>
     </div>
-    <div class="card reveal tilt" data-reveal data-tilt>
-      <div class="card-icon"><i class="ti ti-code" aria-hidden="true" style="color:#b388ff"></i></div>
-      <h3>개발</h3>
-      <p>웹사이트, 앱, 라이브러리를 함께 다루며 플랫폼 전반의 완성도를 높입니다.</p>
+    <div class="catalog-controls">
+      <button class="btn-secondary ripple" id="filterAllBtn" type="button"><i class="ti ti-layout-grid"></i> 전체</button>
+      <button class="btn-secondary ripple" id="filterAndroidBtn" type="button"><i class="ti ti-device-mobile"></i> Android</button>
+      <button class="btn-secondary ripple" id="filterPlannedBtn" type="button"><i class="ti ti-hourglass"></i> 예정</button>
     </div>
-    <div class="card reveal tilt" data-reveal data-tilt>
-      <div class="card-icon"><i class="ti ti-world" aria-hidden="true" style="color:#b388ff"></i></div>
-      <h3>오픈소스</h3>
-      <p>누구나 접근할 수 있는 기술과 정보로 함께 성장하는 개발 문화를 지향합니다.</p>
-    </div>
+  </div>
+  <div class="app-grid" id="appGrid">
+    <article class="app-card reveal tilt" data-reveal data-tilt data-platform="android" data-state="released">
+      <span class="app-tag"><i class="ti ti-bolt"></i> 대표 앱</span>
+      <div class="app-title">전산볼트</div>
+      <div class="app-desc">현장에서 바로 쓰는 볼트 계산 & 관리 솔루션입니다. 계산, 재고, 작업 기록을 한 곳에서 처리합니다.</div>
+      <div class="app-meta"><span>Android</span><span>Released</span><span>v1.0.0</span></div>
+      <div class="actions-sm"><a href="download.html" class="btn-primary ripple"><i class="ti ti-download"></i> 다운로드</a><a href="android_manual.html" class="btn-secondary ripple"><i class="ti ti-book"></i> 설명서</a></div>
+    </article>
+    <article class="app-card reveal tilt" data-reveal data-tilt data-platform="android" data-state="planned">
+      <span class="app-tag"><i class="ti ti-sparkles"></i> 예정 앱</span>
+      <div class="app-title">새 앱 추가 슬롯</div>
+      <div class="app-desc">이 카드를 복사해서 새로운 앱 이름, 설명, 다운로드 링크만 바꾸면 바로 확장할 수 있습니다.</div>
+      <div class="app-meta"><span>Android</span><span>Planned</span><span>Template</span></div>
+      <div class="actions-sm"><a href="#download-template" class="btn-secondary ripple"><i class="ti ti-code"></i> 템플릿 보기</a></div>
+    </article>
+    <article class="app-card reveal tilt" data-reveal data-tilt data-platform="web" data-state="planned">
+      <span class="app-tag"><i class="ti ti-world"></i> 확장 가능</span>
+      <div class="app-title">웹/도구 앱</div>
+      <div class="app-desc">웹 대시보드나 내부 도구도 같은 카탈로그 안에 함께 넣을 수 있습니다.</div>
+      <div class="app-meta"><span>Web</span><span>Planned</span><span>Future</span></div>
+      <div class="actions-sm"><a href="Customer_Inquiry.html" class="btn-secondary ripple"><i class="ti ti-message-circle"></i> 문의하기</a></div>
+    </article>
   </div>
 </section>
 
 <div class="divider"></div>
 
 <section class="section" id="services">
-  <p class="section-label reveal" data-reveal>Services</p>
-  <h2 class="reveal" data-reveal>서비스</h2>
-  <p class="section-desc reveal" data-reveal>AXLIB가 제공하는 다양한 제품과 서비스를 확인하세요</p>
+  <div class="section-head reveal" data-reveal><div class="section-kicker">Services</div><h2>서비스</h2><p class="section-desc">AXLIB가 제공하는 다양한 제품과 안내를 빠르게 확인할 수 있습니다.</p></div>
   <div class="cards">
-    <div class="card reveal tilt" data-reveal data-tilt>
-      <div class="card-icon"><i class="ti ti-book" aria-hidden="true" style="color:#b388ff"></i></div>
-      <h3>사용 설명서</h3>
-      <p>AXLIB 제품 사용 방법과 가이드를 확인하세요. 빠르게 시작할 수 있도록 도와드립니다.</p>
-      <a href="manual.html" class="btn-secondary ripple"><i class="ti ti-arrow-right" aria-hidden="true"></i> 설명서 열기</a>
-    </div>
-    <div class="card reveal tilt" data-reveal data-tilt>
-      <div class="card-icon"><i class="ti ti-download" aria-hidden="true" style="color:#b388ff"></i></div>
-      <h3>다운로드</h3>
-      <p>최신 버전의 프로그램을 다운로드할 수 있습니다. 항상 최신 기능을 경험하세요.</p>
-      <a href="download.html" class="btn-primary ripple"><i class="ti ti-download" aria-hidden="true"></i> 다운로드</a>
-    </div>
-    <div class="card reveal tilt" data-reveal data-tilt>
-      <div class="card-icon"><i class="ti ti-package" aria-hidden="true" style="color:#b388ff"></i></div>
-      <h3>라이브러리</h3>
-      <p>개발자를 위한 다양한 라이브러리를 제공합니다. 생산성을 높이는 도구들을 만나보세요.</p>
-    </div>
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<section class="section" id="bolt">
-  <p class="section-label reveal" data-reveal>Product</p>
-  <h2 class="reveal" data-reveal>전산볼트 앱</h2>
-  <p class="section-desc reveal" data-reveal>현장에서 바로 쓰는 볼트 계산 & 관리 솔루션</p>
-  <div class="cards">
-    <div class="card reveal tilt" data-reveal data-tilt>
-      <div class="card-icon"><i class="ti ti-adjustments" aria-hidden="true" style="color:#b388ff"></i></div>
-      <h3>재고 관리</h3>
-      <p>볼트 및 부품 재고를 효율적으로 관리합니다.</p>
-    </div>
-    <div class="card reveal tilt" data-reveal data-tilt>
-      <div class="card-icon"><i class="ti ti-clipboard-list" aria-hidden="true" style="color:#b388ff"></i></div>
-      <h3>작업 기록</h3>
-      <p>작업 내역을 저장하고 쉽게 조회할 수 있습니다.</p>
-    </div>
-    <div class="card reveal tilt" data-reveal data-tilt>
-      <div class="card-icon"><i class="ti ti-device-mobile" aria-hidden="true" style="color:#b388ff"></i></div>
-      <h3>모바일 지원</h3>
-      <p>언제 어디서든 Android 기기에서 사용할 수 있습니다.</p>
-    </div>
-    <div class="card reveal tilt" data-reveal data-tilt>
-      <div class="card-icon"><i class="ti ti-cloud" aria-hidden="true" style="color:#b388ff"></i></div>
-      <h3>데이터 관리</h3>
-      <p>데이터를 안전하게 저장하고 관리합니다.</p>
-    </div>
+    <article class="card reveal tilt" data-reveal data-tilt><div class="icon"><i class="ti ti-book"></i></div><h3>사용 설명서</h3><p>앱별 사용 방법과 가이드를 확인하세요. 기기와 앱이 늘어나도 구조를 유지할 수 있습니다.</p><a href="manual.html" class="btn-secondary ripple"><i class="ti ti-arrow-right"></i> 설명서 열기</a></article>
+    <article class="card reveal tilt" data-reveal data-tilt><div class="icon"><i class="ti ti-download"></i></div><h3>다운로드</h3><p>앱별 APK와 자료를 내려받을 수 있습니다. 새 앱은 이 영역에 계속 추가할 수 있습니다.</p><a href="download.html" class="btn-primary ripple"><i class="ti ti-download"></i> 다운로드</a></article>
+    <article class="card reveal tilt" data-reveal data-tilt><div class="icon"><i class="ti ti-package"></i></div><h3>라이브러리</h3><p>개발자를 위한 다양한 라이브러리를 제공합니다. 생산성을 높이는 도구들을 만나보세요.</p></article>
   </div>
 </section>
 
 <div class="divider"></div>
 
 <section class="section">
-  <p class="section-label reveal" data-reveal>Stats</p>
-  <h2 class="reveal" data-reveal>AXLIB 통계</h2>
-  <p class="section-desc reveal" data-reveal>지금까지 함께한 숫자들</p>
-  <div class="cards" style="grid-template-columns:repeat(auto-fit,minmax(220px,1fr));">
-    <div class="stat-box reveal" data-reveal data-count-box>
-      <div class="stat-icon"><i class="ti ti-users" aria-hidden="true"></i></div>
-      <div class="stat-label">누적 방문자</div>
-      <div class="counter" data-count="1250" data-suffix="+">0+</div>
-    </div>
-    <div class="stat-box reveal" data-reveal>
-      <div class="stat-icon"><i class="ti ti-folder" aria-hidden="true"></i></div>
-      <div class="stat-label">프로젝트</div>
-      <div class="counter" data-count="10" data-suffix="+">0+</div>
-    </div>
-    <div class="stat-box reveal" data-reveal>
-      <div class="stat-icon"><i class="ti ti-device-mobile" aria-hidden="true"></i></div>
-      <div class="stat-label">지원 플랫폼</div>
-      <div class="counter" style="font-size:2rem;">Android</div>
-    </div>
+  <div class="section-head reveal" data-reveal><div class="section-kicker">Stats</div><h2>AXLIB 통계</h2><p class="section-desc">지금까지 함께한 숫자들</p></div>
+  <div class="stats">
+    <div class="stat reveal" data-reveal><div class="icon"><i class="ti ti-users"></i></div><div class="stat-label">누적 방문자</div><div class="counter" data-count="1250" data-suffix="+">0+</div></div>
+    <div class="stat reveal" data-reveal><div class="icon"><i class="ti ti-folder"></i></div><div class="stat-label">앱/프로젝트</div><div class="counter" data-count="3" data-suffix="+">0+</div></div>
+    <div class="stat reveal" data-reveal><div class="icon"><i class="ti ti-device-mobile"></i></div><div class="stat-label">지원 플랫폼</div><div class="counter" style="font-size:2rem">Android</div><div class="sub">앱이 늘어나도 같은 구조로 운영</div></div>
   </div>
 </section>
 
 <div class="divider"></div>
 
 <section class="section" id="support">
-  <p class="section-label reveal" data-reveal>Support</p>
-  <h2 class="reveal" data-reveal>후원하기</h2>
-  <p class="section-desc reveal" data-reveal>AXLIB의 성장을 응원해 주세요</p>
-  <div class="support-grid">
+  <div class="section-head reveal" data-reveal><div class="section-kicker">Support</div><h2>후원하기</h2><p class="section-desc">AXLIB와 각 앱의 성장에 힘을 보태 주세요.</p></div>
+  <div class="support">
     <div class="support-copy reveal tilt" data-reveal data-tilt>
-      <div class="card-icon" style="margin-bottom:16px"><i class="ti ti-heart" aria-hidden="true" style="color:#c4a8ff"></i></div>
+      <div class="icon" style="margin-bottom:16px"><i class="ti ti-heart" aria-hidden="true" style="color:#c4a8ff"></i></div>
       <h3>함께 키우는 플랫폼</h3>
-      <p>후원금은 서버 운영, 기능 개발, 전산볼트 앱 유지보수에 사용됩니다. 작은 응원이 더 나은 경험으로 돌아오도록 정리했습니다.</p>
-      <div class="support-actions">
-        <a href="boost.html" class="btn-primary ripple"><i class="ti ti-heart" aria-hidden="true"></i> 후원하기</a>
-        <a href="update.html" class="btn-secondary ripple"><i class="ti ti-bell" aria-hidden="true"></i> 업데이트 보기</a>
-      </div>
+      <p>후원금은 서버 운영, 기능 개발, 새로운 앱 추가, 기존 앱 유지보수에 사용됩니다.</p>
+      <div class="actions-sm"><a href="boost.html" class="btn-primary ripple"><i class="ti ti-heart"></i> 후원하기</a><a href="update.html" class="btn-secondary ripple"><i class="ti ti-bell"></i> 업데이트 보기</a></div>
     </div>
-    <div class="support-note reveal" data-reveal>
-      <div class="note-box"><strong>토스 후원</strong><span>AXLIB와 전산볼트 앱 개발을 응원해 주세요.</span></div>
-      <div class="note-box"><strong>계좌이체</strong><span>모든 은행에서 송금 가능한 안내를 후원 페이지에 정리했습니다.</span></div>
-      <div class="note-box"><strong>후원 활용</strong><span>서버 운영, 기능 개발, 유지보수와 품질 개선에 사용됩니다.</span></div>
-    </div>
+    <div class="support-note reveal" data-reveal><div class="note"><strong>토스 후원</strong><span>AXLIB와 앱 개발을 응원해 주세요.</span></div><div class="note"><strong>계좌이체</strong><span>모든 은행에서 송금 가능한 안내를 후원 페이지에 정리했습니다.</span></div><div class="note"><strong>후원 활용</strong><span>서버 운영, 기능 개발, 유지보수와 품질 개선에 사용됩니다.</span></div></div>
   </div>
 </section>
 
 <div class="divider"></div>
 
 <section class="section">
-  <p class="section-label reveal" data-reveal>Info</p>
-  <h2 class="reveal" data-reveal>AXLIB 정보</h2>
-  <p class="section-desc reveal" data-reveal>우리에 대해 더 알아보세요</p>
+  <div class="section-head reveal" data-reveal><div class="section-kicker">Info</div><h2>AXLIB 정보</h2><p class="section-desc">브랜드와 커뮤니티를 더 빠르게 이해할 수 있도록 정리했습니다.</p></div>
   <div class="info-grid">
-    <div class="info-item reveal tilt" data-reveal data-tilt>
-      <div class="info-item-icon"><i class="ti ti-building" aria-hidden="true"></i></div>
-      <div><h4>회사명</h4><p>AXLIB</p></div>
-    </div>
-    <div class="info-item reveal tilt" data-reveal data-tilt>
-      <div class="info-item-icon"><i class="ti ti-code" aria-hidden="true"></i></div>
-      <div><h4>주요 분야</h4><p>소프트웨어 · 웹 · 앱 개발</p></div>
-    </div>
-    <div class="info-item reveal tilt" data-reveal data-tilt>
-      <div class="info-item-icon"><i class="ti ti-brand-discord" aria-hidden="true"></i></div>
-      <div><h4>공식 커뮤니티</h4><p>디스코드 서버 운영 중</p></div>
-    </div>
+    <article class="info reveal tilt" data-reveal data-tilt><div class="icon"><i class="ti ti-building"></i></div><div><h4>회사명</h4><p>AXLIB</p></div></article>
+    <article class="info reveal tilt" data-reveal data-tilt><div class="icon"><i class="ti ti-code"></i></div><div><h4>주요 분야</h4><p>소프트웨어 · 웹 · 앱 개발</p></div></article>
+    <article class="info reveal tilt" data-reveal data-tilt><div class="icon"><i class="ti ti-brand-discord"></i></div><div><h4>공식 커뮤니티</h4><p>디스코드 서버 운영 중</p></div></article>
   </div>
 </section>
 
-<a href="https://discord.gg/DxY47Q3EHR" target="_blank" class="discord-btn ripple" rel="noreferrer">
-  <i class="ti ti-brand-discord" aria-hidden="true"></i> 고객 문의
-</a>
-
-<footer class="footer">
-  <div class="footer-logo">AXLIB</div>
-  <p>© 2026 AXLIB. All Rights Reserved.</p>
-  <p>전산볼트 앱 · 라이브러리 플랫폼</p>
-  <p>고객 문의는 공식 디스코드 서버를 이용해 주세요.</p>
-  <div class="footer-links">
-    <a href="#about">회사소개</a>
-    <a href="#services">서비스</a>
-    <a href="download.html">다운로드</a>
-    <a href="manual.html">매뉴얼</a>
-  </div>
-</footer>
-
+<a href="https://discord.gg/DxY47Q3EHR" target="_blank" rel="noreferrer" class="discord-btn ripple"><i class="ti ti-brand-discord"></i> 고객 문의</a>
+<footer class="footer"><div class="footer-brand"><div class="footer-logo">AX</div><div><div class="logo" style="letter-spacing:.22em">AXLIB</div><div class="logo-sub" style="font-size:.8rem;color:var(--muted-2)">Software App Library Platform</div></div></div><p class="footer-text">© 2026 AXLIB. All Rights Reserved.</p><p class="footer-text">전산볼트 앱 · 라이브러리 플랫폼 · 고객 문의는 공식 디스코드 서버를 이용해 주세요.</p><div class="footer-links"><a href="#about">회사소개</a><a href="#catalog">앱</a><a href="download.html">다운로드</a><a href="manual.html">매뉴얼</a></div></footer>
+</div>
 <script>
-const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
-const progressBar = document.getElementById('progressBar');
-const topAnchor = document.getElementById('topAnchor');
-const cursorGlow = document.getElementById('cursorGlow');
-const heroBg = document.getElementById('heroBg');
-const heroDesc = document.getElementById('heroDesc');
-const navLinks = [...document.querySelectorAll('nav a[href^="#"]')];
-const sections = [...document.querySelectorAll('section[id]')];
-const revealItems = document.querySelectorAll('[data-reveal]');
-const counters = document.querySelectorAll('[data-count]');
-const phrases = [
-  '전산볼트 · 웹 서비스 · 오픈소스 프로젝트를 한 번에 보여줍니다.',
-  '더 나은 도구를 만드는 개발 플랫폼입니다.',
-  '깔끔한 정보 구조와 빠른 접근성을 제공합니다.'
-];
-let phraseIndex = 0;
-
-function updateProgress(){
-  const max = document.documentElement.scrollHeight - innerHeight;
-  progressBar.style.width = max > 0 ? `${(scrollY / max) * 100}%` : '0%';
-  topAnchor.classList.toggle('show', scrollY > 500);
-}
-
-function setActiveNav(){
-  let current = '';
-  sections.forEach(section => {
-    if (scrollY >= section.offsetTop - 140) current = section.id;
-  });
-  navLinks.forEach(link => {
-    link.classList.toggle('active', link.getAttribute('href') === `#${current}`);
-  });
-}
-
-function animateCounter(el){
-  const target = Number(el.dataset.count || 0);
-  const suffix = el.dataset.suffix || '';
-  const duration = 1400;
-  const start = performance.now();
-  const step = (now) => {
-    const t = Math.min((now - start) / duration, 1);
-    const eased = 1 - Math.pow(1 - t, 3);
-    el.textContent = `${Math.floor(target * eased).toLocaleString('ko-KR')}${suffix}`;
-    if (t < 1) requestAnimationFrame(step);
-    else el.textContent = `${target.toLocaleString('ko-KR')}${suffix}`;
-  };
-  requestAnimationFrame(step);
-}
-
-function revealOnScroll(){
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        if (entry.target.hasAttribute('data-count')) animateCounter(entry.target);
-        io.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.14, rootMargin: '0px 0px -8% 0px' });
-  revealItems.forEach(el => io.observe(el));
-}
-
-function rippleButtons(){
-  document.querySelectorAll('.ripple').forEach(btn => {
-    btn.addEventListener('click', (event) => {
-      const circle = document.createElement('span');
-      const rect = btn.getBoundingClientRect();
-      const size = Math.max(rect.width, rect.height);
-      circle.style.width = circle.style.height = `${size}px`;
-      circle.style.left = `${event.clientX - rect.left - size / 2}px`;
-      circle.style.top = `${event.clientY - rect.top - size / 2}px`;
-      circle.style.position = 'absolute';
-      circle.style.borderRadius = '50%';
-      circle.style.background = 'rgba(255,255,255,0.18)';
-      circle.style.pointerEvents = 'none';
-      circle.style.transform = 'scale(0)';
-      circle.style.transition = 'transform .55s ease, opacity .55s ease';
-      circle.style.opacity = '1';
-      btn.style.position = 'relative';
-      btn.style.overflow = 'hidden';
-      btn.appendChild(circle);
-      requestAnimationFrame(() => circle.style.transform = 'scale(1)');
-      setTimeout(() => circle.style.opacity = '0', 250);
-      setTimeout(() => circle.remove(), 650);
-    });
-  });
-}
-
-function tiltCards(){
-  if (reduceMotion) return;
-  document.querySelectorAll('[data-tilt]').forEach(card => {
-    card.addEventListener('pointermove', (event) => {
-      const rect = card.getBoundingClientRect();
-      const x = (event.clientX - rect.left) / rect.width - 0.5;
-      const y = (event.clientY - rect.top) / rect.height - 0.5;
-      card.style.transform = `perspective(1000px) rotateX(${(-y * 6).toFixed(2)}deg) rotateY(${(x * 7).toFixed(2)}deg) translateY(-4px)`;
-    });
-    card.addEventListener('pointerleave', () => {
-      card.style.transform = '';
-    });
-  });
-}
-
-function animateHeroText(){
-  heroDesc.style.opacity = '0.25';
-  setTimeout(() => {
-    phraseIndex = (phraseIndex + 1) % phrases.length;
-    heroDesc.textContent = phrases[phraseIndex];
-    heroDesc.style.opacity = '1';
-  }, 260);
-}
-
-function heroParallax(event){
-  if (reduceMotion) return;
-  const x = (event.clientX / innerWidth - 0.5) * 18;
-  const y = (event.clientY / innerHeight - 0.5) * 18;
-  heroBg.style.transform = `translate(${x * -0.4}px, ${y * -0.4}px)`;
-  cursorGlow.style.left = `${event.clientX}px`;
-  cursorGlow.style.top = `${event.clientY}px`;
-  cursorGlow.style.opacity = '1';
-}
-
-revealOnScroll();
-tiltCards();
-rippleButtons();
-updateProgress();
-setActiveNav();
-window.addEventListener('scroll', () => { updateProgress(); setActiveNav(); });
-window.addEventListener('resize', updateProgress);
-window.addEventListener('mousemove', heroParallax);
-window.addEventListener('mouseleave', () => { cursorGlow.style.opacity = '0'; });
-topAnchor.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-setInterval(animateHeroText, 2600);
+const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;const progressBar=document.getElementById('progressBar');const topAnchor=document.getElementById('topAnchor');const cursorGlow=document.getElementById('cursorGlow');const heroBg=document.getElementById('heroBg');const heroDesc=document.getElementById('heroDesc');const navLinks=[...document.querySelectorAll('nav a[href^="#"]')];const sections=[...document.querySelectorAll('section[id]')];const revealItems=document.querySelectorAll('[data-reveal]');const counters=document.querySelectorAll('[data-count]');const heroPhrases=['전산볼트뿐 아니라 다른 앱도 계속 추가할 수 있는 구조로 바꿨습니다.','하나의 플랫폼에 여러 앱을 담는 카탈로그 방식입니다.','새 앱은 카드 하나를 복사해 붙여넣으면 됩니다.'];let phraseIndex=0;function updateProgress(){const max=document.documentElement.scrollHeight-innerHeight;progressBar.style.width=max>0?`${scrollY/max*100}%`:'0%';topAnchor.classList.toggle('show',scrollY>500)}function setActiveNav(){let current='';sections.forEach(section=>{if(scrollY>=section.offsetTop-140)current=section.id});navLinks.forEach(link=>link.classList.toggle('active',link.getAttribute('href')===`#${current}`))}function animateCounter(el){const target=Number(el.dataset.count||0);const suffix=el.dataset.suffix||'';const duration=1400;const start=performance.now();const step=(now)=>{const t=Math.min((now-start)/duration,1);const eased=1-Math.pow(1-t,3);el.textContent=`${Math.floor(target*eased).toLocaleString('ko-KR')}${suffix}`;if(t<1)requestAnimationFrame(step);else el.textContent=`${target.toLocaleString('ko-KR')}${suffix}`};requestAnimationFrame(step)}function revealOnScroll(){const io=new IntersectionObserver((entries)=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');if(entry.target.hasAttribute('data-count'))animateCounter(entry.target);io.unobserve(entry.target)}})},{threshold:.14,rootMargin:'0px 0px -8% 0px'});revealItems.forEach(el=>io.observe(el))}function rippleButtons(){document.querySelectorAll('.ripple').forEach(btn=>{btn.addEventListener('click',event=>{const circle=document.createElement('span');const rect=btn.getBoundingClientRect();const size=Math.max(rect.width,rect.height);circle.style.width=circle.style.height=`${size}px`;circle.style.left=`${event.clientX-rect.left-size/2}px`;circle.style.top=`${event.clientY-rect.top-size/2}px`;circle.style.position='absolute';circle.style.borderRadius='50%';circle.style.background='rgba(255,255,255,0.18)';circle.style.pointerEvents='none';circle.style.transform='scale(0)';circle.style.transition='transform .55s ease, opacity .55s ease';circle.style.opacity='1';btn.style.position='relative';btn.style.overflow='hidden';btn.appendChild(circle);requestAnimationFrame(()=>circle.style.transform='scale(1)');setTimeout(()=>circle.style.opacity='0',250);setTimeout(()=>circle.remove(),650)})})}function tiltCards(){if(reduceMotion)return;document.querySelectorAll('[data-tilt]').forEach(card=>{card.addEventListener('pointermove',event=>{const rect=card.getBoundingClientRect();const x=(event.clientX-rect.left)/rect.width-.5;const y=(event.clientY-rect.top)/rect.height-.5;card.style.transform=`perspective(1000px) rotateX(${(-y*6).toFixed(2)}deg) rotateY(${(x*7).toFixed(2)}deg) translateY(-4px)`});card.addEventListener('pointerleave',()=>{card.style.transform=''})})}function animateHeroText(){phraseIndex=(phraseIndex+1)%heroPhrases.length;heroDesc.style.opacity='.25';setTimeout(()=>{heroDesc.textContent=heroPhrases[phraseIndex];heroDesc.style.opacity='1'},220)}function heroParallax(event){if(reduceMotion)return;const x=(event.clientX/innerWidth-.5)*18;const y=(event.clientY/innerHeight-.5)*18;heroBg.style.transform=`translate(${x*-0.4}px, ${y*-0.4}px)`;cursorGlow.style.left=`${event.clientX}px`;cursorGlow.style.top=`${event.clientY}px`;cursorGlow.style.opacity='1'}
+revealOnScroll();tiltCards();rippleButtons();updateProgress();setActiveNav();window.addEventListener('scroll',()=>{updateProgress();setActiveNav()});window.addEventListener('resize',updateProgress);window.addEventListener('mousemove',heroParallax);window.addEventListener('mouseleave',()=>{cursorGlow.style.opacity='0'});topAnchor.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));setInterval(animateHeroText,2600);
+const appGrid=document.getElementById('appGrid');const appCards=[...document.querySelectorAll('.app-card')];const filterAllBtn=document.getElementById('filterAllBtn');const filterAndroidBtn=document.getElementById('filterAndroidBtn');const filterPlannedBtn=document.getElementById('filterPlannedBtn');function filterApps(mode){appCards.forEach(card=>{const show=mode==='all'||card.dataset.platform===mode||(mode==='planned'&&card.dataset.state==='planned');card.classList.toggle('hidden',!show)});}
+filterAllBtn.addEventListener('click',()=>filterApps('all'));filterAndroidBtn.addEventListener('click',()=>filterApps('android'));filterPlannedBtn.addEventListener('click',()=>filterApps('planned'));document.querySelector('[href="#download-template"]').addEventListener('click',e=>{e.preventDefault();document.getElementById('download').scrollIntoView({behavior:'smooth'})});
 </script>
 </body>
 </html>
