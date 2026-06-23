@@ -239,15 +239,15 @@ footer{
     <table class="account-table">
       <tr>
         <td>은행</td>
-        <td>○○은행</td>
+        <td>토스은행</td>
       </tr>
       <tr>
         <td>계좌번호</td>
-        <td>○○○-○○○○-○○○○○</td>
+        <td>1908-3819-7811</td>
       </tr>
       <tr>
         <td>예금주</td>
-        <td>○○○</td>
+        <td>박시윤</td>
       </tr>
     </table>
     <button class="btn-copy" id="copyBtn" onclick="copyAccount()">
@@ -274,7 +274,7 @@ footer{
 
 <script>
 function copyAccount(){
-  const account = "000-0000-000000";
+  const account = "1908-3819-7811";
   navigator.clipboard.writeText(account).then(() => {
     const btn = document.getElementById('copyBtn');
     btn.classList.add('copied');
