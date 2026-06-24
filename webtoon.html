@@ -29,13 +29,12 @@ body::before,body::after{content:'';position:fixed;width:34rem;height:34rem;bord
 .footer{text-align:center;padding:40px 24px 56px;border-top:1px solid rgba(125,60,255,.12);color:rgba(255,255,255,.28);font-size:.82rem;line-height:2.2}
 .reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease}.reveal.visible{opacity:1;transform:none}
 .hidden{display:none !important}
-@media(max-width:900px){.layout{grid-template-columns:1fr}.form-grid,.github-grid{grid-template-columns:1fr 1fr}}
-@media(max-width:640px){.topbar{padding:14px 18px;flex-direction:column;align-items:flex-start}.hero{padding-top:96px}.container{padding-inline:16px}.panel{padding:20px}.form-grid,.github-grid{grid-template-columns:1fr}.comic{padding:14px}.discord-btn{right:14px;bottom:14px;padding:11px 16px;font-size:.86rem}}
+@media(max-width:900px){.layout{grid-template-columns:1fr}.hero{min-height:auto}.grid{grid-template-columns:1fr 1fr}}
+@media(max-width:640px){.topbar{padding:14px 18px;flex-direction:column;align-items:flex-start}.hero{padding-top:96px}.container{padding-inline:16px}.panel{padding:20px}.form-grid,.github-grid{grid-template-columns:1fr}}
 @media(prefers-reduced-motion: reduce){html{scroll-behavior:auto}*,*::before,*::after{transition:none !important;animation:none !important;scroll-behavior:auto !important}.reveal{opacity:1;transform:none}}
 </style>
 </head>
 <body>
-<div class="progress" id="progress"></div>
 <div class="topbar">
   <a href="index.html" class="back"><i class="ti ti-arrow-left"></i> 홈으로</a>
   <a href="index.html" class="logo">AX<span>LIB</span></a>
@@ -49,6 +48,7 @@ body::before,body::after{content:'';position:fixed;width:34rem;height:34rem;bord
   <div class="hero-actions">
     <a href="login.html" class="btn btn-solid ripple" id="openUploadBtn"><i class="ti ti-lock"></i> 로그인 후 업로드</a>
     <a href="login.html" class="btn btn-ghost ripple"><i class="ti ti-lock"></i> 로그인</a>
+    <a href="download.html" class="btn btn-ghost ripple"><i class="ti ti-download"></i> 다운로드</a>
     <a href="#gallery" class="btn btn-ghost ripple"><i class="ti ti-layout-grid"></i> 작품 보기</a>
   </div>
 </header>
