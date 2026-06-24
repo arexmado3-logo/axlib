@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#080810">
+<title>로그인 — AXLIB</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+<style>
+:root{--bg:#080810;--panel:rgba(28,22,50,.72);--line:rgba(125,60,255,.18);--text:#e8e4ff;--muted:rgba(196,168,255,.62);--accent:#7d3cff;--accent2:#b388ff;--shadow:0 18px 48px rgba(125,60,255,.12);--max:860px}
+*{margin:0;padding:0;box-sizing:border-box}body{min-height:100vh;background:radial-gradient(circle at 20% 20%, rgba(125,60,255,.12), transparent 28%),radial-gradient(circle at 80% 15%, rgba(88,101,242,.08), transparent 24%),linear-gradient(180deg,#080810 0%,#0b0d18 100%);color:var(--text);font-family:'Segoe UI',Arial,sans-serif;line-height:1.7;overflow-x:hidden}a{color:inherit;text-decoration:none}
+body::before,body::after{content:'';position:fixed;width:34rem;height:34rem;border-radius:50%;filter:blur(120px);pointer-events:none;z-index:-2;opacity:.28}body::before{left:-12rem;top:-8rem;background:rgba(125,60,255,.22)}body::after{right:-14rem;bottom:-10rem;background:rgba(88,101,242,.16)}
+.wrap{min-height:100vh;display:grid;place-items:center;padding:24px}.card{width:min(100%,var(--max));display:grid;grid-template-columns:1.05fr .95fr;gap:18px}.panel{background:var(--panel);border:1px solid var(--line);border-radius:28px;padding:28px;box-shadow:var(--shadow);position:relative;overflow:hidden}.panel::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 100% 0%, rgba(125,60,255,.1), transparent 34%);pointer-events:none}
+.hero{display:flex;flex-direction:column;justify-content:center;min-height:100%}.badge{display:inline-flex;align-items:center;gap:8px;background:rgba(125,60,255,.15);border:1px solid rgba(125,60,255,.36);color:#b388ff;font-size:.75rem;letter-spacing:1.5px;padding:6px 16px;border-radius:999px;text-transform:uppercase;width:max-content}.hero h1{margin-top:16px;font-size:clamp(2.3rem,5vw,4rem);line-height:1.02;letter-spacing:-.05em}.hero p{margin-top:12px;color:var(--muted);max-width:600px}.list{display:grid;gap:12px;margin-top:22px}.item{padding:14px 16px;border-radius:18px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08)}.item strong{display:block;color:#fff;margin-bottom:4px}.item span{color:var(--muted);font-size:.92rem}
+.form h2{font-size:1.4rem;color:#fff;margin-bottom:8px}.form p{color:var(--muted);margin-bottom:18px}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.field{display:flex;flex-direction:column;gap:8px}.field.full{grid-column:1/-1}.field label{font-size:.86rem;color:#ddd0ff;font-weight:700}.field input{width:100%;padding:12px 14px;border-radius:14px;background:rgba(8,8,16,.55);border:1px solid rgba(255,255,255,.08);color:#fff;font:inherit;outline:none}.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}.btn{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 18px;border-radius:14px;border:1px solid transparent;font-weight:700;cursor:pointer;transition:.22s ease;position:relative;overflow:hidden}.btn:hover{transform:translateY(-2px)}.btn-solid{background:var(--accent);color:#fff}.btn-ghost{background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.08);color:#c4a8ff}.status{margin-top:18px;padding:14px 16px;border-radius:16px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);color:var(--muted)}.footer{margin-top:16px;text-align:center;color:rgba(255,255,255,.28);font-size:.82rem;line-height:2}
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(18px);background:rgba(28,22,50,.92);border:1px solid rgba(125,60,255,.32);color:#ddd0ff;padding:12px 18px;border-radius:12px;font-size:.88rem;opacity:0;pointer-events:none;transition:opacity .28s,transform .28s;display:flex;align-items:center;gap:8px;z-index:9998;backdrop-filter:blur(10px)}.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+@media(max-width:900px){.card{grid-template-columns:1fr}.hero{min-height:auto}.grid{grid-template-columns:1fr 1fr}}
+@media(max-width:640px){.wrap{padding:16px}.panel{padding:20px}.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="card">
+    <section class="panel hero">
+      <div class="badge"><i class="ti ti-lock"></i> Admin Login</div>
+      <h1>웹툰 업로드 로그인</h1>
+      <p>GitHub에 웹툰을 게시하려면 저장소 정보와 토큰이 필요합니다. 입력한 값은 현재 브라우저 세션에만 저장됩니다.</p>
+      <div class="list">
+        <div class="item"><strong>저장소 연결</strong><span>업로드할 GitHub 저장소와 브랜치를 기억합니다.</span></div>
+        <div class="item"><strong>세션 유지</strong><span>로그인 후 웹툰 업로드 페이지에서 바로 사용합니다.</span></div>
+        <div class="item"><strong>로컬 우선</strong><span>토큰이 없어도 로컬 업로드는 계속 가능합니다.</span></div>
+      </div>
+    </section>
+
+    <section class="panel form">
+      <h2>로그인</h2>
+      <p>업로드용 계정 정보를 입력하세요.</p>
+      <form id="loginForm">
+        <div class="grid">
+          <div class="field full"><label for="repo">저장소</label><input id="repo" value="arexmado3-logo/axlib" placeholder="owner/repo"></div>
+          <div class="field"><label for="branch">브랜치</label><input id="branch" value="main" placeholder="main"></div>
+          <div class="field"><label for="path">저장 폴더</label><input id="path" value="webtoons" placeholder="webtoons"></div>
+          <div class="field full"><label for="token">GitHub 토큰</label><input id="token" type="password" placeholder="GitHub 토큰"></div>
+        </div>
+        <div class="actions">
+          <button class="btn btn-solid" type="submit"><i class="ti ti-login"></i> 로그인</button>
+          <button class="btn btn-ghost" id="logoutBtn" type="button"><i class="ti ti-logout"></i> 로그아웃</button>
+          <a class="btn btn-ghost" href="webtoon.html"><i class="ti ti-photo-heart"></i> 웹툰으로</a>
+        </div>
+      </form>
+      <div class="status" id="status">아직 로그인하지 않았습니다.</div>
+      <div class="footer">© 2026 AXLIB. All Rights Reserved.</div>
+    </section>
+  </div>
+</div>
+<div class="toast" id="toast"><i class="ti ti-check"></i> 저장되었습니다</div>
+<script>
+const keys={repo:'axlib_admin_repo',branch:'axlib_admin_branch',path:'axlib_admin_path',token:'axlib_admin_token',loggedIn:'axlib_admin_logged_in'};const form=document.getElementById('loginForm');const status=document.getElementById('status');const toast=document.getElementById('toast');function showToast(text){toast.innerHTML='<i class="ti ti-check"></i> '+text;toast.classList.add('show');setTimeout(()=>toast.classList.remove('show'),2200)}function syncStatus(){const logged=sessionStorage.getItem(keys.loggedIn)==='1';status.textContent=logged?`로그인됨 · ${sessionStorage.getItem(keys.repo)||'저장소 없음'} · ${sessionStorage.getItem(keys.branch)||'main'} · ${sessionStorage.getItem(keys.path)||'webtoons'}`:'아직 로그인하지 않았습니다.';if(logged)showToast('로그인 상태를 유지 중입니다')}form.addEventListener('submit',e=>{e.preventDefault();const repo=document.getElementById('repo').value.trim();const branch=document.getElementById('branch').value.trim()||'main';const path=document.getElementById('path').value.trim()||'webtoons';const token=document.getElementById('token').value.trim();if(!repo||!token){showToast('저장소와 토큰을 입력해주세요');return}sessionStorage.setItem(keys.repo,repo);sessionStorage.setItem(keys.branch,branch);sessionStorage.setItem(keys.path,path);sessionStorage.setItem(keys.token,token);sessionStorage.setItem(keys.loggedIn,'1');showToast('로그인했습니다');setTimeout(()=>location.href='webtoon.html',500)});document.getElementById('logoutBtn').addEventListener('click',()=>{Object.values(keys).forEach(k=>sessionStorage.removeItem(k));document.getElementById('token').value='';showToast('로그아웃했습니다');syncStatus()});window.addEventListener('load',()=>{document.getElementById('repo').value=sessionStorage.getItem(keys.repo)||'arexmado3-logo/axlib';document.getElementById('branch').value=sessionStorage.getItem(keys.branch)||'main';document.getElementById('path').value=sessionStorage.getItem(keys.path)||'webtoons';syncStatus()});
+</script>
+</body>
+</html>
