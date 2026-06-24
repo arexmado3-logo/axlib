@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#080810">
+<title>공지 — AXLIB</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+<style>
+:root{--bg:#080810;--panel:rgba(28,22,50,.72);--panel-soft:rgba(28,22,50,.52);--line:rgba(125,60,255,.18);--text:#e8e4ff;--muted:rgba(196,168,255,.62);--accent:#7d3cff;--accent2:#b388ff;--accent3:#5865f2;--shadow:0 18px 48px rgba(125,60,255,.12);--max:1080px}
+*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}body{min-height:100vh;background:radial-gradient(circle at 20% 20%, rgba(125,60,255,.12), transparent 28%),radial-gradient(circle at 82% 12%, rgba(88,101,242,.08), transparent 22%),linear-gradient(180deg,#080810 0%,#0b0d18 100%);color:var(--text);font-family:'Segoe UI',Arial,sans-serif;overflow-x:hidden;line-height:1.7}a{color:inherit;text-decoration:none}
+body::before,body::after{content:'';position:fixed;width:34rem;height:34rem;border-radius:50%;filter:blur(130px);pointer-events:none;opacity:.3;z-index:-2}body::before{left:-10rem;top:-10rem;background:rgba(125,60,255,.2)}body::after{right:-10rem;bottom:-12rem;background:rgba(88,101,242,.18)}
+.topbar{position:sticky;top:0;z-index:1000;display:flex;justify-content:space-between;align-items:center;gap:14px;padding:16px 48px;background:rgba(8,8,16,.92);backdrop-filter:blur(16px);border-bottom:1px solid rgba(125,60,255,.22)}
+.logo{font-size:1.45rem;font-weight:800;letter-spacing:2px;color:#c4a8ff}.logo span{color:var(--accent)}
+.back{display:inline-flex;align-items:center;gap:6px;color:rgba(196,168,255,.62);font-size:.86rem}.pill{display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border-radius:999px;background:rgba(125,60,255,.12);border:1px solid rgba(125,60,255,.18);color:#c4a8ff;font-size:.82rem;font-weight:700}
+.hero{padding:116px 24px 36px;text-align:center;position:relative;overflow:hidden}.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 58% at 50% 60%, rgba(125,60,255,.16) 0%, transparent 70%);pointer-events:none}.hero-card{position:relative;z-index:1;max-width:900px;margin:0 auto}.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(125,60,255,.15);border:1px solid rgba(125,60,255,.38);color:#b388ff;font-size:.75rem;letter-spacing:1.5px;padding:6px 16px;border-radius:999px;text-transform:uppercase}.hero h1{font-size:clamp(2.4rem,5vw,4rem);line-height:1.02;letter-spacing:-.04em;margin-top:16px;color:#fff}.hero p{margin-top:12px;color:var(--muted);max-width:760px;margin-inline:auto}
+.container{max-width:var(--max);margin:0 auto;padding:0 24px 84px}
+.panel{padding:28px;border-radius:28px;background:var(--panel);border:1px solid var(--line);box-shadow:var(--shadow);position:relative;overflow:hidden}.panel::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 100% 0%, rgba(125,60,255,.1), transparent 34%);pointer-events:none}
+.stack{display:grid;gap:18px}.item{padding:20px;border-radius:22px;background:var(--panel-soft);border:1px solid rgba(255,255,255,.08)}.item h3{font-size:1.08rem;color:#fff;margin-bottom:8px}.item p{color:var(--muted);line-height:1.8}.item .meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}.item .meta span{font-size:.78rem;color:rgba(196,168,255,.64);padding:6px 10px;border-radius:999px;background:rgba(28,22,50,.5);border:1px solid rgba(255,255,255,.08)}
+.notice-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:18px;align-items:start;margin-top:18px}.notice-copy{padding:28px;border-radius:28px;background:linear-gradient(135deg,rgba(125,60,255,.18),rgba(37,208,206,.08));border:1px solid rgba(125,60,255,.22);box-shadow:var(--shadow)}.notice-copy h2{font-size:1.6rem;color:#fff;margin-bottom:10px}.notice-copy p{color:var(--muted)}.notice-note{display:grid;gap:12px}.note{padding:18px;border-radius:22px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08)}.note strong{display:block;margin-bottom:6px}.note span{color:var(--muted)}
+.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}.btn{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 18px;border-radius:14px;border:1px solid transparent;font-weight:700;cursor:pointer;transition:.22s ease;position:relative;overflow:hidden}.btn:hover{transform:translateY(-2px)}.btn-solid{background:var(--accent);color:#fff}.btn-ghost{background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.08);color:#c4a8ff}.btn-ghost:hover{border-color:rgba(125,60,255,.22)}
+.footer{text-align:center;padding:40px 24px 56px;border-top:1px solid rgba(125,60,255,.12);color:rgba(255,255,255,.28);font-size:.82rem;line-height:2.2}
+.discord-btn{position:fixed;right:20px;bottom:20px;background:#5865F2;color:#fff;text-decoration:none;padding:12px 20px;border-radius:999px;font-weight:700;font-size:.88rem;display:flex;align-items:center;gap:8px;box-shadow:0 6px 20px rgba(88,101,242,.4);z-index:9999;transition:.3s}.discord-btn:hover{transform:translateY(-3px);box-shadow:0 10px 28px rgba(88,101,242,.5)}
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease}.reveal.visible{opacity:1;transform:none}
+@media(max-width:900px){.notice-grid{grid-template-columns:1fr}}
+@media(max-width:640px){.topbar{padding:14px 18px;flex-direction:column;align-items:flex-start}.hero{padding-top:96px}.container{padding-inline:16px}.panel,.notice-copy{padding:22px}.discord-btn{right:14px;bottom:14px;padding:11px 16px;font-size:.86rem}}
+@media(prefers-reduced-motion: reduce){html{scroll-behavior:auto}*,*::before,*::after{transition:none !important;animation:none !important;scroll-behavior:auto !important}.reveal{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<div class="topbar">
+  <a href="index.html" class="back"><i class="ti ti-arrow-left"></i> 홈으로</a>
+  <a href="index.html" class="logo">AX<span>LIB</span></a>
+  <span class="pill"><i class="ti ti-bell"></i> 공지</span>
+</div>
+
+<header class="hero">
+  <div class="hero-card reveal" data-reveal>
+    <div class="hero-badge">Notice</div>
+    <h1>AXLIB 공지</h1>
+    <p>사이트 운영과 기능 변경 사항을 한눈에 볼 수 있게 정리한 공지 페이지입니다.</p>
+  </div>
+</header>
+
+<div class="container">
+  <section class="notice-grid">
+    <div class="notice-copy reveal" data-reveal>
+      <h2>현재 안내</h2>
+      <p>지금은 다운로드 버튼이 실제 APK 대신 안내 파일을 내려받도록 연결되어 있습니다. 실제 앱 파일이 준비되면 같은 버튼에 APK 링크를 붙이면 됩니다.</p>
+      <div class="actions">
+        <a class="btn btn-solid" href="download.html"><i class="ti ti-download"></i> 다운로드 페이지</a>
+        <a class="btn btn-ghost" href="webtoon.html"><i class="ti ti-photo-heart"></i> 웹툰 페이지</a>
+        <a class="btn btn-ghost" href="login.html"><i class="ti ti-lock"></i> 로그인</a>
+      </div>
+    </div>
+    <div class="notice-note reveal" data-reveal>
+      <div class="note"><strong>웹툰 업로드</strong><span>로그인한 뒤에만 등록할 수 있습니다.</span></div>
+      <div class="note"><strong>앱 확장</strong><span>다른 앱도 같은 구조로 계속 추가할 수 있습니다.</span></div>
+      <div class="note"><strong>공지 갱신</strong><span>새 소식이 생기면 이 페이지를 덮어써서 최신 상태로 유지하세요.</span></div>
+    </div>
+  </section>
+
+  <section style="margin-top:18px" class="panel reveal" data-reveal>
+    <h2 style="font-size:1.4rem;color:#fff;margin-bottom:10px">공지 목록</h2>
+    <div class="stack">
+      <article class="item">
+        <h3>2026-06-24 공지</h3>
+        <p>다운로드는 현재 안내 파일로 동작합니다. 실제 APK가 준비되면 `download.html`의 버튼만 교체하면 바로 배포 형태로 전환할 수 있습니다.</p>
+        <div class="meta"><span>다운로드</span><span>웹툰 로그인</span><span>앱 확장 가능</span></div>
+      </article>
+    </div>
+  </section>
+</div>
+
+<a href="https://discord.gg/DxY47Q3EHR" target="_blank" rel="noreferrer" class="discord-btn"><i class="ti ti-brand-discord"></i> 고객 문의</a>
+<footer class="footer">
+  <p>© 2026 AXLIB. All Rights Reserved.</p>
+  <p>공지와 변경 사항을 한곳에서 확인합니다.</p>
+</footer>
+<script>
+const revealItems=document.querySelectorAll('[data-reveal]');const io=new IntersectionObserver((entries)=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');io.unobserve(entry.target)}})},{threshold:.14,rootMargin:'0px 0px -8% 0px'});revealItems.forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
